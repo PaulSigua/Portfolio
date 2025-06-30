@@ -1,11 +1,38 @@
 ---
-import Home from '../components/Home.astro';
-import Layout from '../layouts/Layout.astro';
-import '../styles/global.css';
+import Badge from "../components/Badge.astro";
+import Github from "../assets/icons/Github.astro";
+import Layout from "../layouts/Layout.astro";
+import "../styles/global.css";
 // Header to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Home />
+  <main>
+    <section class="w-[740px] mx-auto">
+      <h1 class="text-4xl font-bold flex justify-center items-center flex-row">
+        Hola, mi nombre es Paúl Sigua
+      </h1>
+      <h2>
+        Soy un desarrollador con experiencia en Python, TypeScript, Angular,
+        Node.js y Astro. Me apasiona crear aplicaciones web modernas y
+        eficientes. ¡Estoy listo para enfrentar nuevos desafíos!
+      </h2>
+      <h2>Cuenca, Ecuador 🇪🇨.</h2>
+    </section>
+    <section class="w-[740px] mx-auto mt-8 flex justify-left">
+      <div class="justify-center items-center flex flex-row">
+        <Badge>
+          <a href="https://www.linkedin.com/in/paulsigua/" target="_blank"
+            >Disponible para trabajar</a
+          >
+        </Badge>
+      </div>
+      <div>
+        <a href="https://github.com/PaulSigua" target="_blank">
+        <Github />
+		</a>
+      </div>
+    </section>
+  </main>
 </Layout>
