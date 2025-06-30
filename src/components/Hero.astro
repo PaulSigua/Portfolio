@@ -1,0 +1,59 @@
+---
+import Linkedin from "./icons/Linkedin.astro";
+import Github from "./icons/Github.astro";
+import Mail from "./icons/Mail.astro";
+---
+
+<section class="w-[740px] mx-auto">
+  <h1
+    class="text-5xl font-bold flex justify-center items-center flex-row pl-2 pb-2"
+  >
+    Hola, soy Paúl Sigua
+  </h1>
+  <h2 class="mt-6 text-xl text-gray-800">
+    Soy un desarrollador fullstack con experiencia en Python, Java, TypeScript,
+    Angular, Node.js y Astro, así como en el desarrollo de APIs robustas con
+    FastAPI y Spring WebFlux. He trabajado en proyectos complejos que integran
+    bases de datos como SQL Server y Firestore, arquitecturas modernas con
+    Docker, y soluciones móviles con Flutter.
+  </h2>
+  <h2
+    class="mt-6 text-xl text-gray-800 dark:[&>strong]:text-orange-200 [&>strong]:text-orange-500 [&>strong]:font-semibold dark:text-gray-300"
+  >
+    Me especializo en construir aplicaciones web escalables, eficientes y
+    visualmente atractivas. Siempre estoy listo para asumir nuevos retos y
+    aportar soluciones sólidas e innovadoras. <strong
+      >¡Estoy listo para enfrentar nuevos desafíos!</strong
+    >
+  </h2>
+  <h2 class="mt-2 text-xl text-gray-800">Cuenca, Ecuador 🇪🇨.</h2>
+</section>
+<section class="w-[740px] mx-auto mt-8 flex justify-left">
+    {[
+        {
+            href: 'https://www.linkedin.com/in/paulsigua/',
+            icon: <Linkedin />,
+            label: 'LinkedIn'
+        },
+        {
+            href: 'https://github.com/PaulSigua',
+            icon: <Github />,
+            label: 'GitHub'
+        },
+        {
+            href: 'mailto:mateosigua2002@gmail.com',
+            icon: <Mail />,
+            label: 'Email'
+        }
+    ].map(({href, icon, label }) => (
+        <a 
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={label}
+            class="flex items-center justify-center rounded-lg p-2 hover:bg-black hover:text-white transition"
+        >
+            {icon}
+        </a>
+    ))}
+</section>
