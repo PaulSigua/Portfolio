@@ -1,0 +1,15 @@
+---
+// Props
+const { color = 'gray' } = Astro.props;
+
+const bgClass = `bg-${color}-100`;
+const textClass = `text-${color}-800`;
+const borderClass = `border border-${color}-400`;
+const darkTextClass = `dark:text-${color}-400`;
+---
+
+<span
+  class={`text-xs font-medium px-2.5 py-0.5 rounded-sm ${bgClass} ${textClass} ${borderClass} dark:bg-gray-700 ${darkTextClass}`}
+>
+  <slot />
+</span>
