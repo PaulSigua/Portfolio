@@ -1,9 +1,25 @@
 <header class="flex justify-center items-center pb-10 gap-4 w[700px]">
-	<img class="rounded-full w-12 h-12" src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png" alt="">
-	<nav class="flex flex-row gap-4">
-		<a href="/">Home</a>
-		<a href="/about">About</a>
-		<a href="/projects">Projects</a>
-		<a href="/contact">Contact</a>
-	</nav>
+  <img
+    class="rounded-full w-12 h-12"
+    src="https://i.pinimg.com/736x/47/a9/e9/47a9e9376e5ba0563c705616b5d47842.jpg"
+    alt=""
+  />
+  <nav class="flex flex-row gap-4">
+    <a href="/about">Experiencia</a>
+    <a href="/projects">Proyectos</a>
+    <a href="/contact">Contacto</a>
+  </nav>
+
+  <button
+    onclick="toggleTheme()"
+    class="relative h-8 w-14 rounded-full bg-gray-300 dark:bg-zinc-700 transition-colors duration-300"
+    aria-label="Cambiar tema"
+  >
+    <span
+      id="theme-toggle-thumb"
+      class="flex aspect-square h-6 w-6 items-center justify-center rounded-full bg-white shadow-md transition-transform duration-300 translate-x-1 dark:translate-x-7 cursor-pointer"
+    >
+      <span id="theme-icon" class="text-sm">🌙</span>
+    </span>
+  </button>
 </header>
