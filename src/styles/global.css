@@ -1,1 +1,98 @@
 @import "tailwindcss";
+
+:root[data-theme="dark"] {
+	--bg:            #00081A;
+	--surface-1:     #001847;
+	--surface-2:     #002775;
+	--surface-3:     #0036A3;
+	--border:        #002775;
+	--border-soft:   #0036A3;
+	--text:          #E6EEFF;
+	--text-muted:    #B8CFFF;
+	--text-subtle:   #8AB1FF;
+	--primary:       #0055FF;
+	--primary-hover: #2E74FF;
+	--primary-active:#0046D1;
+	--primary-contrast: #E6EEFF;
+	--accent:        #4785FF;
+	--accent-contrast: #001847;
+	--focus:         #2E74FF;
+	--overlay:       rgba(0, 8, 26, .6);
+	--shadow:        0 8px 30px rgba(0, 85, 255, .18);
+	}
+
+	:root[data-theme="light"] {
+	--bg:            #E6EEFF;
+	--surface-1:     #B8CFFF;
+	--surface-2:     #8AB1FF;
+	--surface-3:     #4785FF;
+	--border:        #8AB1FF;
+	--border-soft:   #B8CFFF;
+	--text:          #001847;
+	--text-muted:    #0036A3;
+	--text-subtle:   #0046D1;
+	--primary:       #0055FF;
+	--primary-hover: #0046D1;
+	--primary-active:#2E74FF;
+	--primary-contrast: #FFFFFF;
+	--accent:        #2E74FF;
+	--accent-contrast: #FFFFFF;
+	--focus:         #0036A3;
+	--overlay:       rgba(0, 24, 71, 0.08);
+	--shadow:        0 8px 24px rgba(0, 24, 71, 0.15);
+	}
+
+	.bg-app       { background-color: var(--bg); }
+	.text-app     { color: var(--text); }
+	.text-muted   { color: var(--text-muted); }
+	.text-subtle  { color: var(--text-subtle); }
+
+	.border-app       { border-color: var(--border); }
+	.border-app-soft  { border-color: var(--border-soft); }
+
+	/* === superficies === */
+	.surface-1 { background-color: var(--surface-1); }
+	.surface-2 { background-color: var(--surface-2); }
+	.surface-3 { background-color: var(--surface-3); }
+
+	/* === botones === */
+	.btn-primary {
+	background-color: var(--primary);
+	color: var(--primary-contrast);
+	border: 1px solid var(--primary);
+	}
+	.btn-primary:hover  { background-color: var(--primary-hover); }
+	.btn-primary:active { background-color: var(--primary-active); }
+
+	.btn-accent {
+	background-color: var(--accent);
+	color: var(--accent-contrast);
+	border: 1px solid var(--border-soft);
+	}
+
+	/* === enlaces === */
+	.link-primary { color: var(--primary); }
+	.link-primary:hover { color: var(--primary-hover); }
+
+	/* === tarjetas === */
+	.card {
+	background-color: var(--surface-1);
+	border: 1px solid var(--border);
+	box-shadow: var(--shadow);
+	color: var(--text);
+	border-radius: 0.75rem;
+	}
+
+	/* === inputs === */
+	.input {
+	background-color: var(--surface-1);
+	color: var(--text);
+	border: 1px solid var(--border);
+	}
+	.input::placeholder { color: var(--text-muted); }
+
+	/* === focus === */
+	.focus-ring {
+	outline: 3px solid var(--focus);
+	outline-offset: 2px;
+	}

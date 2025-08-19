@@ -1,26 +1,29 @@
 (function () {
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const currentTheme = localStorage.getItem('theme');
-  const isDark = currentTheme === 'dark' || (!currentTheme && prefersDark);
+  const savedTheme = localStorage.getItem('theme');
+  const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
 
-  if (isDark) { document.documentElement.classList.add('dark')};
+  document.documentElement.setAttribute('data-theme', initialTheme);
 
-  updateToggle();
+  updateToggle(initialTheme);
 
   window.toggleTheme = function () {
-    const isNowDark = document.documentElement.classList.toggle('dark');
-    localStorage.setItem('theme', isNowDark ? 'dark' : 'light');
+    const current = document.documentElement.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
 
-    updateToggle();
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+
+    updateToggle(next);
   }
 
-  function updateToggle() {
+  function updateToggle(theme) {
     const thumb = document.getElementById('theme-toggle-thumb');
     const icon = document.getElementById('theme-icon');
-    const isDark = document.documentElement.classList.contains('dark');
+    const isDark = theme === 'dark';
 
     if (thumb && icon) {
-      thumb.classList.toggle('translate-x-1', isDark);
+      thumb.classList.toggle('translate-x-1', !isDark);
       thumb.classList.toggle('translate-x-7', isDark);
       icon.textContent = isDark ? '☀️' : '🌙';
     }

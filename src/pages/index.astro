@@ -1,21 +1,23 @@
 ---
 import Experience from "../components/Experience.astro";
+import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import Projects from "../components/Projects.astro";
 import Layout from "../layouts/Layout.astro";
 import "../styles/global.css";
-// Header to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
   <main>
-    <Hero />
-    <section>
-      <Experience />
-    </section>
-    <section>
-      <Projects />
-    </section>
+    <div class="flex justify-between items-center w-full">
+      <div class="flex w-full justify-center items-center pt-5 pb-10 gap-4 max-w-[1000px] mx-auto">
+        <Hero />
+        <!-- <Experience />
+        <Projects /> -->
+      </div>
+      <div>
+        <Header />
+      </div>
+    </div>
   </main>
 </Layout>

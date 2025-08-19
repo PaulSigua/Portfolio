@@ -1,12 +1,7 @@
 <header
-  class="flex justify-center items-center pt-5 pb-10 gap-4 w-full max-w-[800px] mx-auto"
+  class="grid"
 >
-  <img
-    class="rounded-full w-12 h-12"
-    src="https://i.pinimg.com/736x/47/a9/e9/47a9e9376e5ba0563c705616b5d47842.jpg"
-    alt="Avatar"
-  />
-  <nav class="flex gap-4 relative z-10">
+  <nav class="grid gap-4 relative z-10">
 
     <a href="/about" class="group relative">
       <span
@@ -62,12 +57,12 @@
 
   <button
     onclick="toggleTheme()"
-    class="relative h-8 w-14 rounded-full bg-gray-300 dark:bg-zinc-700 transition-colors duration-700"
+    class="relative h-8 w-14 rounded-full transition-colors duration-700 bg-surface-2"
     aria-label="Cambiar tema"
   >
     <span
       id="theme-toggle-thumb"
-      class="flex aspect-square h-6 w-6 items-center justify-center rounded-full bg-white shadow-md transition-transform duration-700 translate-x-1 dark:translate-x-7 cursor-pointer"
+      class="flex aspect-square h-6 w-6 items-center justify-center rounded-full bg-surface-1 shadow-md transition-transform duration-700 translate-x-1 cursor-pointer"
     >
       <span id="theme-icon" class="text-sm">🌙</span>
     </span>
