@@ -3,29 +3,37 @@
   const savedTheme = localStorage.getItem('theme');
   const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
 
-  document.documentElement.setAttribute('data-theme', initialTheme);
-
+  apply(initialTheme);
   updateToggle(initialTheme);
 
   window.toggleTheme = function () {
     const current = document.documentElement.getAttribute('data-theme');
     const next = current === 'dark' ? 'light' : 'dark';
-
-    document.documentElement.setAttribute('data-theme', next);
+    apply(next);
     localStorage.setItem('theme', next);
-
     updateToggle(next);
+  };
+
+  function apply(theme){
+    const html = document.documentElement;
+    html.setAttribute('data-theme', theme);
+    html.classList.toggle('dark', theme === 'dark');
   }
 
   function updateToggle(theme) {
     const thumb = document.getElementById('theme-toggle-thumb');
-    const icon = document.getElementById('theme-icon');
+    const sun   = document.getElementById('icon-sun');
+    const moon  = document.getElementById('icon-moon');
+    const btn   = document.querySelector('button[onclick="toggleTheme()"]');
     const isDark = theme === 'dark';
+    if (!thumb || !sun || !moon || !btn) return;
 
-    if (thumb && icon) {
-      thumb.classList.toggle('translate-x-1', !isDark);
-      thumb.classList.toggle('translate-x-7', isDark);
-      icon.textContent = isDark ? '☀️' : '🌙';
-    }
+    thumb.classList.toggle('translate-x-1', !isDark);
+    thumb.classList.toggle('translate-x-7',  isDark);
+
+    sun.classList.toggle('hidden', !isDark);
+    moon.classList.toggle('hidden',  isDark);
+
+    btn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
   }
 })();

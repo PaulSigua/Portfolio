@@ -8,16 +8,22 @@ import "../styles/global.css";
 ---
 
 <Layout>
-  <main>
-    <div class="flex justify-between items-center w-full">
-      <div class="flex w-full justify-center items-center pt-5 pb-10 gap-4 max-w-[1000px] mx-auto">
-        <Hero />
-        <!-- <Experience />
-        <Projects /> -->
-      </div>
-      <div>
-        <Header />
-      </div>
-    </div>
+  <main class="bg-app text-app relative">
+    <Header />
+    <section
+      id="hero"
+      class="relative mx-auto w-full max-w-6xl px-6
+             min-h-[100dvh] grid items-center"
+    >
+      <Hero />
+    </section>
+
+    <section id="experience" class="relative mx-auto w-full max-w-6xl px-6 py-16">
+      <Experience />
+    </section>
+    
+    <!-- <section id="projects" class="relative mx-auto w-full max-w-6xl px-6 py-16">
+      <Projects />
+    </section> -->
   </main>
 </Layout>

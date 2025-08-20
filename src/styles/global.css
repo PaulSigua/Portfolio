@@ -22,7 +22,7 @@
 	}
 
 	:root[data-theme="light"] {
-	--bg:            #E6EEFF;
+	--bg:            #ffffff;
 	--surface-1:     #B8CFFF;
 	--surface-2:     #8AB1FF;
 	--surface-3:     #4785FF;

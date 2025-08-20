@@ -4,67 +4,46 @@ import Github from "./icons/Github.astro";
 import Mail from "./icons/Mail.astro";
 ---
 
-<div class="grid">
-  <section class="grid">
-    <h1
-      class="text-5xl text-app font-bold flex justify-start items-center flex-row pb-2"
-    >
-      Hola, soy Paúl Sigua
-    </h1>
-    <h2 class="mt-6 text-xl text-muted">
-      Soy un desarrollador fullstack con experiencia en Python, Java,
-      TypeScript, Angular, Node.js y Astro, así como en el desarrollo de APIs
-      robustas con FastAPI y Spring WebFlux. He trabajado en proyectos complejos
-      que integran bases de datos como SQL Server y Firestore, arquitecturas
-      modernas con Docker, y soluciones móviles con Flutter.
+<div class="grid grid-cols-1 lg:grid-cols-10 gap-6 w-full justify-center items-center">
+  <div class="lg:col-span-7 space-y-4">
+    <h1 class="text-5xl font-bold text-app">Hola, soy Paúl Sigua</h1>
+
+    <h2 class="text-xl text-muted">
+      Soy un desarrollador fullstack con experiencia en Python, Java, TypeScript, Angular,
+      Node.js y Astro, así como en el desarrollo de APIs robustas con FastAPI y Spring WebFlux.
+      He trabajado en proyectos complejos que integran bases de datos como SQL Server y Firestore,
+      arquitecturas modernas con Docker, y soluciones móviles con Flutter.
     </h2>
-    <h2
-      class="mt-6 text-xl dark:[&>strong]:text-orange-200 [&>strong]:text-orange-500 [&>strong]:font-semibold dark:text-gray-300"
-    >
-      Me especializo en construir aplicaciones web escalables, eficientes y
-      visualmente atractivas. Siempre estoy listo para asumir nuevos retos y
-      aportar soluciones sólidas e innovadoras. <strong
-        >¡Estoy listo para enfrentar nuevos desafíos 😄!</strong
-      >
+
+    <h2 class="text-xl text-app dark:[&>strong]:text-orange-200 [&>strong]:text-orange-500 [&>strong]:font-semibold">
+      Me especializo en construir aplicaciones web escalables, eficientes y visualmente atractivas.
+      Siempre estoy listo para asumir nuevos retos y aportar soluciones sólidas e innovadoras.
+      <strong>¡Estoy listo para enfrentar nuevos desafíos 😄!</strong>
     </h2>
-    <h2 class="mt-2 text-xl">Cuenca, Ecuador 🇪🇨.</h2>
-  </section>
-  <section class="flex">
-    {
-      [
-        {
-          href: "https://www.linkedin.com/in/paulsigua/",
-          icon: <Linkedin />,
-          label: "LinkedIn",
-        },
-        {
-          href: "https://github.com/PaulSigua",
-          icon: <Github />,
-          label: "GitHub",
-        },
-        {
-          href: "mailto:mateosigua2002@gmail.com",
-          icon: <Mail />,
-          label: "Email",
-        },
+
+    <p class="text-app">Cuenca, Ecuador 🇪🇨.</p>
+
+    <div class="flex gap-2 pt-2">
+      {[
+        { href: "https://www.linkedin.com/in/paulsigua/", icon: <Linkedin />, label: "LinkedIn" },
+        { href: "https://github.com/PaulSigua",          icon: <Github />,  label: "GitHub"   },
+        { href: "mailto:mateosigua2002@gmail.com",       icon: <Mail />,    label: "Email"    },
       ].map(({ href, icon, label }) => (
-        <a
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={label}
-          class="flex items-center justify-center rounded-lg p-2 transition-transform duration-200 ease-in-out hover:scale-110"
-        >
+        <a href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
+           class="flex items-center justify-center rounded-lg p-2 transition-transform duration-200 hover:scale-110 text-app">
           {icon}
         </a>
-      ))
-    }
-  </section>
-</div>
-<div class="flex">
-  <img
-    class="rounded-full w-7xl h-7xl border border-gray-400"
-    src="https://i.pinimg.com/736x/c7/b8/11/c7b8113247fecd83bd9b5ed5bd3f34d5.jpg"
-    alt="Avatar"
-  />
+      ))}
+    </div>
+  </div>
+
+  <div class="lg:col-span-3 flex justify-center items-center">
+    <div class="w-40 h-40 md:w-56 md:h-56 lg:w-64 lg:h-64 aspect-square overflow-hidden rounded-full border-2 border-border-soft">
+      <img
+        src="https://i.pinimg.com/736x/c7/b8/11/c7b8113247fecd83bd9b5ed5bd3f34d5.jpg"
+        alt="Avatar"
+        class="w-full h-full object-cover"
+      />
+    </div>
+  </div>
 </div>
