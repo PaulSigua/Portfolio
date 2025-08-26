@@ -2,6 +2,7 @@
 
 :root[data-theme="dark"] {
 	--bg:            #00081A;
+	--bg-badge:      #364153;
 	--surface-1:     #001847;
 	--surface-2:     #002775;
 	--surface-3:     #0036A3;
@@ -10,6 +11,7 @@
 	--text:          #E6EEFF;
 	--text-muted:    #B8CFFF;
 	--text-subtle:   #8AB1FF;
+	--text-strong: 	   #F54900;
 	--primary:       #0055FF;
 	--primary-hover: #2E74FF;
 	--primary-active:#0046D1;
@@ -23,6 +25,7 @@
 
 	:root[data-theme="light"] {
 	--bg:            #ffffff;
+	--bg-badge:      #f8f8f8;
 	--surface-1:     #B8CFFF;
 	--surface-2:     #8AB1FF;
 	--surface-3:     #4785FF;
@@ -31,6 +34,7 @@
 	--text:          #001847;
 	--text-muted:    #0036A3;
 	--text-subtle:   #0046D1;
+	--text-strong: 	   #F54900;
 	--primary:       #0055FF;
 	--primary-hover: #0046D1;
 	--primary-active:#2E74FF;
@@ -43,9 +47,11 @@
 	}
 
 	.bg-app       { background-color: var(--bg); }
+	.bg-badge 	  { background-color: var(--bg-badge); }
 	.text-app     { color: var(--text); }
 	.text-muted   { color: var(--text-muted); }
 	.text-subtle  { color: var(--text-subtle); }
+	.text-strong  { color: var(--text-strong); }
 
 	.border-app       { border-color: var(--border); }
 	.border-app-soft  { border-color: var(--border-soft); }
