@@ -5,7 +5,12 @@ export default {
     './src/**/*.{astro,html,js,jsx,ts,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ["Geist Sans", "system-ui", "sans-serif"],
+        heading: ["Geist Sans", "sans-serif"]
+      },
+    },
   },
   plugins: [],
 };

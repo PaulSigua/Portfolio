@@ -11,8 +11,13 @@
   "dependencies": {
     "@astrojs/react": "^4.3.0",
     "@fontsource-variable/onest": "^5.2.9",
+    "@fontsource/geist-sans": "^5.2.5",
+    "@fontsource/inter": "^5.2.6",
+    "@fontsource/manrope": "^5.2.6",
     "@fontsource/open-sans": "^5.2.6",
     "@fontsource/poppins": "^5.2.6",
+    "@fontsource/sora": "^5.2.6",
+    "@fontsource/space-grotesk": "^5.2.8",
     "@tailwindcss/vite": "^4.1.11",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
