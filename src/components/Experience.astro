@@ -2,20 +2,8 @@
 import Badge from "./icons/Badge.astro";
 ---
 
-<div class="text-app">
-  <div class="flex gap-2 p-2">
-    <!-- <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="h-6 w-6 text-gray-800 dark:text-gray-200"
-      viewBox="0 0 24 24"
-      fill="currentColor"
-    >
-      <path
-        fill-rule="evenodd"
-        d="M9 2a1 1 0 00-1 1v2H6a2 2 0 00-2 2v2h16V7a2 2 0 00-2-2h-2V3a1 1 0 00-1-1H9zm6 3V4H9v1h6zM4 10h16v8a2 2 0 01-2 2H6a2 2 0 01-2-2v-8zm7 3a1 1"
-        clip-rule="evenodd"></path>
-    </svg> -->
-
+<section aria-labelledby="experience-title" class="text-app">
+  <header class="flex items-center gap-2 p-2">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
@@ -24,105 +12,112 @@ import Badge from "./icons/Badge.astro";
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
-      class="h-6 w-6 text-app"
+      class="h-6 w-6"
+      aria-hidden="true"
     >
-      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-      <path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2"></path>
-      <path d="M3 7h18v11a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"></path>
-      <path d="M12 12h.01"></path>
-      <path d="M3 13a20 20 0 0 0 18 0"></path>
+      <path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2" />
+      <path d="M3 7h18v11a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" />
+      <path d="M12 12h.01" />
+      <path d="M3 13a20 20 0 0 0 18 0" />
     </svg>
+    <h2 id="experience-title" class="text-lg font-semibold tracking-tight">Experiencia</h2>
+  </header>
 
-    <h1>Experiencia</h1>
-  </div>
-  <div class="grid gap-10 w-full">
-    <div class="flex justify-center gap-5">
-      <div
-        class="relative pl-10
-              before:content-[''] before:absolute before:left-5 before:top-4
-              before:h-[calc(100%+2.5rem)] before:w-px before:bg-[var(--border-soft)]">
-        <span class="absolute left-5 -translate-x-1/2 top-8.5 inline-flex h-3.5 w-3.5">
-          <span class="h-3.5 w-3.5 rounded-full bg-[var(--primary)]
-                      ring-4 ring-[var(--surface-1)]"></span>
-        </span>
-        <h1 class="font-bold text-app flex items-center gap-2 pt-7">Profesional</h1>
-        <p class="text-[10px] text-muted">abril 2024 - 2025</p>
-      </div>
-      <div class="grid p-5">
-        <h2 class="font-bold">
-          <a
-            class="text-pink-400 text-xl"
-            href="https://starflowers.com.ec"
-            target="_blank"
-          >
-            StarFlowers Cia. Ltda.
-          </a>
-        </h2>
-        <p class="leading-relaxed mt-6">
-          StarFlowers fue el primer lugar donde tuve el privilegio de trabajar
-          realizando lo que más me gusta, <strong class="text-strong"
-            >programar</strong
-          >. Me ayudó a desarrollar aptitudes importantes en el mundo de la
-          programación, enfocadas en el manejo de datos utilizando:
-          <br />
-          <span class="inline-flex gap-0 pb-1">
+  <ol role="list" class="relative ms-5 ps-5 grid gap-12">
+    <span aria-hidden="true"
+      class="pointer-events-none absolute left-0 top-2 h-[calc(100%-0.5rem)] w-px bg-[var(--border-soft)]"></span>
+
+    <li class="relative">
+      <span class="absolute -left-5 top-1.5 inline-flex h-3.5 w-3.5 -translate-x-1/2 items-center justify-center">
+        <span class="h-3.5 w-3.5 rounded-full bg-[var(--primary)] ring-4 ring-[var(--surface-1)]"></span>
+      </span>
+
+      <article class="grid gap-3 sm:grid-cols-[180px_1fr] sm:gap-6">
+        <header class="min-w-0">
+          <h3 class="font-semibold flex items-center gap-2">
+            Profesional
+          </h3>
+          <p class="text-[11px] leading-4 text-muted">
+            <time datetime="2024-04">abril 2024</time> – <time datetime="2025-12">2025</time>
+          </p>
+        </header>
+
+        <div class="rounded-xl p-5 bg-[color:var(--surface-1)]/40 border border-[var(--border-soft)]">
+          <h4 class="font-bold">
+            <a
+              href="https://starflowers.com.ec"
+              target="_blank"
+              class="text-pink-400 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)] rounded-sm"
+              rel="noreferrer"
+            >
+              StarFlowers Cia. Ltda.
+            </a>
+          </h4>
+
+          <p class="leading-relaxed mt-3">
+            Mi primera experiencia profesional haciendo lo que más me gusta:
+            <strong class="text-strong">programar</strong>. Trabajé en
+            soluciones de datos y mantenimiento de sistemas usando:
+          </p>
+
+          <div class="mt-3 flex flex-wrap gap-1.5">
             <Badge color="green">Python</Badge>
             <Badge color="red">Angular</Badge>
             <Badge color="yellow">SQL Server</Badge>
             <Badge color="purple">FastAPI</Badge>
-          </span>
-        </p>
-        <p>
-          Como las principales tecnologías de desarrollo en los 7 meses que me
-          desenvolvi apoyando en la empresa para mantener los sistemas a flote
-          🫡.
-        </p>
-      </div>
-    </div>
-    <div class="flex justify-center gap-5">
-      <div
-        class="relative pl-10
-              before:content-[''] before:absolute before:left-5 before:top-4
-              before:bottom-[-1.5rem] before:w-px before:bg-[var(--border-soft)]">
-        <span class="absolute left-3.5 top-3 inline-flex h-3.5 w-3.5">
-          <span class="h-3.5 w-3.5 rounded-full bg-[var(--primary)]
-                      ring-4 ring-[var(--surface-1)]"></span>
-        </span>
+          </div>
 
-        <h1 class="font-bold text-app flex items-center pt-1.5 gap-2">Estudiantil</h1>
-        <p class="text-[10px] text-muted">septiembre 2021 agosto 2025</p>
-      </div>
-      <div class="grid p-5">
-        <h2 class="font-bold">
-          <a
-            class="text-blue-500 text-xl"
-            href="https://www.ups.edu.ec"
-            target="_blank"
-          >
-            Universidad Politécnica Salesiana
-          </a>
-        </h2>
-        <p class="leading-relaxed mt-6">
-          Durante mi tiempo como estudiante en la Universidad Politécnica
-          Salesiana, tuve la oportunidad de participar en proyectos académicos
-          que me permitieron aplicar mis conocimientos en programación y
-          desarrollo de software. Estos proyectos abarcaron una variedad de
-          tecnologías y lenguajes, incluyendo:
-          <br>
-          <span class="inline-flex gap-0 pb-1">
+          <p class="mt-3 text-sm text-muted">
+            7 meses asegurando continuidad operativa y calidad técnica 🫡.
+          </p>
+        </div>
+      </article>
+    </li>
+
+    <li class="relative">
+      <span class="absolute -left-5 top-1.5 inline-flex h-3.5 w-3.5 -translate-x-1/2 items-center justify-center">
+        <span class="h-3.5 w-3.5 rounded-full bg-[var(--primary)] ring-4 ring-[var(--surface-1)]"></span>
+      </span>
+
+      <article class="grid gap-3 sm:grid-cols-[180px_1fr] sm:gap-6">
+        <header class="min-w-0">
+          <h3 class="font-semibold flex items-center gap-2">
+            Estudiantil
+          </h3>
+          <p class="text-[11px] leading-4 text-muted">
+            <time datetime="2021-09">septiembre 2021</time> – <time datetime="2025-08">agosto 2025</time>
+          </p>
+        </header>
+
+        <div class="rounded-xl p-5 bg-[color:var(--surface-1)]/40 border border-[var(--border-soft)]">
+          <h4 class="font-bold">
+            <a
+              href="https://www.ups.edu.ec"
+              target="_blank"
+              class="text-blue-500 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)] rounded-sm"
+              rel="noreferrer"
+            >
+              Universidad Politécnica Salesiana
+            </a>
+          </h4>
+
+          <p class="leading-relaxed mt-3">
+            Proyectos académicos aplicando programación y desarrollo de software:
+          </p>
+
+          <div class="mt-3 flex flex-wrap gap-1.5">
             <Badge color="sky">Flutter</Badge>
             <Badge color="slate">Java</Badge>
             <Badge color="green">Python</Badge>
             <Badge color="blue">C++</Badge>
             <Badge color="black">Astro</Badge>
-          </span>
-        </p>
-        <p>
-          Estos proyectos no solo me ayudaron a fortalecer mis habilidades
-          técnicas, sino que también fomentaron mi capacidad para trabajar en
-          equipo y resolver problemas de manera efectiva.
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
+          </div>
+
+          <p class="mt-3 text-sm text-muted">
+            Fortalecí habilidades técnicas, trabajo en equipo y resolución de problemas.
+          </p>
+        </div>
+      </article>
+    </li>
+  </ol>
+</section>
