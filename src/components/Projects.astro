@@ -1,10 +1,87 @@
-<section class="max-w-3xl mx-auto pt-20 px-4">
-    <div>
-        <h1 class="text-3xl font-bold mb-6">
-            Proyectos principales
-        </h1>
-        <div>
-            
+---
+import Badge from "./icons/Badge.astro";
+---
+
+<div>
+  <div class="pt-3 pb-3">
+    <h1 class="flex gap-2 text-lg font-bold">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="size-7"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path d="M7 8l-4 4l4 4"></path>
+        <path d="M17 8l4 4l-4 4"></path>
+        <path d="M14 4l-4 16"></path>
+      </svg>
+      Proyectos principales
+    </h1>
+  </div>
+  <div class="flex flex-col gap-6">
+    <div class="flex gap-6">
+        <div class="flex w-[400px] border h-[200px] border-app-soft rounded rounded-lg">
+            <img class="w-full h-full rounded rounded-lg" src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y29kZXxlbnwwfHwwfHx8MA%3D%3D" alt="">
+        </div>
+        <div class="flex flex-col w-[600px]">
+            <h1 class="font-bold">title</h1>
+            <div class="pb-0.5">
+                <Badge color="purple">Tecnología</Badge>
+            </div>
+            <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis nostrum praesentium molestias
+                 laudantium fuga debitis atque impedit culpa maxime, placeat maiores alias, eligendi dolores 
+                 vitae velit sunt, iusto quibusdam odit.
+            </p>
+            <div>
+                <button class="border border-app p-0.5 rounded rounded-lg cursor-pointer bg-badge mt-1.5">Code</button>
+            </div>
         </div>
     </div>
-</section>
+    <div class="flex gap-6">
+        <div class="flex w-[400px] border h-[200px] border-app-soft rounded rounded-lg">
+            <img class="w-full h-full rounded rounded-lg" src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y29kZXxlbnwwfHwwfHx8MA%3D%3D" alt="">
+        </div>
+        <div class="flex flex-col w-[600px]">
+            <h1 class="font-bold">title</h1>
+            <div class="pb-0.5">
+                <Badge color="purple">Tecnología</Badge>
+            </div>
+            <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis nostrum praesentium molestias
+                 laudantium fuga debitis atque impedit culpa maxime, placeat maiores alias, eligendi dolores 
+                 vitae velit sunt, iusto quibusdam odit.
+            </p>
+            <div>
+                <button class="border border-app p-0.5 rounded rounded-lg cursor-pointer bg-badge mt-1.5">Code</button>
+            </div>
+        </div>
+    </div>
+    <div class="flex gap-6">
+        <div class="flex w-[400px] border h-[200px] border-app-soft rounded rounded-lg">
+            <img class="w-full h-full rounded rounded-lg" src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y29kZXxlbnwwfHwwfHx8MA%3D%3D" alt="">
+        </div>
+        <div class="flex flex-col w-[600px]">
+            <h1 class="font-bold">title</h1>
+            <div class="pb-0.5">
+                <Badge color="purple">Tecnología</Badge>
+            </div>
+            <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis nostrum praesentium molestias
+                 laudantium fuga debitis atque impedit culpa maxime, placeat maiores alias, eligendi dolores 
+                 vitae velit sunt, iusto quibusdam odit.
+            </p>
+            <div>
+                <button class="border border-app p-0.5 rounded rounded-lg cursor-pointer bg-badge mt-1.5">Code</button>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

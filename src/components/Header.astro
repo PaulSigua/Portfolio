@@ -1,9 +1,46 @@
+---
+import SunIcon from "./icons/Sun.astro"
+import MoonIcon from "./icons/Moon.astro"
+import SystemIcon from "./icons/System.astro"
+
+const THEMES = ["Light", "Dark", "System"]
+---
+
 <header class="flex justify-center items-center" > 
   <nav class="fixed right-6 top-1/2 -translate-y-1/2 grid gap-4 justify-items-center text-app z-10">
-  <a href="#experience" aria-label="Experiencia"
+    <a href="#hero" aria-label="Inicio"
       class="group relative flex items-center justify-center px-3 py-1 rounded-xl overflow-hidden w-25 h-10">
-      
-      <svg class="w-5 h-5 stroke-current text-green-500 transition-opacity duration-200 group-hover:opacity-20 absolute inset-0 m-auto"
+    
+      <svg class="w-5 h-5 stroke-current text-app absolute inset-0 m-auto 
+                  transition-all duration-300 ease-out 
+                  group-hover:opacity-0 group-hover:scale-75"
+          viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9.5L12 3l9 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 20.5v-11z"/>
+        <path d="M9 21V12h6v9"/>
+      </svg>
+
+      <span class="absolute inset-0 flex items-center justify-center 
+                  opacity-0 scale-90 translate-y-1 
+                  transition-all duration-300 ease-out
+                  group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 
+                  text-muted">
+        Inicio
+      </span>
+
+      <span class="pointer-events-none absolute inset-0 rounded-xl 
+                  opacity-0 scale-90 
+                  transition-all duration-500 ease-out
+                  group-hover:opacity-100 group-hover:scale-110 
+                  bg-gradient-radial from-green-200/20 via-green-300/10 to-transparent">
+      </span>
+    </a>
+
+    <a href="#experience" aria-label="Experiencia"
+      class="group relative flex items-center justify-center px-3 py-1 rounded-xl overflow-hidden w-25 h-10">
+        
+      <svg class="w-5 h-5 stroke-current text-green-500 absolute inset-0 m-auto 
+                  transition-all duration-300 ease-out 
+                  group-hover:opacity-0 group-hover:scale-75"
           viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M3 7h18v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
         <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
@@ -11,67 +48,136 @@
         <path d="M3 11h18"/>
       </svg>
 
-      <span class="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200 group-hover:opacity-100 text-muted">
+      <span class="absolute inset-0 flex items-center justify-center 
+                  opacity-0 scale-90 translate-y-1 
+                  transition-all duration-300 ease-out
+                  group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 
+                  text-muted">
         Experiencia
       </span>
 
-      <span class="pointer-events-none absolute inset-0 rounded-xl opacity-0 scale-90 transition-all duration-200 group-hover:opacity-100 group-hover:scale-110"
-            style="background: radial-gradient(circle, rgba(34,197,94,0.15) 0%, rgba(22,163,74,0.08) 50%, rgba(21,128,61,0) 100%)"></span>
+      <span class="pointer-events-none absolute inset-0 rounded-xl 
+                  opacity-0 scale-90 
+                  transition-all duration-500 ease-out
+                  group-hover:opacity-100 group-hover:scale-110 
+                  bg-gradient-radial from-green-200/20 via-green-300/10 to-transparent">
+      </span>
     </a>
 
     <a href="#projects" aria-label="Proyectos"
       class="group relative flex items-center justify-center px-3 py-1 rounded-xl overflow-hidden w-25 h-10">
-      <svg class="w-5 h-5 stroke-current text-blue-500 transition-opacity duration-200 group-hover:opacity-20 absolute inset-0 m-auto"
+        
+      <svg class="w-5 h-5 stroke-current text-blue-500 absolute inset-0 m-auto 
+                  transition-all duration-300 ease-out 
+                  group-hover:opacity-0 group-hover:scale-75"
           viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M3 7h5l2 2h11v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
         <path d="M3 7v10"/>
       </svg>
-      <span class="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200 group-hover:opacity-100 text-muted">
+
+      <span class="absolute inset-0 flex items-center justify-center 
+                  opacity-0 scale-90 translate-y-1 
+                  transition-all duration-300 ease-out
+                  group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 
+                  text-muted">
         Proyectos
       </span>
-      <span class="pointer-events-none absolute inset-0 rounded-xl opacity-0 scale-90 transition-all duration-200 group-hover:opacity-100 group-hover:scale-110"
-            style="background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, rgba(37,99,235,0.08) 50%, rgba(29,78,216,0) 100%)"></span>
+
+      <span class="pointer-events-none absolute inset-0 rounded-xl 
+                  opacity-0 scale-90 
+                  transition-all duration-500 ease-out
+                  group-hover:opacity-100 group-hover:scale-110 
+                  bg-gradient-radial from-green-200/20 via-green-300/10 to-transparent">
+      </span>
     </a>
 
-    <a href="#contact" aria-label="Contacto"
+    <a href="#contact" aria-label="Contactos"
       class="group relative flex items-center justify-center px-3 py-1 rounded-xl overflow-hidden w-25 h-10">
-      <svg class="w-5 h-5 stroke-current text-red-500 transition-opacity duration-200 group-hover:opacity-20 absolute inset-0 m-auto"
+        
+      <svg class="w-5 h-5 stroke-current text-red-500 absolute inset-0 m-auto 
+                  transition-all duration-300 ease-out 
+                  group-hover:opacity-0 group-hover:scale-75"
           viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/>
         <path d="m22 6-10 7L2 6"/>
       </svg>
-      <span class="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200 group-hover:opacity-100 text-muted">
+
+      <span class="absolute inset-0 flex items-center justify-center 
+                  opacity-0 scale-90 translate-y-1 
+                  transition-all duration-300 ease-out
+                  group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 
+                  text-muted">
         Contacto
       </span>
-      <span class="pointer-events-none absolute inset-0 rounded-xl opacity-0 scale-90 transition-all duration-200 group-hover:opacity-100 group-hover:scale-110"
-            style="background: radial-gradient(circle, rgba(239,68,68,0.15) 0%, rgba(220,38,38,0.08) 50%, rgba(185,28,28,0) 100%)"></span>
+
+      <span class="pointer-events-none absolute inset-0 rounded-xl 
+                  opacity-0 scale-90 
+                  transition-all duration-500 ease-out
+                  group-hover:opacity-100 group-hover:scale-110 
+                  bg-gradient-radial from-green-200/20 via-green-300/10 to-transparent">
+      </span>
     </a>
 
-    <button
-      onclick="toggleTheme()"
-      class="relative w-14 rounded-full transition-colors duration-300 bg-surface-2 border border-app-soft focus:outline-none"
-      aria-label="Cambiar tema"
-      aria-pressed="false"
-    >
-      <span
-        id="theme-toggle-thumb"
-        class="flex aspect-square w-6 items-center justify-center rounded-full bg-surface-1 text-app shadow-md transition-transform duration-300 translate-x-1 cursor-pointer"
+    <div class="relative ml-1 mr-1">
+      <button
+        id="theme-toggle-btn"
+        class="appearance-none border-none flex items-center justify-center p-1 rounded-md
+              hover:scale-110 transition will-change-transform focus:outline-none
+              focus-visible:ring-2 focus-visible:ring-green-400/70 focus-visible:ring-offset-2"
+        aria-haspopup="menu"
+        aria-expanded="false"
+        aria-controls="themes-menu"
+        title="Elige tema"
       >
-        <svg id="icon-sun" class="w-4 h-4 stroke-current hidden" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="4"></circle>
-          <path d="M12 2v2"></path>
-          <path d="M12 20v2"></path>
-          <path d="M4.93 4.93l1.41 1.41"></path>
-          <path d="M17.66 17.66l1.41 1.41"></path>
-          <path d="M2 12h2"></path>
-          <path d="M20 12h2"></path>
-          <path d="M6.34 17.66l-1.41 1.41"></path>
-          <path d="M19.07 4.93l-1.41 1.41"></path>
-        </svg>
-        <svg id="icon-moon" class="w-4 h-4 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-        </svg>
-      </span>
-    </button>
+        <SunIcon id="light" class="theme-toggle-icon size-5 transition-all origin-center" />
+        <MoonIcon id="dark" class="theme-toggle-icon absolute size-5 transition-all origin-center" />
+        <SystemIcon id="system" class="theme-toggle-icon absolute size-5 transition-all origin-center" />
+      </button>
+
+      <div
+        id="themes-menu"
+        class="absolute hidden scale-90 top-9 right-0 text-sm p-1 min-w-[6rem] rounded-md
+              border border-gray-100 bg-app dark:bg-gray-900/90 dark:border-white/10
+              shadow-[0_8px_24px_rgba(0,0,0,0.2)] backdrop-blur-md"
+        role="menu"
+        aria-label="Seleccionar tema"
+      >
+        <ul class="outline-none" id="themes-list">
+          {
+            THEMES.map((theme) => (
+              <li>
+                <button
+                  type="button"
+                  class="themes-menu-option w-full px-2 py-1.5 cursor-default rounded-sm
+                        hover:bg-neutral-400/30 dark:hover:bg-gray-500/40
+                        focus:outline-none focus-visible:ring-2 focus-visible:ring-green-400/70
+                        flex items-center gap-2 justify-between cursor-pointer"
+                  role="menuitemradio"
+                  aria-checked="false"
+                  data-theme={theme.toLowerCase()}
+                >
+                  <span class="capitalize">{theme.toLowerCase()}</span>
+                  <span class="check-dot hidden size-2 rounded-full bg-green-500"></span>
+                </button>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
   </nav>
 </header>
+
+<style>
+  #themes-menu.open {
+    display: inline-block;
+    animation: scale-up-center 140ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+  @keyframes scale-up-center {
+    from { transform: scale(0.9); opacity: 0; }
+    to   { transform: scale(1);   opacity: 1; }
+  }
+
+  .theme-toggle-icon { transform: scale(0); opacity: 0; }
+  .theme-toggle-icon.active { transform: scale(1); opacity: 1; }
+</style>
