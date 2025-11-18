@@ -1,5 +1,7 @@
 ---
 import Badge from "./icons/Badge.astro";
+import medicalSysImage from '../assets/img/medical-system-img.png';
+import dictsqlImage from '../assets/img/dictsql-img.png';
 ---
 
 <div>
@@ -28,17 +30,22 @@ import Badge from "./icons/Badge.astro";
   <div class="flex flex-col gap-6">
     <div class="flex gap-6">
         <div class="flex w-[400px] border h-[200px] border-app-soft rounded rounded-lg">
-            <img class="w-full h-full rounded rounded-lg" src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y29kZXxlbnwwfHwwfHx8MA%3D%3D" alt="">
+            <img class="w-full h-full rounded rounded-lg" src={medicalSysImage.src} alt="Sistema Médico"/>
         </div>
         <div class="flex flex-col w-[600px]">
-            <h1 class="font-bold">title</h1>
+            <h1 class="font-bold">Medical System</h1>
             <div class="pb-0.5">
-                <Badge color="purple">Tecnología</Badge>
+                <Badge color="black">AI</Badge>
+                <Badge color="red">Angular</Badge>
+                <Badge color="orange">Tailwind CSS</Badge>
+                <Badge color="blue">TypeScript</Badge>
+                <Badge color="green">FastAPI</Badge>
+                <Badge color="purple">Python</Badge>
             </div>
-            <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis nostrum praesentium molestias
-                 laudantium fuga debitis atque impedit culpa maxime, placeat maiores alias, eligendi dolores 
-                 vitae velit sunt, iusto quibusdam odit.
+            <p class="pt-1">
+                Medical System es una aplicación pensada para apoyar a los profesionales de la salud utilizando <strong>Inteligencia Artificial</strong>
+                para pre-diagnosticar el cáncer cerebral a través de la clasificación de imágenes médicas. La aplicación también ofrece la explicación de predicciones
+                mediante mapas de calor, lenguaje natural (LLM), lo que permite a los médicos comprender mejor los resultados y tomar decisiones.
             </p>
             <div>
                 <button class="border border-app p-0.5 rounded rounded-lg cursor-pointer bg-badge mt-1.5">Code</button>
@@ -47,36 +54,20 @@ import Badge from "./icons/Badge.astro";
     </div>
     <div class="flex gap-6">
         <div class="flex w-[400px] border h-[200px] border-app-soft rounded rounded-lg">
-            <img class="w-full h-full rounded rounded-lg" src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y29kZXxlbnwwfHwwfHx8MA%3D%3D" alt="">
+            <img class="w-full h-full rounded rounded-lg" src={dictsqlImage.src} alt="">
         </div>
         <div class="flex flex-col w-[600px]">
-            <h1 class="font-bold">title</h1>
+            <h1 class="font-bold">DictSQL</h1>
             <div class="pb-0.5">
-                <Badge color="purple">Tecnología</Badge>
+                <Badge color="red">Angular</Badge>
+                <Badge color="green">Python</Badge>
+                <Badge color="purple">Tailwind CSS</Badge>
+                <Badge color="blue">FastAPI</Badge>
             </div>
             <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis nostrum praesentium molestias
-                 laudantium fuga debitis atque impedit culpa maxime, placeat maiores alias, eligendi dolores 
-                 vitae velit sunt, iusto quibusdam odit.
-            </p>
-            <div>
-                <button class="border border-app p-0.5 rounded rounded-lg cursor-pointer bg-badge mt-1.5">Code</button>
-            </div>
-        </div>
-    </div>
-    <div class="flex gap-6">
-        <div class="flex w-[400px] border h-[200px] border-app-soft rounded rounded-lg">
-            <img class="w-full h-full rounded rounded-lg" src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y29kZXxlbnwwfHwwfHx8MA%3D%3D" alt="">
-        </div>
-        <div class="flex flex-col w-[600px]">
-            <h1 class="font-bold">title</h1>
-            <div class="pb-0.5">
-                <Badge color="purple">Tecnología</Badge>
-            </div>
-            <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis nostrum praesentium molestias
-                 laudantium fuga debitis atque impedit culpa maxime, placeat maiores alias, eligendi dolores 
-                 vitae velit sunt, iusto quibusdam odit.
+                DictSQL es una aplicación web diseñada para documentar y gestionar bases de datos SQL de manera eficiente. Permite a los usuarios explorar la estructura de la base de datos,
+                 visualizar tablas, columnas, relaciones y generar documentación automática. Con una interfaz intuitiva y herramientas de búsqueda avanzadas,
+                  DictSQL facilita la comprensión y el mantenimiento de bases de datos complejas.
             </p>
             <div>
                 <button class="border border-app p-0.5 rounded rounded-lg cursor-pointer bg-badge mt-1.5">Code</button>
