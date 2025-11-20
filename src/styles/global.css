@@ -2,8 +2,8 @@
 
 :root[data-theme="dark"] {
 	--bg:            #00081A;
-	--bg-badge:      #364153;
-	--surface-1:     #001847;
+	--bg-badge:      #292e30;
+	--surface-1:     #586b8f;
 	--surface-2:     #002775;
 	--surface-3:     #0036A3;
 	--border:        #002775;
@@ -26,7 +26,7 @@
 	:root[data-theme="light"] {
 	--bg:            #ffffff;
 	--bg-badge:      #f8f8f8;
-	--surface-1:     #B8CFFF;
+	--surface-1:     #e4f2ff;
 	--surface-2:     #8AB1FF;
 	--surface-3:     #4785FF;
 	--border:        #8AB1FF;
