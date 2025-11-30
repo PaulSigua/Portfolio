@@ -6,8 +6,13 @@ import SystemIcon from "./icons/System.astro"
 const THEMES = ["Light", "Dark", "System"]
 ---
 
-<header class="flex justify-center items-center" > 
-  <nav class="fixed right-6 top-1/2 -translate-y-1/2 grid gap-4 justify-items-center text-app z-10">
+<header class="flex justify-center items-center"> 
+  <nav class="fixed top-0 left-0 right-0 flex flex-row items-center justify-center gap-4 text-app z-50
+              py-3 px-8 rounded-none
+              backdrop-blur-md bg-app/80
+              xl:fixed xl:right-6 xl:top-1/2 xl:-translate-y-1/2 xl:flex xl:flex-col xl:justify-start 
+              **xl:items-center** xl:py-0 xl:px-0 xl:rounded-xl xl:border xl:border-none xl:shadow-none xl:bg-transparent xl:w-fit
+              xl:left-auto xl:mx-0">
     <a href="#hero" aria-label="Inicio"
       class="group relative flex items-center justify-center px-3 py-1 rounded-xl overflow-hidden w-25 h-10">
     
@@ -121,7 +126,7 @@ const THEMES = ["Light", "Dark", "System"]
     <div class="relative ml-1 mr-1">
       <button
         id="theme-toggle-btn"
-        class="appearance-none border-none flex items-center justify-center p-1 rounded-md
+        class="cursor-pointer appearance-none border-none flex items-center justify-center p-1 rounded-md
               hover:scale-110 transition will-change-transform focus:outline-none
               focus-visible:ring-2 focus-visible:ring-green-400/70 focus-visible:ring-offset-2"
         aria-haspopup="menu"
