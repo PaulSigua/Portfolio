@@ -17,6 +17,6 @@ const colorClasses: Record<'green' | 'red' | 'yellow' | 'orange' | 'purple' | 'g
 const badgeClass = colorClasses[color];
 ---
 
-<span class={`text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm border ${badgeClass}`}>
+<span class={`text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm border border-app-soft ${badgeClass}`}>
   <slot />
 </span>
