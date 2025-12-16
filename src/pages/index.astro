@@ -10,25 +10,27 @@ import "../styles/global.css";
 
 <Layout>
   <main class="bg-app text-app relative">
-    <SectionContainer>
-      <Header />
-    </SectionContainer>
-    <section
-      id="hero"
-      class="relative mx-auto w-full max-w-6xl px-6
-             min-h-[100dvh] grid items-center"
-    >
-      <Hero />
-    </section>
-
-    <section id="experience" class="relative mx-auto w-full max-w-6xl px-6
-             min-h-[100dvh] grid items-center">
-      <Experience />
-    </section>
+    <Header />
     
-    <section id="projects" class="relative mx-auto w-full max-w-6xl px-6
-             min-h-[100dvh] grid items-center">
-      <Projects />
-    </section>
+    <SectionContainer class="pt-24 xl:pt-0">
+      <section
+        id="hero"
+        class="relative mx-auto w-full max-w-6xl px-6
+               min-h-[100dvh] grid items-center"
+      >
+        <Hero />
+      </section>
+
+      <section id="experience" class="relative mx-auto w-full max-w-6xl px-6
+               min-h-[100dvh] grid items-center">
+        <Experience />
+      </section>
+      
+      <section id="projects" class="relative mx-auto w-full max-w-6xl px-6
+               min-h-[100dvh] grid items-center">
+        <Projects />
+      </section>
+      
+    </SectionContainer>
   </main>
 </Layout>

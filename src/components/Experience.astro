@@ -1,170 +1,123 @@
 ---
 import Badge from "./icons/Badge.astro";
+
+const EXPERIENCE = [
+  {
+    date: "Noviembre 2025 - Actualidad",
+    title: "Desarrollador Frontend",
+    company: "MyCodedMind",
+    url: "https://mycodedmind.com/",
+    logo: "https://mycodedmind.com/wp-content/uploads/2022/04/logo-mcm.webp",
+    description: "Especialización en desarrollo Frontend creando experiencias web atractivas y funcionales. Trabajo activo con tecnologías modernas para clientes reales.",
+    tags: [
+        { text: "WordPress", color: "blue" },
+        { text: "Angular", color: "red" },
+        { text: "Vue.js", color: "green" },
+        { text: "JavaScript", color: "yellow" },
+        { text: "PHP", color: "black" }
+    ],
+    current: true // Para destacar el trabajo actual
+  },
+  {
+    date: "Abril 2024 - 2025",
+    title: "Desarrollador de Software",
+    company: "StarFlowers Cia. Ltda.",
+    url: "https://starflowers.com.ec",
+    logo: "https://starflowers.com.ec/_astro/icon-logo.Bi0O_rGO_Z1iLfJp.svg",
+    description: "Desarrollo de soluciones de datos y mantenimiento de sistemas críticos. Aseguré la continuidad operativa y la calidad técnica durante más de un año.",
+    tags: [
+        { text: "Python", color: "green" },
+        { text: "Angular", color: "red" },
+        { text: "SQL Server", color: "yellow" },
+        { text: "FastAPI", color: "purple" }
+    ],
+    current: false
+  },
+  {
+    date: "Septiembre 2021 - Agosto 2025",
+    title: "Formación Profesional",
+    company: "Universidad Politécnica Salesiana",
+    url: "https://www.ups.edu.ec",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/1/1e/Logo_UPS.png", // Busqué un logo genérico de UPS si no carga el tuyo
+    description: "Proyectos académicos de alto nivel aplicando arquitecturas de software, desarrollo móvil y estructuras de datos complejas.",
+    tags: [
+        { text: "Flutter", color: "sky" },
+        { text: "Java", color: "slate" },
+        { text: "Python", color: "green" },
+        { text: "C++", color: "blue" },
+        { text: "Astro", color: "black" }
+    ],
+    current: false
+  }
+]
 ---
 
-<section aria-labelledby="experience-title" class="text-app">
-  <div class="flex items-center gap-2 p-2">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      class="h-6 w-6"
-      aria-hidden="true"
-    >
-      <path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2" />
-      <path d="M3 7h18v11a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" />
-      <path d="M12 12h.01" />
-      <path d="M3 13a20 20 0 0 0 18 0" />
-    </svg>
-    <h2 id="experience-title" class="text-lg font-semibold tracking-tight">Experiencia</h2>
+<section class="max-w-4xl mx-auto px-4">
+  
+  <div class="flex items-center gap-3 mb-8">
+    <span class="p-2 rounded-lg bg-badge border border-app-soft text-[var(--primary)]">
+      <svg xmlns="http://www.w3.org/2000/svg" class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <path d="M3 7m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" />
+        <path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2" />
+        <path d="M12 12l0 .01" />
+        <path d="M3 13a20 20 0 0 0 18 0" />
+      </svg>
+    </span>
+    <h2 class="text-2xl font-bold text-app tracking-tight">Experiencia Laboral</h2>
   </div>
 
-  <ol role="list" class="relative ms-5 ps-5 grid gap-12">
-    <span aria-hidden="true"
-      class="pointer-events-none absolute left-0 top-2 h-[calc(100%-0.5rem)] w-px bg-[var(--border-soft)]"></span>
+  <ol class="relative border-s border-app-soft ml-3 space-y-12">
+    
+    {EXPERIENCE.map((exp) => (
+      <li class="relative pl-8 md:pl-10">
+        
+        <span class={`absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full border border-app-soft 
+                      ${exp.current ? 'bg-[var(--text-strong)] ring-4 ring-[var(--primary)]/20' : 'bg-[var(--border)]'}`}>
+        </span>
 
-    <li class="relative">
-      <span class="absolute -left-5 top-1.5 inline-flex h-3.5 w-3.5 -translate-x-1/2 items-center justify-center">
-        <span class="h-3.5 w-3.5 rounded-full bg-[var(--primary)] ring-4 ring-[var(--surface-1)]"></span>
-      </span>
+        <article class="group relative flex flex-col gap-4 p-5 rounded-2xl 
+                        bg-badge border border-app-soft shadow-sm
+                        hover:shadow-[var(--shadow)] hover:border-[var(--primary)]/30">
+          
+          <div class="flex flex-col sm:flex-row justify-between sm:items-start gap-4">
+            
+            <div class="flex items-start gap-4">
+                <div class="relative shrink-0 p-1 rounded-lg bg-white/90 border border-app-soft w-12 h-12 flex items-center justify-center overflow-hidden">
+                    <img src={exp.logo} alt={`Logo de ${exp.company}`} class="w-full h-full object-contain" />
+                </div>
 
-      <article class="grid gap-3 sm:grid-cols-[180px_1fr] sm:gap-6">
-        <header class="min-w-0">
-          <h3 class="font-semibold flex items-center gap-2">
-            Profesional
-          </h3>
-          <p class="text-[11px] leading-4 text-muted">
-            <time datetime="2024-04">abril 2024</time> – <time datetime="2025-12">2025</time>
-          </p>
-        </header>
+                <div class="flex flex-col">
+                    <h3 class="text-lg font-bold text-app group-hover:text-[var(--primary)] transition-colors">
+                        {exp.title}
+                    </h3>
+                    <a href={exp.url} target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-muted hover:text-[var(--text-strong)] transition-colors flex items-center gap-1">
+                        {exp.company}
+                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" /><path d="M11 13l9 -9" /><path d="M15 4h5v5" /></svg>
+                    </a>
+                </div>
+            </div>
 
-        <div class="rounded-xl p-5 bg-[color:var(--surface-1)]/40 border border-[var(--border-soft)]">
-          <h4 class="font-bold">
-            <a
-              href="https://starflowers.com.ec"
-              target="_blank"
-              class="flex items-center gap-2 text-[#B31983] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)] rounded-sm"
-              rel="noreferrer"
-            >
-              <img class="w-8 h-8" src="https://starflowers.com.ec/_astro/icon-logo.Bi0O_rGO_Z1iLfJp.svg" alt="">
-              StarFlowers Cia. Ltda.
-            </a>
-          </h4>
-
-          <p class="leading-relaxed mt-3">
-            Mi primera experiencia profesional haciendo lo que más me gusta:
-            <strong class="text-strong">programar</strong>. Trabajé en
-            soluciones de datos y mantenimiento de sistemas usando:
-          </p>
-
-          <div class="mt-3 flex flex-wrap gap-1.5">
-            <Badge color="green">Python</Badge>
-            <Badge color="red">Angular</Badge>
-            <Badge color="yellow">SQL Server</Badge>
-            <Badge color="purple">FastAPI</Badge>
+            <span class={`text-xs font-medium px-2.5 py-0.5 rounded border whitespace-nowrap self-start sm:self-auto
+                         ${exp.current 
+                           ? 'bg-[var(--primary)]/10 text-[var(--primary)] border-[var(--primary)]/20' 
+                           : 'bg-[var(--surface-1)] text-muted border-transparent'}`}>
+              {exp.date}
+            </span>
           </div>
 
-          <p class="mt-3 text-sm text-muted">
-            Más de un año asegurando continuidad operativa y calidad técnica 🫡.
-          </p>
-        </div>
-      </article>
-    </li>
-
-    <li class="relative">
-      <span class="absolute -left-5 top-1.5 inline-flex h-3.5 w-3.5 -translate-x-1/2 items-center justify-center">
-        <span class="h-3.5 w-3.5 rounded-full bg-[var(--primary)] ring-4 ring-[var(--surface-1)]"></span>
-      </span>
-
-      <article class="grid gap-3 sm:grid-cols-[180px_1fr] sm:gap-6">
-        <header class="min-w-0">
-          <h3 class="font-semibold flex items-center gap-2">
-            Estudiantil
-          </h3>
-          <p class="text-[11px] leading-4 text-muted">
-            <time datetime="2021-09">septiembre 2021</time> – <time datetime="2025-08">agosto 2025</time>
-          </p>
-        </header>
-
-        <div class="rounded-xl p-5 bg-[color:var(--surface-1)]/40 border border-[var(--border-soft)]">
-          <h4 class="font-bold">
-            <a
-              href="https://www.ups.edu.ec"
-              target="_blank"
-              class="text-blue-500 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)] rounded-sm"
-              rel="noreferrer"
-            >
-              Universidad Politécnica Salesiana
-            </a>
-          </h4>
-
-          <p class="leading-relaxed mt-3">
-            Proyectos académicos aplicando programación y desarrollo de software:
+          <p class="text-[15px] leading-relaxed text-muted">
+            {exp.description}
           </p>
 
-          <div class="mt-3 flex flex-wrap gap-1.5">
-            <Badge color="sky">Flutter</Badge>
-            <Badge color="slate">Java</Badge>
-            <Badge color="green">Python</Badge>
-            <Badge color="blue">C++</Badge>
-            <Badge color="black">Astro</Badge>
+          <div class="flex flex-wrap gap-2 pt-1">
+            {exp.tags.map((tag) => (
+                <Badge color={tag.color}>{tag.text}</Badge>
+            ))}
           </div>
 
-          <p class="mt-3 text-sm text-muted">
-            Fortalecí habilidades técnicas, trabajo en equipo y resolución de problemas.
-          </p>
-        </div>
-      </article>
-    </li>
-    <li class="relative">
-      <span class="absolute -left-5 top-1.5 inline-flex h-3.5 w-3.5 -translate-x-1/2 items-center justify-center">
-        <span class="h-3.5 w-3.5 rounded-full bg-[var(--primary)] ring-4 ring-[var(--surface-1)]"></span>
-      </span>
-
-      <article class="grid gap-3 sm:grid-cols-[180px_1fr] sm:gap-6">
-        <header class="min-w-0">
-          <h3 class="font-semibold flex items-center gap-2">
-            Actualidad
-          </h3>
-          <p class="text-[11px] leading-4 text-muted">
-            <time datetime="2020-06">noviembre 2025</time> – <time datetime="2021-12">actualidad</time>
-          </p>
-        </header>
-
-        <div class="rounded-xl p-5 bg-[color:var(--surface-1)]/40 border border-[var(--border-soft)]">
-          <h4 class="font-bold">
-            <a
-              href="https://mycodedmind.com/"
-              target="_blank"
-              class="flex items-center gap-2 text-[#F20091] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)] rounded-sm"
-              rel="noreferrer"
-            >
-              <img class="w-8 h-8" src="https://mycodedmind.com/wp-content/uploads/2022/04/logo-mcm.webp" alt="">
-              MyCodedMind
-            </a>
-          </h4>
-
-          <p class="leading-relaxed mt-3">
-            En MyCodedMind me especializo como un desarrollador Frontend, creando experiencias web atractivas y funcionales.
-          </p>
-
-          <div class="mt-3 flex flex-wrap gap-1.5">
-            <Badge color="blue">WordPress</Badge>
-            <Badge color="red">Angular</Badge>
-            <Badge color="green">Vue.js</Badge>
-            <Badge color="yellow">JavaScript</Badge>
-            <Badge color="black">Php</Badge>
-          </div>
-
-          <p class="mt-3 text-sm text-muted">
-            Se que aún me falta mucho por aprender, pero estoy emocionado por el camino que tengo por delante.
-          </p>
-        </div>
-      </article>
-    </li>
+        </article>
+      </li>
+    ))}
   </ol>
 </section>
