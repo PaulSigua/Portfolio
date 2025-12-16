@@ -7,14 +7,17 @@ const THEMES = ["Light", "Dark", "System"]
 ---
 
 <header class="flex justify-center items-center"> 
-  <nav class="fixed top-0 left-0 right-0 flex flex-row items-center justify-center gap-4 text-app z-50
-              py-3 px-8 rounded-none
-              backdrop-blur-md bg-app/80
-              xl:fixed xl:right-6 xl:top-1/2 xl:-translate-y-1/2 xl:flex xl:flex-col xl:justify-start 
-              **xl:items-center** xl:py-0 xl:px-0 xl:rounded-xl xl:border xl:border-none xl:shadow-none xl:bg-transparent xl:w-fit
+  <nav class="fixed top-4 left-1/2 -translate-x-1/2 flex flex-row items-center justify-center gap-2 text-app z-50
+              py-2 px-4 rounded-full w-max max-w-[95vw] shadow-lg
+              backdrop-blur-xl bg-app/80 border border-gray-200/20 dark:border-white/10
+              
+              xl:fixed xl:right-6 xl:top-1/2 xl:-translate-y-1/2 xl:translate-x-0 
+              xl:flex xl:flex-col xl:justify-start xl:items-center 
+              xl:py-4 xl:px-2 xl:gap-4 xl:rounded-2xl xl:border-none xl:shadow-none xl:bg-transparent xl:w-fit
               xl:left-auto xl:mx-0">
+              
     <a href="#hero" aria-label="Inicio"
-      class="group relative flex items-center justify-center px-3 py-1 rounded-xl overflow-hidden w-25 h-10">
+      class="group relative flex items-center justify-center px-3 py-1 rounded-xl overflow-hidden w-12 hover:w-24 transition-all duration-300 h-10">
     
       <svg class="w-5 h-5 stroke-current text-app absolute inset-0 m-auto 
                   transition-all duration-300 ease-out 
@@ -28,7 +31,7 @@ const THEMES = ["Light", "Dark", "System"]
                   opacity-0 scale-90 translate-y-1 
                   transition-all duration-300 ease-out
                   group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 
-                  text-muted">
+                  text-muted text-xs font-medium whitespace-nowrap">
         Inicio
       </span>
 
@@ -36,12 +39,12 @@ const THEMES = ["Light", "Dark", "System"]
                   opacity-0 scale-90 
                   transition-all duration-500 ease-out
                   group-hover:opacity-100 group-hover:scale-110 
-                  bg-gradient-radial from-green-200/20 via-green-300/10 to-transparent">
+                  bg-gray-200/20 dark:bg-white/10">
       </span>
     </a>
 
     <a href="#experience" aria-label="Experiencia"
-      class="group relative flex items-center justify-center px-3 py-1 rounded-xl overflow-hidden w-25 h-10">
+      class="group relative flex items-center justify-center px-3 py-1 rounded-xl overflow-hidden w-12 hover:w-24 transition-all duration-300 h-10">
         
       <svg class="w-5 h-5 stroke-current text-green-500 absolute inset-0 m-auto 
                   transition-all duration-300 ease-out 
@@ -57,20 +60,20 @@ const THEMES = ["Light", "Dark", "System"]
                   opacity-0 scale-90 translate-y-1 
                   transition-all duration-300 ease-out
                   group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 
-                  text-muted">
-        Experiencia
+                  text-muted text-xs font-medium whitespace-nowrap">
+        Exp.
       </span>
 
       <span class="pointer-events-none absolute inset-0 rounded-xl 
                   opacity-0 scale-90 
                   transition-all duration-500 ease-out
                   group-hover:opacity-100 group-hover:scale-110 
-                  bg-gradient-radial from-green-200/20 via-green-300/10 to-transparent">
+                  bg-green-500/10">
       </span>
     </a>
 
     <a href="#projects" aria-label="Proyectos"
-      class="group relative flex items-center justify-center px-3 py-1 rounded-xl overflow-hidden w-25 h-10">
+      class="group relative flex items-center justify-center px-3 py-1 rounded-xl overflow-hidden w-12 hover:w-24 transition-all duration-300 h-10">
         
       <svg class="w-5 h-5 stroke-current text-blue-500 absolute inset-0 m-auto 
                   transition-all duration-300 ease-out 
@@ -84,7 +87,7 @@ const THEMES = ["Light", "Dark", "System"]
                   opacity-0 scale-90 translate-y-1 
                   transition-all duration-300 ease-out
                   group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 
-                  text-muted">
+                  text-muted text-xs font-medium whitespace-nowrap">
         Proyectos
       </span>
 
@@ -92,12 +95,12 @@ const THEMES = ["Light", "Dark", "System"]
                   opacity-0 scale-90 
                   transition-all duration-500 ease-out
                   group-hover:opacity-100 group-hover:scale-110 
-                  bg-gradient-radial from-green-200/20 via-green-300/10 to-transparent">
+                  bg-blue-500/10">
       </span>
     </a>
 
     <a href="#contact" aria-label="Contactos"
-      class="group relative flex items-center justify-center px-3 py-1 rounded-xl overflow-hidden w-25 h-10">
+      class="group relative flex items-center justify-center px-3 py-1 rounded-xl overflow-hidden w-12 hover:w-24 transition-all duration-300 h-10">
         
       <svg class="w-5 h-5 stroke-current text-red-500 absolute inset-0 m-auto 
                   transition-all duration-300 ease-out 
@@ -111,7 +114,7 @@ const THEMES = ["Light", "Dark", "System"]
                   opacity-0 scale-90 translate-y-1 
                   transition-all duration-300 ease-out
                   group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 
-                  text-muted">
+                  text-muted text-xs font-medium whitespace-nowrap">
         Contacto
       </span>
 
@@ -119,11 +122,13 @@ const THEMES = ["Light", "Dark", "System"]
                   opacity-0 scale-90 
                   transition-all duration-500 ease-out
                   group-hover:opacity-100 group-hover:scale-110 
-                  bg-gradient-radial from-green-200/20 via-green-300/10 to-transparent">
+                  bg-red-500/10">
       </span>
     </a>
 
-    <div class="relative ml-1 mr-1">
+    <div class="w-px h-4 bg-gray-300 dark:bg-gray-700 xl:w-4 xl:h-px xl:my-1"></div>
+
+    <div class="relative">
       <button
         id="theme-toggle-btn"
         class="cursor-pointer appearance-none border-none flex items-center justify-center p-1 rounded-md
@@ -141,9 +146,9 @@ const THEMES = ["Light", "Dark", "System"]
 
       <div
         id="themes-menu"
-        class="absolute hidden scale-90 top-9 right-0 text-sm p-1 min-w-[6rem] rounded-md
+        class="absolute hidden scale-90 top-full mt-2 right-0 xl:right-full xl:top-0 xl:mr-2 text-sm p-1 min-w-[6rem] rounded-md
               border border-gray-100 bg-app dark:bg-gray-900/90 dark:border-white/10
-              shadow-[0_8px_24px_rgba(0,0,0,0.2)] backdrop-blur-md"
+              shadow-[0_8px_24px_rgba(0,0,0,0.2)] backdrop-blur-md z-50"
         role="menu"
         aria-label="Seleccionar tema"
       >
