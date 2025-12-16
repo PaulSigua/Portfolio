@@ -12,13 +12,15 @@ const THEMES = ["Light", "Dark", "System"]
               backdrop-blur-xl bg-app/80 border border-gray-200/20 dark:border-white/10
               
               xl:fixed xl:right-6 xl:top-1/2 xl:-translate-y-1/2 xl:translate-x-0 
-              xl:flex xl:flex-col xl:justify-start xl:items-center 
-              xl:py-4 xl:px-2 xl:gap-4 xl:rounded-2xl xl:border-none xl:shadow-none xl:bg-transparent xl:w-fit
+              xl:flex xl:flex-col xl:justify-center xl:items-end 
+              xl:py-4 xl:px-3 xl:gap-4 xl:rounded-2xl xl:border-none xl:shadow-none xl:bg-transparent xl:w-fit
               xl:left-auto xl:mx-0">
               
     <a href="#hero" aria-label="Inicio"
-      class="group relative flex items-center justify-center px-3 py-1 rounded-xl overflow-hidden w-12 hover:w-24 transition-all duration-300 h-10">
-    
+      class="group relative flex items-center justify-center rounded-xl overflow-hidden transition-all duration-300 ease-in-out h-10 border border-transparent
+             w-12 hover:w-32 
+             xl:hover:bg-app/80 xl:hover:backdrop-blur-md xl:hover:border-gray-200/20 xl:dark:hover:border-white/10 xl:hover:shadow-lg">
+      
       <svg class="w-5 h-5 stroke-current text-app absolute inset-0 m-auto 
                   transition-all duration-300 ease-out 
                   group-hover:opacity-0 group-hover:scale-75"
@@ -28,10 +30,10 @@ const THEMES = ["Light", "Dark", "System"]
       </svg>
 
       <span class="absolute inset-0 flex items-center justify-center 
-                  opacity-0 scale-90 translate-y-1 
+                  opacity-0 scale-90 translate-y-2
                   transition-all duration-300 ease-out
                   group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 
-                  text-muted text-xs font-medium whitespace-nowrap">
+                  text-muted text-sm font-semibold whitespace-nowrap">
         Inicio
       </span>
 
@@ -39,12 +41,14 @@ const THEMES = ["Light", "Dark", "System"]
                   opacity-0 scale-90 
                   transition-all duration-500 ease-out
                   group-hover:opacity-100 group-hover:scale-110 
-                  bg-gray-200/20 dark:bg-white/10">
+                  bg-gray-200/20 dark:bg-white/10 xl:bg-transparent">
       </span>
     </a>
 
     <a href="#experience" aria-label="Experiencia"
-      class="group relative flex items-center justify-center px-3 py-1 rounded-xl overflow-hidden w-12 hover:w-24 transition-all duration-300 h-10">
+      class="group relative flex items-center justify-center rounded-xl overflow-hidden transition-all duration-300 ease-in-out h-10 border border-transparent
+             w-12 hover:w-32 
+             xl:hover:bg-app/80 xl:hover:backdrop-blur-md xl:hover:border-gray-200/20 xl:dark:hover:border-white/10 xl:hover:shadow-lg">
         
       <svg class="w-5 h-5 stroke-current text-green-500 absolute inset-0 m-auto 
                   transition-all duration-300 ease-out 
@@ -57,23 +61,25 @@ const THEMES = ["Light", "Dark", "System"]
       </svg>
 
       <span class="absolute inset-0 flex items-center justify-center 
-                  opacity-0 scale-90 translate-y-1 
+                  opacity-0 scale-90 translate-y-2 
                   transition-all duration-300 ease-out
                   group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 
-                  text-muted text-xs font-medium whitespace-nowrap">
-        Exp.
+                  text-muted text-sm font-semibold whitespace-nowrap">
+        Experiencia
       </span>
 
       <span class="pointer-events-none absolute inset-0 rounded-xl 
                   opacity-0 scale-90 
                   transition-all duration-500 ease-out
                   group-hover:opacity-100 group-hover:scale-110 
-                  bg-green-500/10">
+                  bg-green-500/10 xl:bg-transparent">
       </span>
     </a>
 
     <a href="#projects" aria-label="Proyectos"
-      class="group relative flex items-center justify-center px-3 py-1 rounded-xl overflow-hidden w-12 hover:w-24 transition-all duration-300 h-10">
+      class="group relative flex items-center justify-center rounded-xl overflow-hidden transition-all duration-300 ease-in-out h-10 border border-transparent
+             w-12 hover:w-32 
+             xl:hover:bg-app/80 xl:hover:backdrop-blur-md xl:hover:border-gray-200/20 xl:dark:hover:border-white/10 xl:hover:shadow-lg">
         
       <svg class="w-5 h-5 stroke-current text-blue-500 absolute inset-0 m-auto 
                   transition-all duration-300 ease-out 
@@ -84,10 +90,10 @@ const THEMES = ["Light", "Dark", "System"]
       </svg>
 
       <span class="absolute inset-0 flex items-center justify-center 
-                  opacity-0 scale-90 translate-y-1 
+                  opacity-0 scale-90 translate-y-2
                   transition-all duration-300 ease-out
                   group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 
-                  text-muted text-xs font-medium whitespace-nowrap">
+                  text-muted text-sm font-semibold whitespace-nowrap">
         Proyectos
       </span>
 
@@ -95,13 +101,14 @@ const THEMES = ["Light", "Dark", "System"]
                   opacity-0 scale-90 
                   transition-all duration-500 ease-out
                   group-hover:opacity-100 group-hover:scale-110 
-                  bg-blue-500/10">
+                  bg-blue-500/10 xl:bg-transparent">
       </span>
     </a>
 
     <a href="mailto:paulmateo0208@gmail.com" aria-label="Contactos"
-    
-      class="group relative flex items-center justify-center px-3 py-1 rounded-xl overflow-hidden w-12 hover:w-24 transition-all duration-300 h-10">
+      class="group relative flex items-center justify-center rounded-xl overflow-hidden transition-all duration-300 ease-in-out h-10 border border-transparent
+             w-12 hover:w-32 
+             xl:hover:bg-app/80 xl:hover:backdrop-blur-md xl:hover:border-gray-200/20 xl:dark:hover:border-white/10 xl:hover:shadow-lg">
         
       <svg class="w-5 h-5 stroke-current text-red-500 absolute inset-0 m-auto 
                   transition-all duration-300 ease-out 
@@ -112,10 +119,10 @@ const THEMES = ["Light", "Dark", "System"]
       </svg>
 
       <span class="absolute inset-0 flex items-center justify-center 
-                  opacity-0 scale-90 translate-y-1 
+                  opacity-0 scale-90 translate-y-2
                   transition-all duration-300 ease-out
                   group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 
-                  text-muted text-xs font-medium whitespace-nowrap">
+                  text-muted text-sm font-semibold whitespace-nowrap">
         Contacto
       </span>
 
@@ -123,17 +130,17 @@ const THEMES = ["Light", "Dark", "System"]
                   opacity-0 scale-90 
                   transition-all duration-500 ease-out
                   group-hover:opacity-100 group-hover:scale-110 
-                  bg-red-500/10">
+                  bg-red-500/10 xl:bg-transparent">
       </span>
     </a>
 
-    <div class="w-px h-4 bg-gray-300 dark:bg-gray-700 xl:w-4 xl:h-px xl:my-1"></div>
+    <div class="w-px h-4 bg-gray-300 dark:bg-gray-700 xl:w-10 xl:h-px xl:my-2"></div>
 
-    <div class="relative">
+    <div class="relative w-12 h-10 flex items-center justify-center">
       <button
         id="theme-toggle-btn"
         class="cursor-pointer appearance-none border-none flex items-center justify-center p-1 rounded-md
-              hover:scale-110 transition will-change-transform focus:outline-none
+              hover:scale-110 transition-transform will-change-transform focus:outline-none
               focus-visible:ring-2 focus-visible:ring-green-400/70 focus-visible:ring-offset-2"
         aria-haspopup="menu"
         aria-expanded="false"
