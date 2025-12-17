@@ -26,7 +26,7 @@ import '../styles/global.css';
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Paul Mateo Developer</title>
+		<title>Paul Sigua Dev</title>
 		<script src="/scripts/theme.js" defer></script>
 	</head>
 	<body class="font-sans antialiased bg-app text-app min-h-screen">
@@ -57,6 +57,12 @@ import '../styles/global.css';
 	@media (prefers-reduced-motion: reduce) {
 		html {
 			scroll-behavior: auto;
+		}
+	}
+
+	@media (max-width: 1024px) {
+		body {
+			margin-bottom: 100px;
 		}
 	}
 </style>
