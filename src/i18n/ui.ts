@@ -38,6 +38,16 @@ export const ui = {
     "experience.job3.company": "Universidad Politécnica Salesiana",
     "experience.job3.description":
       "Proyectos académicos de alto nivel aplicando arquitecturas de software, desarrollo móvil y estructuras de datos complejas.",
+    "projects.title": "Proyectos principales",
+    "projects.viewCode": "Ver código en GitHub",
+    "projects.project1.title": "Medical System",
+    "projects.project1.description":
+      "Medical System es una aplicación pensada para apoyar a los profesionales de la salud utilizando <strong>Inteligencia Artificial</strong> para pre-diagnosticar el cáncer cerebral a través de la clasificación de imágenes médicas. La aplicación también ofrece la explicación de predicciones mediante mapas de calor y lenguaje natural (LLM).",
+    "projects.project1.alt": "Captura de pantalla de Medical System",
+    "projects.project2.title": "DictSQL",
+    "projects.project2.description":
+      "DictSQL es una aplicación web diseñada para documentar y gestionar bases de datos SQL de manera eficiente. Permite a los usuarios explorar la estructura de la base de datos, visualizar tablas, columnas, relaciones y generar documentación automática. Facilita la comprensión y el mantenimiento de bases de datos complejas.",
+    "projects.project2.alt": "Captura de pantalla de DictSQL",
     "theme.light": "Claro",
     "theme.dark": "Oscuro",
     "theme.system": "Sistema",
@@ -73,6 +83,16 @@ export const ui = {
     "experience.job3.company": "Salesian Polytechnic University",
     "experience.job3.description":
       "High-level academic projects applying software architectures, mobile development, and complex data structures.",
+    "projects.title": "Featured Projects",
+    "projects.viewCode": "View code on GitHub",
+    "projects.project1.title": "Medical System",
+    "projects.project1.description":
+      "Medical System is an application designed to support healthcare professionals using <strong>Artificial Intelligence</strong> to pre-diagnose brain cancer through medical image classification. The application also offers prediction explanations through heat maps and natural language (LLM).",
+    "projects.project1.alt": "Screenshot of Medical System",
+    "projects.project2.title": "DictSQL",
+    "projects.project2.description":
+      "DictSQL is a web application designed to efficiently document and manage SQL databases. It allows users to explore database structure, visualize tables, columns, relationships, and generate automatic documentation. It facilitates the understanding and maintenance of complex databases.",
+    "projects.project2.alt": "Screenshot of DictSQL",
     "theme.light": "Light",
     "theme.dark": "Dark",
     "theme.system": "System",
@@ -108,6 +128,16 @@ export const ui = {
     "experience.job3.company": "サレジアン工科大学",
     "experience.job3.description":
       "ソフトウェアアーキテクチャ、モバイル開発、複雑なデータ構造を適用した高レベルの学術プロジェクト。",
+    "projects.title": "主要プロジェクト",
+    "projects.viewCode": "GitHubでコードを見る",
+    "projects.project1.title": "Medical System",
+    "projects.project1.description":
+      "Medical Systemは、医療画像分類を通じて脳がんを事前診断するために<strong>人工知能</strong>を使用して医療専門家をサポートするために設計されたアプリケーションです。このアプリケーションは、ヒートマップと自然言語（LLM）を通じて予測の説明も提供します。",
+    "projects.project1.alt": "Medical Systemのスクリーンショット",
+    "projects.project2.title": "DictSQL",
+    "projects.project2.description":
+      "DictSQLは、SQLデータベースを効率的に文書化および管理するために設計されたWebアプリケーションです。ユーザーはデータベース構造を探索し、テーブル、列、リレーションシップを視覚化し、自動ドキュメントを生成できます。複雑なデータベースの理解と保守を容易にします。",
+    "projects.project2.alt": "DictSQLのスクリーンショット",
     "theme.light": "ライト", // Raito
     "theme.dark": "ダーク", // Dāku
     "theme.system": "システム", // Shisutemu

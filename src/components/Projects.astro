@@ -1,11 +1,19 @@
 ---
 import Badge from "./icons/Badge.astro";
-import medicalSysImage from '../assets/img/medical-system-img.png';
-import dictsqlImage from '../assets/img/dictsql-img.png';
+import medicalSysImage from "../assets/img/medical-system-img.png";
+import dictsqlImage from "../assets/img/dictsql-img.png";
+import { useTranslations } from "../i18n/utils";
+
+interface Props {
+  lang?: "en" | "es" | "ja";
+}
+
+const { lang = "en" } = Astro.props;
+const t = useTranslations(lang);
 
 const PROJECTS = [
   {
-    title: "Medical System",
+    titleKey: "projects.project1.title",
     image: medicalSysImage,
     link: "https://github.com/PaulSigua/Medical-System",
     badges: [
@@ -14,10 +22,11 @@ const PROJECTS = [
       { text: "Tailwind CSS", color: "orange" },
       { text: "FastAPI", color: "green" },
     ],
-    description: "Medical System es una aplicación pensada para apoyar a los profesionales de la salud utilizando <strong>Inteligencia Artificial</strong> para pre-diagnosticar el cáncer cerebral a través de la clasificación de imágenes médicas. La aplicación también ofrece la explicación de predicciones mediante mapas de calor y lenguaje natural (LLM)."
+    descriptionKey: "projects.project1.description",
+    altKey: "projects.project1.alt",
   },
   {
-    title: "DictSQL",
+    titleKey: "projects.project2.title",
     image: dictsqlImage,
     link: "https://github.com/PaulSigua/DictSQL",
     badges: [
@@ -26,13 +35,13 @@ const PROJECTS = [
       { text: "Tailwind CSS", color: "purple" },
       { text: "FastAPI", color: "blue" },
     ],
-    description: "DictSQL es una aplicación web diseñada para documentar y gestionar bases de datos SQL de manera eficiente. Permite a los usuarios explorar la estructura de la base de datos, visualizar tablas, columnas, relaciones y generar documentación automática. Facilita la comprensión y el mantenimiento de bases de datos complejas."
-  }
-]
+    descriptionKey: "projects.project2.description",
+    altKey: "projects.project2.alt",
+  },
+];
 ---
 
 <div class="w-full max-w-5xl mx-auto px-4">
-  
   <div class="pt-3 pb-8">
     <h1 class="flex gap-3 text-2xl font-bold items-center text-app">
       <svg
@@ -52,64 +61,98 @@ const PROJECTS = [
         <path d="M17 8l4 4l-4 4"></path>
         <path d="M14 4l-4 16"></path>
       </svg>
-      Proyectos principales
+      {t("projects.title")}
     </h1>
   </div>
 
   <div class="flex flex-col gap-10">
-    {PROJECTS.map((project) => (
-      <article class="group relative flex flex-col md:flex-row gap-6 p-4 rounded-2xl 
+    {
+      PROJECTS.map((project) => (
+        <article
+          class="group relative flex flex-col md:flex-row gap-6 p-4 rounded-2xl 
                       bg-badge border border-app-soft transition-all duration-300
-                      hover:shadow-[var(--shadow)] hover:border-[var(--primary)]/30 hover:-translate-y-1">
-        
-        <a href={project.link} target="_blank" class="absolute inset-0 z-0" aria-label={`Ver proyecto ${project.title}`}></a>
-
-        <div class="w-full md:w-5/12 aspect-video overflow-hidden rounded-xl border border-app-soft relative z-10 pointer-events-none">
-          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors z-10 duration-500"></div>
-          
-          <img 
-            class="w-full h-full object-cover object-top transition-transform duration-500 ease-in-out group-hover:scale-105" 
-            src={project.image.src} 
-            loading="lazy"
-            alt={`Captura de pantalla de ${project.title}`}
+                      hover:shadow-[var(--shadow)] hover:border-[var(--primary)]/30 hover:-translate-y-1"
+        >
+          <a
+            href={project.link}
+            target="_blank"
+            class="absolute inset-0 z-0"
+            aria-label={`Ver proyecto ${t(project.titleKey as any)}`}
           />
-        </div>
 
-        <div class="w-full md:w-7/12 flex flex-col justify-between z-10 pointer-events-none">
+          <div class="w-full md:w-5/12 aspect-video overflow-hidden rounded-xl border border-app-soft relative z-10 pointer-events-none">
+            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors z-10 duration-500" />
+
+            <img
+              class="w-full h-full object-cover object-top transition-transform duration-500 ease-in-out group-hover:scale-105"
+              src={project.image.src}
+              loading="lazy"
+              alt={t(project.altKey as any)}
+            />
+          </div>
+
+          <div class="w-full md:w-7/12 flex flex-col justify-between z-10 pointer-events-none">
             <div>
-                <div class="flex flex-row justify-between items-start mb-3">
-                    <h2 class="text-xl font-bold text-app group-hover:text-[var(--primary)] transition-colors">
-                      {project.title}
-                    </h2>
-                    
-                    <span class="p-2 rounded-full bg-[var(--surface-1)] text-muted group-hover:text-[var(--primary)] group-hover:bg-[var(--primary)]/10 transition-colors">
-                         <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                            <path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" />
-                            <path d="M11 13l9 -9" />
-                            <path d="M15 4h5v5" />
-                        </svg>
-                    </span>
-                </div>
+              <div class="flex flex-row justify-between items-start mb-3">
+                <h2 class="text-xl font-bold text-app group-hover:text-[var(--primary)] transition-colors">
+                  {t(project.titleKey as any)}
+                </h2>
 
-                <div class="flex flex-wrap gap-2 mb-4">
-                  {project.badges.map((badge) => (
-                    // Nota: Asegúrate de usar 'Badge' con las mejoras que hicimos antes
-                    <Badge color={badge.color}>{badge.text}</Badge>
-                  ))}
-                </div>
-
-                <p class="text-muted text-[15px] leading-relaxed mb-4" set:html={project.description}></p>
-            </div>
-            
-            <div class="mt-auto pt-2 flex items-center gap-4">
-                <span class="text-xs font-medium text-subtle flex items-center gap-1 group-hover:text-[var(--text-strong)] transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg>
-                    Ver código en GitHub
+                <span class="p-2 rounded-full bg-[var(--surface-1)] text-muted group-hover:text-[var(--primary)] group-hover:bg-[var(--primary)]/10 transition-colors">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="size-5"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" />
+                    <path d="M11 13l9 -9" />
+                    <path d="M15 4h5v5" />
+                  </svg>
                 </span>
+              </div>
+
+              <div class="flex flex-wrap gap-2 mb-4">
+                {project.badges.map((badge) => (
+                  // Nota: Asegúrate de usar 'Badge' con las mejoras que hicimos antes
+                  <Badge color={badge.color}>{badge.text}</Badge>
+                ))}
+              </div>
+
+              <p
+                class="text-muted text-[15px] leading-relaxed mb-4"
+                set:html={t(project.descriptionKey as any)}
+              />
             </div>
-        </div>
-      </article>
-    ))}
+
+            <div class="mt-auto pt-2 flex items-center gap-4">
+              <span class="text-xs font-medium text-subtle flex items-center gap-1 group-hover:text-[var(--text-strong)] transition-colors">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="size-4"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <>
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+                  </>
+                </svg>
+                {t("projects.viewCode")}
+              </span>
+            </div>
+          </div>
+        </article>
+      ))
+    }
   </div>
 </div>
