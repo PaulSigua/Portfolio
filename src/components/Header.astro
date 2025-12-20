@@ -1,140 +1,259 @@
 ---
-import SunIcon from "./icons/Sun.astro"
-import MoonIcon from "./icons/Moon.astro"
-import SystemIcon from "./icons/System.astro"
+import SunIcon from "./icons/Sun.astro";
+import MoonIcon from "./icons/Moon.astro";
+import SystemIcon from "./icons/System.astro";
+import LanguageIcon from "./icons/Language.astro";
+import { languages } from "../i18n/ui";
+import { useTranslations, getRouteFromLang } from "../i18n/utils";
 
-const THEMES = ["Light", "Dark", "System"]
+interface Props {
+  lang?: "en" | "es" | "ja";
+}
+
+const { lang = "en" } = Astro.props;
+const t = useTranslations(lang);
+
+const THEMES = ["Light", "Dark", "System"];
+const languageEntries = Object.entries(languages);
 ---
 
-<header class="flex justify-center items-center"> 
-  <nav class="fixed top-4 left-1/2 -translate-x-1/2 flex flex-row items-center justify-center gap-2 text-app z-50
+<header class="flex justify-center items-center">
+  <nav
+    class="fixed top-4 left-1/2 -translate-x-1/2 flex flex-row items-center justify-center gap-2 text-app z-50
               py-2 px-4 rounded-full w-max max-w-[95vw] shadow-lg
               backdrop-blur-xl bg-app/80 border border-gray-200/20 dark:border-white/10
               
-              xl:fixed xl:right-6 xl:top-1/2 xl:-translate-y-1/2 xl:translate-x-0 
-              xl:flex xl:flex-col xl:justify-center xl:items-end 
+              xl:fixed xl:right-6 xl:top-1/2 xl:-translate-y-1/2 xl:translate-x-0
+              xl:flex xl:flex-col xl:justify-center xl:items-end
               xl:py-4 xl:px-3 xl:gap-4 xl:rounded-2xl xl:border-none xl:shadow-none xl:bg-transparent xl:w-fit
-              xl:left-auto xl:mx-0">
-              
-    <a href="#hero" aria-label="Inicio"
+              xl:left-auto xl:mx-0"
+  >
+    <a
+      href="#hero"
+      aria-label={t("nav.home")}
       class="group relative flex items-center justify-center rounded-xl overflow-hidden transition-all duration-300 ease-in-out h-10 border border-transparent
-             w-12 hover:w-32 
-             xl:hover:bg-app/80 xl:hover:backdrop-blur-md xl:hover:border-gray-200/20 xl:dark:hover:border-white/10 xl:hover:shadow-lg">
-      
-      <svg class="w-5 h-5 stroke-current text-app absolute inset-0 m-auto 
-                  transition-all duration-300 ease-out 
+             w-12 hover:w-32
+             xl:hover:bg-app/80 xl:hover:backdrop-blur-md xl:hover:border-gray-200/20 xl:dark:hover:border-white/10 xl:hover:shadow-lg"
+    >
+      <svg
+        class="w-5 h-5 stroke-current text-app absolute inset-0 m-auto
+                  transition-all duration-300 ease-out
                   group-hover:opacity-0 group-hover:scale-75"
-          viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M3 9.5L12 3l9 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 20.5v-11z"/>
-        <path d="M9 21V12h6v9"/>
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path
+          d="M3 9.5L12 3l9 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 20.5v-11z"
+        ></path>
+        <path d="M9 21V12h6v9"></path>
       </svg>
 
-      <span class="absolute inset-0 flex items-center justify-center 
+      <span
+        class="absolute inset-0 flex items-center justify-center
                   opacity-0 scale-90 translate-y-2
                   transition-all duration-300 ease-out
-                  group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 
-                  text-muted text-sm font-semibold whitespace-nowrap">
-        Inicio
+                  group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0
+                  text-muted text-sm font-semibold whitespace-nowrap"
+      >
+        {t("nav.home")}
       </span>
 
-      <span class="pointer-events-none absolute inset-0 rounded-xl 
-                  opacity-0 scale-90 
+      <span
+        class="pointer-events-none absolute inset-0 rounded-xl
+                  opacity-0 scale-90
                   transition-all duration-500 ease-out
-                  group-hover:opacity-100 group-hover:scale-110 
-                  bg-gray-200/20 dark:bg-white/10 xl:bg-transparent">
+                  group-hover:opacity-100 group-hover:scale-110
+                  bg-gray-200/20 dark:bg-white/10 xl:bg-transparent"
+      >
       </span>
     </a>
 
-    <a href="#experience" aria-label="Experiencia"
+    <a
+      href="#experience"
+      aria-label={t("nav.experience")}
       class="group relative flex items-center justify-center rounded-xl overflow-hidden transition-all duration-300 ease-in-out h-10 border border-transparent
-             w-12 hover:w-32 
-             xl:hover:bg-app/80 xl:hover:backdrop-blur-md xl:hover:border-gray-200/20 xl:dark:hover:border-white/10 xl:hover:shadow-lg">
-        
-      <svg class="w-5 h-5 stroke-current text-green-500 absolute inset-0 m-auto 
-                  transition-all duration-300 ease-out 
-                  group-hover:opacity-0 group-hover:scale-75"
-          viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M3 7h18v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-        <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-        <path d="M12 12v1"/>
-        <path d="M3 11h18"/>
-      </svg>
-
-      <span class="absolute inset-0 flex items-center justify-center 
-                  opacity-0 scale-90 translate-y-2 
+             w-12 hover:w-32
+             xl:hover:bg-app/80 xl:hover:backdrop-blur-md xl:hover:border-gray-200/20 xl:dark:hover:border-white/10 xl:hover:shadow-lg"
+    >
+      <svg
+        class="w-5 h-5 stroke-current text-green-500 absolute inset-0 m-auto
                   transition-all duration-300 ease-out
-                  group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 
-                  text-muted text-sm font-semibold whitespace-nowrap">
-        Experiencia
-      </span>
-
-      <span class="pointer-events-none absolute inset-0 rounded-xl 
-                  opacity-0 scale-90 
-                  transition-all duration-500 ease-out
-                  group-hover:opacity-100 group-hover:scale-110 
-                  bg-green-500/10 xl:bg-transparent">
-      </span>
-    </a>
-
-    <a href="#projects" aria-label="Proyectos"
-      class="group relative flex items-center justify-center rounded-xl overflow-hidden transition-all duration-300 ease-in-out h-10 border border-transparent
-             w-12 hover:w-32 
-             xl:hover:bg-app/80 xl:hover:backdrop-blur-md xl:hover:border-gray-200/20 xl:dark:hover:border-white/10 xl:hover:shadow-lg">
-        
-      <svg class="w-5 h-5 stroke-current text-blue-500 absolute inset-0 m-auto 
-                  transition-all duration-300 ease-out 
                   group-hover:opacity-0 group-hover:scale-75"
-          viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M3 7h5l2 2h11v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-        <path d="M3 7v10"/>
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M3 7h18v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+        <path d="M12 12v1"></path>
+        <path d="M3 11h18"></path>
       </svg>
 
-      <span class="absolute inset-0 flex items-center justify-center 
+      <span
+        class="absolute inset-0 flex items-center justify-center
                   opacity-0 scale-90 translate-y-2
                   transition-all duration-300 ease-out
-                  group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 
-                  text-muted text-sm font-semibold whitespace-nowrap">
-        Proyectos
+                  group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0
+                  text-muted text-sm font-semibold whitespace-nowrap"
+      >
+        {t("nav.experience")}
       </span>
 
-      <span class="pointer-events-none absolute inset-0 rounded-xl 
-                  opacity-0 scale-90 
+      <span
+        class="pointer-events-none absolute inset-0 rounded-xl
+                  opacity-0 scale-90
                   transition-all duration-500 ease-out
-                  group-hover:opacity-100 group-hover:scale-110 
-                  bg-blue-500/10 xl:bg-transparent">
+                  group-hover:opacity-100 group-hover:scale-110
+                  bg-green-500/10 xl:bg-transparent"
+      >
       </span>
     </a>
 
-    <a href="mailto:paulmateo0208@gmail.com" aria-label="Contactos"
+    <a
+      href="#projects"
+      aria-label={t("nav.projects")}
       class="group relative flex items-center justify-center rounded-xl overflow-hidden transition-all duration-300 ease-in-out h-10 border border-transparent
-             w-12 hover:w-32 
-             xl:hover:bg-app/80 xl:hover:backdrop-blur-md xl:hover:border-gray-200/20 xl:dark:hover:border-white/10 xl:hover:shadow-lg">
-        
-      <svg class="w-5 h-5 stroke-current text-red-500 absolute inset-0 m-auto 
-                  transition-all duration-300 ease-out 
+             w-12 hover:w-32
+             xl:hover:bg-app/80 xl:hover:backdrop-blur-md xl:hover:border-gray-200/20 xl:dark:hover:border-white/10 xl:hover:shadow-lg"
+    >
+      <svg
+        class="w-5 h-5 stroke-current text-blue-500 absolute inset-0 m-auto
+                  transition-all duration-300 ease-out
                   group-hover:opacity-0 group-hover:scale-75"
-          viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/>
-        <path d="m22 6-10 7L2 6"/>
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M3 7h5l2 2h11v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <path d="M3 7v10"></path>
       </svg>
 
-      <span class="absolute inset-0 flex items-center justify-center 
+      <span
+        class="absolute inset-0 flex items-center justify-center
                   opacity-0 scale-90 translate-y-2
                   transition-all duration-300 ease-out
-                  group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 
-                  text-muted text-sm font-semibold whitespace-nowrap">
-        Contacto
+                  group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0
+                  text-muted text-sm font-semibold whitespace-nowrap"
+      >
+        {t("nav.projects")}
       </span>
 
-      <span class="pointer-events-none absolute inset-0 rounded-xl 
-                  opacity-0 scale-90 
+      <span
+        class="pointer-events-none absolute inset-0 rounded-xl
+                  opacity-0 scale-90
                   transition-all duration-500 ease-out
-                  group-hover:opacity-100 group-hover:scale-110 
-                  bg-red-500/10 xl:bg-transparent">
+                  group-hover:opacity-100 group-hover:scale-110
+                  bg-blue-500/10 xl:bg-transparent"
+      >
       </span>
     </a>
 
-    <div class="w-px h-4 bg-gray-300 dark:bg-gray-700 xl:w-10 xl:h-px xl:my-2"></div>
+    <a
+      href="mailto:paulmateo0208@gmail.com"
+      aria-label={t("nav.contact")}
+      class="group relative flex items-center justify-center rounded-xl overflow-hidden transition-all duration-300 ease-in-out h-10 border border-transparent
+             w-12 hover:w-32
+             xl:hover:bg-app/80 xl:hover:backdrop-blur-md xl:hover:border-gray-200/20 xl:dark:hover:border-white/10 xl:hover:shadow-lg"
+    >
+      <svg
+        class="w-5 h-5 stroke-current text-red-500 absolute inset-0 m-auto
+                  transition-all duration-300 ease-out
+                  group-hover:opacity-0 group-hover:scale-75"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path
+          d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"
+        ></path>
+        <path d="m22 6-10 7L2 6"></path>
+      </svg>
+
+      <span
+        class="absolute inset-0 flex items-center justify-center
+                  opacity-0 scale-90 translate-y-2
+                  transition-all duration-300 ease-out
+                  group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0
+                  text-muted text-sm font-semibold whitespace-nowrap"
+      >
+        {t("nav.contact")}
+      </span>
+
+      <span
+        class="pointer-events-none absolute inset-0 rounded-xl
+                  opacity-0 scale-90
+                  transition-all duration-500 ease-out
+                  group-hover:opacity-100 group-hover:scale-110
+                  bg-red-500/10 xl:bg-transparent"
+      >
+      </span>
+    </a>
+
+    <!-- Language Selector -->
+    <div class="relative w-12 h-10 flex items-center justify-center">
+      <button
+        id="language-toggle-btn"
+        class="cursor-pointer appearance-none border-none flex items-center justify-center p-1 rounded-md
+              hover:scale-110 transition-transform will-change-transform focus:outline-none
+              focus-visible:ring-2 focus-visible:ring-purple-400/70 focus-visible:ring-offset-2"
+        aria-haspopup="menu"
+        aria-expanded="false"
+        aria-controls="language-menu"
+        title="Cambiar idioma / Change language / 言語を変更"
+      >
+        <LanguageIcon class="size-5 transition-all text-purple-500" />
+      </button>
+
+      <div
+        id="language-menu"
+        class="absolute hidden scale-90 top-full mt-2 right-0 xl:right-full xl:top-0 xl:mr-2 text-sm p-1 min-w-[8rem] rounded-md
+              border border-gray-100 bg-app dark:bg-gray-900/90 dark:border-white/10
+              shadow-[0_8px_24px_rgba(0,0,0,0.2)] backdrop-blur-md z-50"
+        role="menu"
+        aria-label="Seleccionar idioma"
+      >
+        <ul class="outline-none" id="language-list">
+          {
+            languageEntries.map(([code, name]) => (
+              <li>
+                <a
+                  href={getRouteFromLang(code as "en" | "es" | "ja")}
+                  class="language-menu-option w-full px-3 py-2 cursor-default rounded-sm
+                        hover:bg-neutral-400/30 dark:hover:bg-gray-500/40
+                        focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-400/70
+                        flex items-center gap-2 justify-between cursor-pointer transition-colors"
+                  role="menuitemradio"
+                  aria-checked={lang === code ? "true" : "false"}
+                  data-language={code}
+                >
+                  <span class="flex items-center gap-2">
+                    <span class="text-lg">
+                      {code === "en" ? "🇺🇸" : code === "es" ? "🇪🇸" : "🇯🇵"}
+                    </span>
+                    <span>{name}</span>
+                  </span>
+                  <span
+                    class={`check-dot size-2 rounded-full bg-purple-500 ${lang === code ? "" : "hidden"}`}
+                  />
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div class="w-px h-4 bg-gray-300 dark:bg-gray-700 xl:w-10 xl:h-px xl:my-2">
+    </div>
 
     <div class="relative w-12 h-10 flex items-center justify-center">
       <button
@@ -147,9 +266,18 @@ const THEMES = ["Light", "Dark", "System"]
         aria-controls="themes-menu"
         title="Elige tema"
       >
-        <SunIcon id="light" class="theme-toggle-icon size-5 transition-all origin-center" />
-        <MoonIcon id="dark" class="theme-toggle-icon absolute size-5 transition-all origin-center" />
-        <SystemIcon id="system" class="theme-toggle-icon absolute size-5 transition-all origin-center" />
+        <SunIcon
+          id="light"
+          class="theme-toggle-icon size-5 transition-all origin-center"
+        />
+        <MoonIcon
+          id="dark"
+          class="theme-toggle-icon absolute size-5 transition-all origin-center"
+        />
+        <SystemIcon
+          id="system"
+          class="theme-toggle-icon absolute size-5 transition-all origin-center"
+        />
       </button>
 
       <div
@@ -175,7 +303,7 @@ const THEMES = ["Light", "Dark", "System"]
                   data-theme={theme.toLowerCase()}
                 >
                   <span class="capitalize">{theme.toLowerCase()}</span>
-                  <span class="check-dot hidden size-2 rounded-full bg-green-500"></span>
+                  <span class="check-dot hidden size-2 rounded-full bg-green-500" />
                 </button>
               </li>
             ))
@@ -192,10 +320,69 @@ const THEMES = ["Light", "Dark", "System"]
     animation: scale-up-center 140ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   }
   @keyframes scale-up-center {
-    from { transform: scale(0.9); opacity: 0; }
-    to   { transform: scale(1);   opacity: 1; }
+    from {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
   }
 
-  .theme-toggle-icon { transform: scale(0); opacity: 0; }
-  .theme-toggle-icon.active { transform: scale(1); opacity: 1; }
+  .theme-toggle-icon {
+    transform: scale(0);
+    opacity: 0;
+  }
+  .theme-toggle-icon.active {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  #language-menu.open {
+    display: inline-block;
+    animation: scale-up-center 140ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
 </style>
+
+<script>
+  // Language menu toggle functionality
+  const languageToggleBtn = document.getElementById("language-toggle-btn");
+  const languageMenu = document.getElementById("language-menu");
+
+  if (languageToggleBtn && languageMenu) {
+    // Toggle menu on button click
+    languageToggleBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = languageMenu.classList.contains("open");
+
+      if (isOpen) {
+        languageMenu.classList.remove("open");
+        languageToggleBtn.setAttribute("aria-expanded", "false");
+      } else {
+        languageMenu.classList.add("open");
+        languageToggleBtn.setAttribute("aria-expanded", "true");
+      }
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener("click", (e) => {
+      if (
+        !languageMenu.contains(e.target as Node) &&
+        !languageToggleBtn.contains(e.target as Node)
+      ) {
+        languageMenu.classList.remove("open");
+        languageToggleBtn.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    // Close menu on escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && languageMenu.classList.contains("open")) {
+        languageMenu.classList.remove("open");
+        languageToggleBtn.setAttribute("aria-expanded", "false");
+        languageToggleBtn.focus();
+      }
+    });
+  }
+</script>
