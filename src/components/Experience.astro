@@ -1,123 +1,174 @@
 ---
 import Badge from "./icons/Badge.astro";
+import { useTranslations } from "../i18n/utils";
+
+interface Props {
+  lang?: "en" | "es" | "ja";
+}
+
+const { lang = "en" } = Astro.props;
+const t = useTranslations(lang);
 
 const EXPERIENCE = [
   {
-    date: "Noviembre 2025 - Actualidad",
-    title: "Desarrollador Frontend",
-    company: "MyCodedMind",
+    dateKey: "experience.job1.date",
+    titleKey: "experience.job1.title",
+    companyKey: "experience.job1.company",
     url: "https://mycodedmind.com/",
     logo: "https://mycodedmind.com/wp-content/uploads/2022/04/logo-mcm.webp",
-    description: "Especialización en desarrollo Frontend creando experiencias web atractivas y funcionales. Trabajo activo con tecnologías modernas para clientes reales.",
+    descriptionKey: "experience.job1.description",
     tags: [
-        { text: "WordPress", color: "blue" },
-        { text: "Angular", color: "red" },
-        { text: "Vue.js", color: "green" },
-        { text: "JavaScript", color: "yellow" },
-        { text: "PHP", color: "black" }
+      { text: "WordPress", color: "blue" },
+      { text: "Angular", color: "red" },
+      { text: "Vue.js", color: "green" },
+      { text: "JavaScript", color: "yellow" },
+      { text: "PHP", color: "black" },
     ],
-    current: true 
+    current: true,
   },
   {
-    date: "Abril 2024 - 2025",
-    title: "Desarrollador de Software",
-    company: "StarFlowers Cia. Ltda.",
+    dateKey: "experience.job2.date",
+    titleKey: "experience.job2.title",
+    companyKey: "experience.job2.company",
     url: "https://starflowers.com.ec",
     logo: "https://starflowers.com.ec/_astro/icon-logo.Bi0O_rGO_Z1iLfJp.svg",
-    description: "Desarrollo de soluciones de datos y mantenimiento de sistemas críticos. Aseguré la continuidad operativa y la calidad técnica durante más de un año.",
+    descriptionKey: "experience.job2.description",
     tags: [
-        { text: "Python", color: "green" },
-        { text: "Angular", color: "red" },
-        { text: "SQL Server", color: "yellow" },
-        { text: "FastAPI", color: "purple" }
+      { text: "Python", color: "green" },
+      { text: "Angular", color: "red" },
+      { text: "SQL Server", color: "yellow" },
+      { text: "FastAPI", color: "purple" },
     ],
-    current: false
+    current: false,
   },
   {
-    date: "Septiembre 2021 - Agosto 2025",
-    title: "Formación Profesional",
-    company: "Universidad Politécnica Salesiana",
+    dateKey: "experience.job3.date",
+    titleKey: "experience.job3.title",
+    companyKey: "experience.job3.company",
     url: "https://www.ups.edu.ec",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/b/b0/Logo_Universidad_Polit%C3%A9cnica_Salesiana_del_Ecuador.png", // Busqué un logo genérico de UPS si no carga el tuyo
-    description: "Proyectos académicos de alto nivel aplicando arquitecturas de software, desarrollo móvil y estructuras de datos complejas.",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/b/b0/Logo_Universidad_Polit%C3%A9cnica_Salesiana_del_Ecuador.png",
+    descriptionKey: "experience.job3.description",
     tags: [
-        { text: "Flutter", color: "sky" },
-        { text: "Java", color: "slate" },
-        { text: "Python", color: "green" },
-        { text: "C++", color: "blue" },
-        { text: "Astro", color: "black" }
+      { text: "Flutter", color: "sky" },
+      { text: "Java", color: "slate" },
+      { text: "Python", color: "green" },
+      { text: "C++", color: "blue" },
+      { text: "Astro", color: "black" },
     ],
-    current: false
-  }
-]
+    current: false,
+  },
+];
 ---
 
 <section class="max-w-4xl mx-auto px-4">
-  
   <div class="flex items-center gap-3 mb-8">
-    <span class="p-2 rounded-lg bg-badge border border-app-soft text-[var(--primary)]">
-      <svg xmlns="http://www.w3.org/2000/svg" class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-        <path d="M3 7m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" />
-        <path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2" />
-        <path d="M12 12l0 .01" />
-        <path d="M3 13a20 20 0 0 0 18 0" />
+    <span
+      class="p-2 rounded-lg bg-badge border border-app-soft text-[var(--primary)]"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="size-6"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path
+          d="M3 7m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"
+        ></path>
+        <path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2"></path>
+        <path d="M12 12l0 .01"></path>
+        <path d="M3 13a20 20 0 0 0 18 0"></path>
       </svg>
     </span>
-    <h2 class="text-2xl font-bold text-app tracking-tight">Experiencia Laboral</h2>
+    <h2 class="text-2xl font-bold text-app tracking-tight">
+      {t("experience.title")}
+    </h2>
   </div>
 
   <ol class="relative border-s border-app-soft ml-3 space-y-12">
-    
-    {EXPERIENCE.map((exp) => (
-      <li class="relative pl-8 md:pl-10">
-        
-        <span class={`absolute -left-[5px] top-6 h-2.5 w-2.5 rounded-full border border-app-soft 
-                      ${exp.current ? 'bg-[var(--text-strong)] ring-4 ring-[var(--primary)]/20' : 'bg-[var(--border)]'}`}>
-        </span>
+    {
+      EXPERIENCE.map((exp) => (
+        <li class="relative pl-8 md:pl-10">
+          <span
+            class={`absolute -left-[5px] top-6 h-2.5 w-2.5 rounded-full border border-app-soft 
+                      ${exp.current ? "bg-[var(--text-strong)] ring-4 ring-[var(--primary)]/20" : "bg-[var(--border)]"}`}
+          />
 
-        <article class="group relative flex flex-col gap-4 p-5 rounded-2xl 
+          <article
+            class="group relative flex flex-col gap-4 p-5 rounded-2xl 
                         bg-badge border border-app-soft shadow-sm
-                        transition-all duration-300 hover:shadow-[var(--shadow)] hover:border-[var(--primary)]/30">
-          
-          <div class="flex flex-col sm:flex-row justify-between sm:items-start gap-4">
-            
-            <div class="flex items-start gap-4">
+                        transition-all duration-300 hover:shadow-[var(--shadow)] hover:border-[var(--primary)]/30"
+          >
+            <div class="flex flex-col sm:flex-row justify-between sm:items-start gap-4">
+              <div class="flex items-start gap-4">
                 <div class="relative shrink-0 p-1 rounded-lg bg-white/90 border border-app-soft w-12 h-12 flex items-center justify-center overflow-hidden">
-                    <img src={exp.logo} alt={`Logo de ${exp.company}`} class="w-full h-full object-contain" />
+                  <img
+                    src={exp.logo}
+                    alt={`Logo de ${t(exp.companyKey as any)}`}
+                    class="w-full h-full object-contain"
+                  />
                 </div>
 
                 <div class="flex flex-col">
-                    <h3 class="text-lg font-bold text-app group-hover:text-[var(--primary)] transition-colors">
-                        {exp.title}
-                    </h3>
-                    <a href={exp.url} target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-muted hover:text-[var(--text-strong)] transition-colors flex items-center gap-1">
-                        {exp.company}
-                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" /><path d="M11 13l9 -9" /><path d="M15 4h5v5" /></svg>
-                    </a>
+                  <h3 class="text-lg font-bold text-app group-hover:text-[var(--primary)] transition-colors">
+                    {t(exp.titleKey as any)}
+                  </h3>
+                  <a
+                    href={exp.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-sm font-medium text-muted hover:text-[var(--text-strong)] transition-colors flex items-center gap-1"
+                  >
+                    {t(exp.companyKey as any)}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="size-3"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <>
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" />
+                        <path d="M11 13l9 -9" />
+                        <path d="M15 4h5v5" />
+                      </>
+                    </svg>
+                  </a>
                 </div>
+              </div>
+
+              <span
+                class={`text-xs font-medium px-2.5 py-0.5 rounded border whitespace-nowrap self-start sm:self-auto
+                         ${
+                           exp.current
+                             ? "bg-[var(--primary)]/10 text-[var(--primary)] border-[var(--primary)]/20"
+                             : "bg-[var(--surface-1)] text-muted border-transparent"
+                         }`}
+              >
+                {t(exp.dateKey as any)}
+              </span>
             </div>
 
-            <span class={`text-xs font-medium px-2.5 py-0.5 rounded border whitespace-nowrap self-start sm:self-auto
-                         ${exp.current 
-                           ? 'bg-[var(--primary)]/10 text-[var(--primary)] border-[var(--primary)]/20' 
-                           : 'bg-[var(--surface-1)] text-muted border-transparent'}`}>
-              {exp.date}
-            </span>
-          </div>
+            <p class="text-[15px] leading-relaxed text-muted">
+              {t(exp.descriptionKey as any)}
+            </p>
 
-          <p class="text-[15px] leading-relaxed text-muted">
-            {exp.description}
-          </p>
-
-          <div class="flex flex-wrap gap-2 pt-1">
-            {exp.tags.map((tag) => (
+            <div class="flex flex-wrap gap-2 pt-1">
+              {exp.tags.map((tag) => (
                 <Badge color={tag.color}>{tag.text}</Badge>
-            ))}
-          </div>
-
-        </article>
-      </li>
-    ))}
+              ))}
+            </div>
+          </article>
+        </li>
+      ))
+    }
   </ol>
 </section>
