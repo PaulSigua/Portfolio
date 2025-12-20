@@ -302,7 +302,7 @@ const languageEntries = Object.entries(languages);
                   aria-checked="false"
                   data-theme={theme.toLowerCase()}
                 >
-                  <span class="capitalize">{theme.toLowerCase()}</span>
+                  <span>{t(`theme.${theme.toLowerCase()}` as any)}</span>
                   <span class="check-dot hidden size-2 rounded-full bg-green-500" />
                 </button>
               </li>
@@ -365,6 +365,21 @@ const languageEntries = Object.entries(languages);
       }
     });
 
+    // Handle language change with scroll preservation
+    const languageLinks = languageMenu.querySelectorAll("a[data-language]");
+    languageLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        // Save current scroll position and hash
+        sessionStorage.setItem("scrollPosition", window.scrollY.toString());
+        sessionStorage.setItem("currentHash", window.location.hash);
+
+        // Navigate to new language
+        window.location.href = link.getAttribute("href") || "/";
+      });
+    });
+
     // Close menu when clicking outside
     document.addEventListener("click", (e) => {
       if (
@@ -385,4 +400,29 @@ const languageEntries = Object.entries(languages);
       }
     });
   }
+
+  // Restore scroll position after language change
+  window.addEventListener("load", () => {
+    const savedScrollPosition = sessionStorage.getItem("scrollPosition");
+    const savedHash = sessionStorage.getItem("currentHash");
+
+    if (savedScrollPosition) {
+      // Clear the saved position
+      sessionStorage.removeItem("scrollPosition");
+      sessionStorage.removeItem("currentHash");
+
+      // Restore scroll position
+      setTimeout(() => {
+        window.scrollTo({
+          top: parseInt(savedScrollPosition),
+          behavior: "smooth",
+        });
+
+        // If there was a hash, update the URL without scrolling
+        if (savedHash) {
+          history.replaceState(null, "", savedHash);
+        }
+      }, 100);
+    }
+  });
 </script>
