@@ -208,7 +208,7 @@ const languageEntries = Object.entries(languages);
         aria-haspopup="menu"
         aria-expanded="false"
         aria-controls="language-menu"
-        title="Cambiar idioma / Change language / 言語を変更"
+        title={t("language.select")}
       >
         <LanguageIcon class="size-5 transition-all text-purple-500" />
       </button>
@@ -264,7 +264,7 @@ const languageEntries = Object.entries(languages);
         aria-haspopup="menu"
         aria-expanded="false"
         aria-controls="themes-menu"
-        title="Elige tema"
+        title={t("theme.select")}
       >
         <SunIcon
           id="light"

@@ -51,6 +51,8 @@ export const ui = {
     "theme.light": "Claro",
     "theme.dark": "Oscuro",
     "theme.system": "Sistema",
+    "theme.select": "Elige tema",
+    "language.select": "Cambiar idioma",
   },
   en: {
     "nav.home": "Home",
@@ -96,6 +98,8 @@ export const ui = {
     "theme.light": "Light",
     "theme.dark": "Dark",
     "theme.system": "System",
+    "theme.select": "Choose theme",
+    "language.select": "Change language",
   },
   ja: {
     "nav.home": "ホーム", // Hōmu
@@ -141,5 +145,7 @@ export const ui = {
     "theme.light": "ライト", // Raito
     "theme.dark": "ダーク", // Dāku
     "theme.system": "システム", // Shisutemu
+    "theme.select": "テーマを選択", // Tēma wo sentaku
+    "language.select": "言語を変更", // Gengo wo henkō
   },
 } as const;
