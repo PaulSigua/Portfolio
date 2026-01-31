@@ -1,7 +1,6 @@
 export const languages = {
   en: "English",
   es: "Español",
-  ja: "日本語",
 };
 
 export const defaultLang = "en";
@@ -11,14 +10,15 @@ export const ui = {
     "nav.home": "Inicio",
     "nav.experience": "Experiencia",
     "nav.projects": "Proyectos",
+    "nav.services": "Servicios",
     "nav.contact": "Contacto",
     "hero.available": "Disponible para trabajar",
     "hero.greeting": "Hola, soy",
     "hero.intro":
-      'Soy un <strong>desarrollador fullstack</strong> con experiencia sólida en <span class="text-subtle font-semibold">Python, Java, TypeScript</span> y <span class="text-subtle font-semibold">Angular</span>. Me especializo en crear arquitecturas robustas con Docker y bases de datos complejas.',
+      'Soy <strong>desarrollador fullstack</strong> enfocado en crear y mantener aplicaciones web modernas con <span class="text-subtle font-semibold">Angular, React y FastAPI</span>. Ayudo a equipos y negocios a mejorar sus productos, resolver bugs y construir nuevas funcionalidades de forma eficiente.',
     "hero.passion":
-      "Me apasiona construir aplicaciones web que sean escalables y visualmente impactantes.",
-    "hero.cta": "¡Listo para enfrentar nuevos desafíos! 🚀",
+      "Disfruto convertir ideas en soluciones funcionales, cuidando tanto la lógica como la experiencia de usuario.",
+    "hero.cta": "Disponible para proyectos freelance y colaboraciones 🚀",
     "hero.location": "Cuenca, Ecuador 🇪🇨",
     "hero.avatar": "Avatar de Paúl Sigua",
     "experience.title": "Experiencia Laboral",
@@ -48,6 +48,35 @@ export const ui = {
     "projects.project2.description":
       "DictSQL es una aplicación web diseñada para documentar y gestionar bases de datos SQL de manera eficiente. Permite a los usuarios explorar la estructura de la base de datos, visualizar tablas, columnas, relaciones y generar documentación automática. Facilita la comprensión y el mantenimiento de bases de datos complejas.",
     "projects.project2.alt": "Captura de pantalla de DictSQL",
+    "projects.project3.title": "The Aroma Trace",
+    "projects.project3.description":
+      "Plataforma de e-commerce para marketing olfativo y creación de aromas personalizados. Desarrollé el frontend con WordPress, implementando un diseño moderno y funcionalidades de comercio electrónico para difusores y productos aromáticos.",
+    "projects.project3.alt": "Captura de pantalla de The Aroma Trace",
+    "projects.project4.title": "Ordania",
+    "projects.project4.description":
+      "Software de agendamiento para especialistas de la salud que automatiza citas, recordatorios y cobros. Desarrollé el frontend con Angular y Tailwind CSS, creando una interfaz intuitiva para gestión de consultorios médicos.",
+    "projects.project4.alt": "Captura de pantalla de Ordania",
+    "services.title": "Servicios Freelance",
+    "services.subtitle": "¿En qué puedo ayudarte?",
+    "services.service1.title": "Corrección de Bugs",
+    "services.service1.description":
+      "Identifico y soluciono errores en aplicaciones React y Angular, mejorando la estabilidad y rendimiento de tu producto.",
+    "services.service2.title": "Desarrollo Frontend",
+    "services.service2.description":
+      "Implemento nuevas funcionalidades y componentes con las mejores prácticas, código limpio y diseño responsive.",
+    "services.service3.title": "Desarrollo de APIs",
+    "services.service3.description":
+      "Creo APIs robustas y escalables con FastAPI, incluyendo documentación automática y validación de datos.",
+    "services.service4.title": "Mejoras de UI/UX",
+    "services.service4.description":
+      "Optimizo interfaces de usuario con Tailwind CSS, creando experiencias visuales modernas y atractivas.",
+    "services.service5.title": "Personalización WordPress",
+    "services.service5.description":
+      "Personalizo y optimizo sitios WordPress, desde temas hasta plugins, adaptándolos a tus necesidades específicas.",
+    "services.cta.title": "¿Tienes un proyecto en mente?",
+    "services.cta.description":
+      "Estoy disponible para proyectos freelance y colaboraciones. Hablemos sobre cómo puedo ayudarte a alcanzar tus objetivos.",
+    "services.cta.button": "Contáctame",
     "theme.light": "Claro",
     "theme.dark": "Oscuro",
     "theme.system": "Sistema",
@@ -58,14 +87,15 @@ export const ui = {
     "nav.home": "Home",
     "nav.experience": "Experience",
     "nav.projects": "Projects",
+    "nav.services": "Services",
     "nav.contact": "Contact",
     "hero.available": "Available for work",
     "hero.greeting": "Hi, I'm",
     "hero.intro":
-      'I\'m a <strong>fullstack developer</strong> with solid experience in <span class="text-subtle font-semibold">Python, Java, TypeScript</span> and <span class="text-subtle font-semibold">Angular</span>. I specialize in creating robust architectures with Docker and complex databases.',
+      'I’m a <strong>fullstack developer</strong> focused on building and maintaining modern web applications using <span class="text-subtle font-semibold">Angular, React, and FastAPI</span>. I help teams and businesses improve their products, fix bugs, and develop new features efficiently.',
     "hero.passion":
-      "I'm passionate about building web applications that are scalable and visually stunning.",
-    "hero.cta": "Ready to take on new challenges! 🚀",
+      "I enjoy turning ideas into functional solutions while taking care of both logic and user experience.",
+    "hero.cta": "Open to freelance projects and collaborations 🚀",
     "hero.location": "Cuenca, Ecuador 🇪🇨",
     "hero.avatar": "Paúl Sigua's Avatar",
     "experience.title": "Work Experience",
@@ -74,7 +104,7 @@ export const ui = {
     "experience.job1.title": "Frontend Developer",
     "experience.job1.company": "MyCodedMind",
     "experience.job1.description":
-      "Specializing in Frontend development creating attractive and functional web experiences. Active work with modern technologies for real clients.",
+      "Frontend development for real-world projects using Angular and modern UI practices. I worked on feature implementation, bug fixing, and UI improvements, collaborating with designers and backend developers.",
     "experience.job2.date": "April 2024 - 2025",
     "experience.job2.title": "Software Developer",
     "experience.job2.company": "StarFlowers Cia. Ltda.",
@@ -89,63 +119,45 @@ export const ui = {
     "projects.viewCode": "View code on GitHub",
     "projects.project1.title": "Medical System",
     "projects.project1.description":
-      "Medical System is an application designed to support healthcare professionals using <strong>Artificial Intelligence</strong> to pre-diagnose brain cancer through medical image classification. The application also offers prediction explanations through heat maps and natural language (LLM).",
+      "Web application designed to assist healthcare professionals by providing AI-based support for brain cancer pre-diagnosis. I worked on the frontend and system integration, implementing image visualization, AI result interpretation, and user-friendly interfaces. Built using modern web technologies and AI services.",
     "projects.project1.alt": "Screenshot of Medical System",
     "projects.project2.title": "DictSQL",
     "projects.project2.description":
-      "DictSQL is a web application designed to efficiently document and manage SQL databases. It allows users to explore database structure, visualize tables, columns, relationships, and generate automatic documentation. It facilitates the understanding and maintenance of complex databases.",
+      "Web tool created to simplify the understanding and documentation of SQL databases. I developed the frontend and backend logic to visualize database structures, relationships, and generate automatic documentation, improving maintainability and developer productivity.",
     "projects.project2.alt": "Screenshot of DictSQL",
+    "projects.project3.title": "The Aroma Trace",
+    "projects.project3.description":
+      "E-commerce platform for olfactory marketing and custom aroma creation. I developed the frontend using WordPress, implementing a modern design and e-commerce functionalities for diffusers and aromatic products.",
+    "projects.project3.alt": "Screenshot of The Aroma Trace",
+    "projects.project4.title": "Ordania",
+    "projects.project4.description":
+      "Scheduling software for healthcare specialists that automates appointments, reminders, and payments. I developed the frontend with Angular and Tailwind CSS, creating an intuitive interface for medical practice management.",
+    "projects.project4.alt": "Screenshot of Ordania",
+    "services.title": "Freelance Services",
+    "services.subtitle": "How can I help you?",
+    "services.service1.title": "Bug Fixing",
+    "services.service1.description":
+      "I identify and fix bugs in React and Angular applications, improving your product's stability and performance.",
+    "services.service2.title": "Frontend Development",
+    "services.service2.description":
+      "I implement new features and components following best practices, with clean code and responsive design.",
+    "services.service3.title": "API Development",
+    "services.service3.description":
+      "I build robust and scalable APIs with FastAPI, including automatic documentation and data validation.",
+    "services.service4.title": "UI/UX Improvements",
+    "services.service4.description":
+      "I optimize user interfaces with Tailwind CSS, creating modern and attractive visual experiences.",
+    "services.service5.title": "WordPress Customization",
+    "services.service5.description":
+      "I customize and optimize WordPress sites, from themes to plugins, adapting them to your specific needs.",
+    "services.cta.title": "Have a project in mind?",
+    "services.cta.description":
+      "I'm available for freelance projects and collaborations. Let's talk about how I can help you achieve your goals.",
+    "services.cta.button": "Contact Me",
     "theme.light": "Light",
     "theme.dark": "Dark",
     "theme.system": "System",
     "theme.select": "Choose theme",
     "language.select": "Change language",
-  },
-  ja: {
-    "nav.home": "ホーム", // Hōmu
-    "nav.experience": "経験", // Keiken
-    "nav.projects": "プロジェクト", // Purojekuto
-    "nav.contact": "お問い合わせ", // Otoiawase
-    "hero.available": "仕事募集中", // Shigoto boshū-chū
-    "hero.greeting": "こんにちは、私は", // Konnichiwa, watashi wa
-    "hero.intro":
-      '私は<strong>フルスタック開発者</strong>で、<span class="text-subtle font-semibold">Python、Java、TypeScript</span>と<span class="text-subtle font-semibold">Angular</span>の確かな経験があります。Dockerと複雑なデータベースを使用した堅牢なアーキテクチャの構築を専門としています。',
-    "hero.passion":
-      "スケーラブルで視覚的に魅力的なWebアプリケーションの構築に情熱を注いでいます。",
-    "hero.cta": "新しい挑戦に挑む準備ができています！🚀",
-    "hero.location": "クエンカ、エクアドル 🇪🇨",
-    "hero.avatar": "パウル・シグアのアバター",
-    "experience.title": "職務経歴",
-    "experience.current": "現在",
-    "experience.job1.date": "2025年11月 - 現在",
-    "experience.job1.title": "フロントエンド開発者",
-    "experience.job1.company": "MyCodedMind",
-    "experience.job1.description":
-      "魅力的で機能的なWeb体験を創造するフロントエンド開発を専門としています。実際のクライアント向けに最新技術を活用して積極的に取り組んでいます。",
-    "experience.job2.date": "2024年4月 - 2025年",
-    "experience.job2.title": "ソフトウェア開発者",
-    "experience.job2.company": "StarFlowers Cia. Ltda.",
-    "experience.job2.description":
-      "データソリューションの開発と重要なシステムの保守。1年以上にわたり運用の継続性と技術品質を確保しました。",
-    "experience.job3.date": "2021年9月 - 2025年8月",
-    "experience.job3.title": "専門教育",
-    "experience.job3.company": "サレジアン工科大学",
-    "experience.job3.description":
-      "ソフトウェアアーキテクチャ、モバイル開発、複雑なデータ構造を適用した高レベルの学術プロジェクト。",
-    "projects.title": "主要プロジェクト",
-    "projects.viewCode": "GitHubでコードを見る",
-    "projects.project1.title": "Medical System",
-    "projects.project1.description":
-      "Medical Systemは、医療画像分類を通じて脳がんを事前診断するために<strong>人工知能</strong>を使用して医療専門家をサポートするために設計されたアプリケーションです。このアプリケーションは、ヒートマップと自然言語（LLM）を通じて予測の説明も提供します。",
-    "projects.project1.alt": "Medical Systemのスクリーンショット",
-    "projects.project2.title": "DictSQL",
-    "projects.project2.description":
-      "DictSQLは、SQLデータベースを効率的に文書化および管理するために設計されたWebアプリケーションです。ユーザーはデータベース構造を探索し、テーブル、列、リレーションシップを視覚化し、自動ドキュメントを生成できます。複雑なデータベースの理解と保守を容易にします。",
-    "projects.project2.alt": "DictSQLのスクリーンショット",
-    "theme.light": "ライト", // Raito
-    "theme.dark": "ダーク", // Dāku
-    "theme.system": "システム", // Shisutemu
-    "theme.select": "テーマを選択", // Tēma wo sentaku
-    "language.select": "言語を変更", // Gengo wo henkō
   },
 } as const;

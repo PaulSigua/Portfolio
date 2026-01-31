@@ -3,7 +3,7 @@ import Badge from "./icons/Badge.astro";
 import { useTranslations } from "../i18n/utils";
 
 interface Props {
-  lang?: "en" | "es" | "ja";
+  lang?: "en" | "es";
 }
 
 const { lang = "en" } = Astro.props;
@@ -18,7 +18,8 @@ const EXPERIENCE = [
     logo: "https://mycodedmind.com/wp-content/uploads/2022/04/logo-mcm.webp",
     descriptionKey: "experience.job1.description",
     tags: [
-      { text: "WordPress", color: "blue" },
+      { text: "React", color: "blue" },
+      { text: "WordPress", color: "purple" },
       { text: "Angular", color: "red" },
       { text: "Vue.js", color: "green" },
       { text: "JavaScript", color: "yellow" },
@@ -53,7 +54,6 @@ const EXPERIENCE = [
       { text: "Java", color: "slate" },
       { text: "Python", color: "green" },
       { text: "C++", color: "blue" },
-      { text: "Astro", color: "black" },
     ],
     current: false,
   },

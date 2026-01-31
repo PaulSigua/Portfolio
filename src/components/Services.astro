@@ -1,0 +1,201 @@
+---
+import Badge from "./icons/Badge.astro";
+import { useTranslations } from "../i18n/utils";
+
+interface Props {
+  lang?: "en" | "es";
+}
+
+const { lang = "en" } = Astro.props;
+const t = useTranslations(lang);
+
+const SERVICES = [
+  {
+    titleKey: "services.service1.title",
+    descriptionKey: "services.service1.description",
+    icon: "bug",
+    tags: [
+      { text: "React", color: "blue" },
+      { text: "Angular", color: "red" },
+    ],
+    gradient: "from-red-500 to-orange-500",
+  },
+  {
+    titleKey: "services.service2.title",
+    descriptionKey: "services.service2.description",
+    icon: "code",
+    tags: [
+      { text: "React", color: "blue" },
+      { text: "Angular", color: "red" },
+      { text: "JavaScript", color: "yellow" },
+    ],
+    gradient: "from-blue-500 to-cyan-500",
+  },
+  {
+    titleKey: "services.service3.title",
+    descriptionKey: "services.service3.description",
+    icon: "api",
+    tags: [
+      { text: "FastAPI", color: "green" },
+      { text: "Python", color: "green" },
+    ],
+    gradient: "from-green-500 to-emerald-500",
+  },
+  {
+    titleKey: "services.service4.title",
+    descriptionKey: "services.service4.description",
+    icon: "palette",
+    tags: [
+      { text: "Tailwind CSS", color: "purple" },
+      { text: "CSS", color: "blue" },
+    ],
+    gradient: "from-purple-500 to-pink-500",
+  },
+  {
+    titleKey: "services.service5.title",
+    descriptionKey: "services.service5.description",
+    icon: "wordpress",
+    tags: [
+      { text: "WordPress", color: "purple" },
+      { text: "PHP", color: "black" },
+    ],
+    gradient: "from-indigo-500 to-blue-500",
+  },
+];
+
+const ICONS = {
+  bug: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 9v-1a3 3 0 0 1 6 0v1" /><path d="M8 9h8a6 6 0 0 1 1 3v3a5 5 0 0 1 -10 0v-3a6 6 0 0 1 1 -3" /><path d="M3 13l4 0" /><path d="M17 13l4 0" /><path d="M12 20l0 -6" /><path d="M4 19l3.35 -2" /><path d="M20 19l-3.35 -2" /><path d="M4 7l3.75 2.4" /><path d="M20 7l-3.75 2.4" />`,
+  code: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 8l-4 4l4 4" /><path d="M17 8l4 4l-4 4" /><path d="M14 4l-4 16" />`,
+  api: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /><path d="M5 5m0 2a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2z" />`,
+  palette: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 21a9 9 0 0 1 0 -18c4.97 0 9 3.582 9 8c0 1.06 -.474 2.078 -1.318 2.828c-.844 .75 -1.989 1.172 -3.182 1.172h-2.5a2 2 0 0 0 -1 3.75a1.3 1.3 0 0 1 -1 2.25" /><path d="M8.5 10.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12.5 7.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M16.5 10.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />`,
+  wordpress: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9.5 9h3" /><path d="M4 9h2.5" /><path d="M11 9l3 11l4 -9" /><path d="M5.5 9l3.5 11l3 -7" /><path d="M18 11c.177 -.528 1 -1.364 1 -2.5c0 -1.78 -.776 -2.5 -1.875 -2.5c-.898 0 -1.125 .812 -1.125 1.429c0 1.83 2 2.058 2 3.571z" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />`,
+};
+---
+
+<div class="w-full max-w-5xl mx-auto">
+  <div class="text-center mb-6">
+    <div class="flex gap-3 mb-2">
+      <span
+        class="p-2 rounded-lg bg-badge border border-app-soft text-[var(--primary)]"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="size-6"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5"></path>
+          <path d="M12 12l8 -4.5"></path>
+          <path d="M12 12l0 9"></path>
+          <path d="M12 12l-8 -4.5"></path>
+        </svg>
+      </span>
+      <h2 class="text-3xl font-bold text-app tracking-tight">
+        {t("services.title")}
+      </h2>
+    </div>
+    <p class="text-muted text-lg max-w-2xl mx-auto">
+      {t("services.subtitle")}
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+    {
+      SERVICES.map((service) => (
+        <article
+          class="group relative p-6 rounded-2xl bg-badge border border-app-soft
+                 transition-all duration-300 hover:shadow-[var(--shadow)] 
+                 hover:border-[var(--primary)]/30 hover:-translate-y-2"
+        >
+          <div class="flex flex-col h-full">
+            <div class="mb-4">
+              <div
+                class={`inline-flex p-3 rounded-xl bg-gradient-to-br ${service.gradient} 
+                        shadow-lg group-hover:scale-110 transition-transform duration-300`}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="size-6 text-white"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  set:html={ICONS[service.icon as keyof typeof ICONS]}
+                />
+              </div>
+            </div>
+
+            <h3 class="text-xl font-bold text-app mb-3 group-hover:text-[var(--primary)] transition-colors">
+              {t(service.titleKey as any)}
+            </h3>
+
+            <p class="text-muted text-[15px] leading-relaxed mb-4 flex-grow">
+              {t(service.descriptionKey as any)}
+            </p>
+
+            <div class="flex flex-wrap gap-2 mt-auto">
+              {service.tags.map((tag) => (
+                <Badge color={tag.color}>{tag.text}</Badge>
+              ))}
+            </div>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+
+  <!-- CTA Section -->
+  <div
+    class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[var(--primary)]/10 to-[var(--text-strong)]/10
+           border border-[var(--primary)]/20 p-8 md:p-10"
+  >
+    <div
+      class="absolute inset-0 bg-gradient-to-tr from-[var(--primary)] to-[var(--text-strong)] opacity-5"
+    >
+    </div>
+
+    <div class="relative z-10 text-center max-w-2xl mx-auto">
+      <h3 class="text-2xl md:text-3xl font-bold text-app mb-4">
+        {t("services.cta.title")}
+      </h3>
+      <p class="text-muted text-lg mb-6">
+        {t("services.cta.description")}
+      </p>
+
+      <a
+        href="mailto:paulmateo0208@gmail.com"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl
+               bg-gradient-to-r from-[var(--primary)] to-[var(--primary-active)]
+               text-white font-semibold shadow-lg
+               hover:shadow-xl hover:scale-105
+               transition-all duration-300 ease-out
+               focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="size-5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <path
+            d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"
+          ></path>
+          <path d="m22 6-10 7L2 6"></path>
+        </svg>
+        {t("services.cta.button")}
+      </a>
+    </div>
+  </div>
+</div>

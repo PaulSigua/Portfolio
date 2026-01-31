@@ -3,15 +3,16 @@ import Experience from "../../components/Experience.astro";
 import Header from "../../components/Header.astro";
 import Hero from "../../components/Hero.astro";
 import Projects from "../../components/Projects.astro";
+import Services from "../../components/Services.astro";
 import SectionContainer from "../../components/SectionContainer.astro";
 import Layout from "../../layouts/Layout.astro";
 import "../../styles/global.css";
 
 export function getStaticPaths() {
-  return [{ params: { lang: "es" } }, { params: { lang: "ja" } }];
+  return [{ params: { lang: "es" } }];
 }
 
-const { lang } = Astro.params as { lang: "es" | "ja" };
+const { lang } = Astro.params as { lang: "es" };
 ---
 
 <Layout title="Paúl Sigua | Portfolio" language={lang}>
@@ -33,6 +34,14 @@ const { lang } = Astro.params as { lang: "es" | "ja" };
                min-h-[100dvh] grid items-center"
       >
         <Experience lang={lang} />
+      </section>
+
+      <section
+        id="services"
+        class="pt-24 relative mx-auto w-full max-w-6xl px-6
+               min-h-[100dvh] grid items-center"
+      >
+        <Services lang={lang} />
       </section>
 
       <section
