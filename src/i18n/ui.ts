@@ -92,7 +92,7 @@ export const ui = {
     "hero.available": "Available for work",
     "hero.greeting": "Hi, I'm",
     "hero.intro":
-      'I’m a <strong>fullstack developer</strong> focused on building and maintaining modern web applications using <span class="text-subtle font-semibold">Angular, React, and FastAPI</span>. I help teams and businesses improve their products, fix bugs, and develop new features efficiently.',
+      'I’m a fullstack developer focused on building and maintaining modern web applications using <span class="text-subtle font-semibold">Angular, React, and FastAPI</span>. I help teams and businesses improve their products, fix bugs, and develop new features efficiently.',
     "hero.passion":
       "I enjoy turning ideas into functional solutions while taking care of both logic and user experience.",
     "hero.cta": "Open to freelance projects and collaborations 🚀",
