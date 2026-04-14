@@ -5,7 +5,7 @@ import Mail from "./icons/Mail.astro";
 import { useTranslations } from "../i18n/utils";
 
 interface Props {
-  lang?: "en" | "es" | "ja";
+  lang?: "en" | "es";
 }
 
 const { lang = "en" } = Astro.props;
@@ -23,7 +23,7 @@ const SOCIALS = [
     label: "GitHub",
   },
   {
-    href: "mailto:mateosigua2002@gmail.com",
+    href: "mailto:paulmateo0208@gmail.com",
     icon: Mail,
     label: "Email",
   },
@@ -37,13 +37,14 @@ const SOCIALS = [
     <div class="flex justify-center lg:justify-start">
       <span
         class="inline-flex items-center gap-2 py-1.5 px-3 rounded-full text-xs font-medium
-                   bg-badge border border-app-soft text-muted shadow-sm hover:shadow-md transition-shadow"
+                   bg-badge border border-[var(--primary)] text-[var(--primary)] shadow-sm hover:shadow-md transition-shadow"
       >
         <span class="relative flex h-2 w-2">
           <span
-            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"
+            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--primary)] opacity-75"
           ></span>
-          <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"
+          <span
+            class="relative inline-flex rounded-full h-2 w-2 bg-[var(--primary)]"
           ></span>
         </span>
         {t("hero.available")}
@@ -74,7 +75,7 @@ const SOCIALS = [
     </div>
 
     <div
-      class="flex items-center justify-center lg:justify-start gap-2 text-sm text-subtle font-medium"
+      class="flex items-center justify-center lg:justify-start gap-2 text-sm text-[var(--primary)] font-medium"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -103,10 +104,10 @@ const SOCIALS = [
             aria-label={label}
             class="
             flex items-center justify-center p-3 rounded-xl 
-            bg-badge border border-app-soft text-muted
+            bg-badge border border-gray-300 text-muted
             transition-all duration-300 ease-in-out
             hover:scale-110 hover:-translate-y-1 
-            hover:border-[var(--text-strong)] hover:text-[var(--text-strong)] hover:bg-[var(--surface-1)]
+            hover:border-[var(--primary)] hover:text-[var(--primary)] hover:bg-[var(--surface-1)]
             shadow-sm hover:shadow-[var(--shadow)]
           "
           >
@@ -129,8 +130,34 @@ const SOCIALS = [
       <img
         src="https://avatars.githubusercontent.com/u/109354319?s=400&u=6e30a1b9fc1d804fdb55c573fe2519d42f311cf1&v=4"
         alt={t("hero.avatar")}
-        class="w-full h-full object-cover rounded-full border-4 border-app-soft shadow-[var(--shadow)] transition-transform duration-500"
+        class="w-full h-full object-cover rounded-full shadow-[var(--shadow)] transition-transform duration-500"
       />
     </div>
   </div>
 </div>
+
+<script>
+  import { gsap } from "gsap";
+
+  const heroTitle = document.querySelector(".hero-title");
+  const heroSubtitle = document.querySelector(".hero-subtitle");
+
+  gsap
+    .from(heroTitle, {
+      duration: 1,
+      y: 50,
+      opacity: 0,
+      ease: "power3.out",
+      delay: 0.2,
+    })
+    .to(
+      heroSubtitle,
+      {
+        duration: 1,
+        y: 50,
+        opacity: 0,
+        ease: "elastic.out(1, 0.5)",
+      },
+      "-=0.5",
+    );
+</script>

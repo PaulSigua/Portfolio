@@ -1,6 +1,7 @@
 ---
 import Badge from "./icons/Badge.astro";
 import { useTranslations } from "../i18n/utils";
+import Modal from "./Modal.astro";
 
 interface Props {
   lang?: "en" | "es";
@@ -15,7 +16,7 @@ const EXPERIENCE = [
     titleKey: "experience.job1.title",
     companyKey: "experience.job1.company",
     url: "https://mycodedmind.com/",
-    logo: "https://mycodedmind.com/wp-content/uploads/2022/04/logo-mcm.webp",
+    logo: "https://mycodedmind.com/images/logotipo.png",
     descriptionKey: "experience.job1.description",
     tags: [
       { text: "React", color: "blue" },
@@ -95,7 +96,7 @@ const EXPERIENCE = [
         <li class="relative pl-8 md:pl-10">
           <span
             class={`absolute -left-[5px] top-6 h-2.5 w-2.5 rounded-full border border-app-soft 
-                      ${exp.current ? "bg-[var(--text-strong)] ring-4 ring-[var(--primary)]/20" : "bg-[var(--border)]"}`}
+                      ${exp.current ? "bg-[var(--primary)] ring-4 ring-[var(--primary)]/20" : "bg-[var(--border)]"}`}
           />
 
           <article
@@ -161,6 +162,19 @@ const EXPERIENCE = [
               {t(exp.descriptionKey as any)}
             </p>
 
+            <button
+              class="text-[var(--primary)] text-sm font-semibold hover:underline w-fit cursor-pointer"
+              onclick={`openExperienceModal(${JSON.stringify({
+                title: t(exp.titleKey as any),
+                company: t(exp.companyKey as any),
+                description: t(exp.descriptionKey as any),
+                logo: exp.logo,
+                tags: exp.tags,
+              })})`}
+            >
+              {lang === "es" ? "Ver más detalles" : "View more details"}
+            </button>
+
             <div class="flex flex-wrap gap-2 pt-1">
               {exp.tags.map((tag) => (
                 <Badge color={tag.color}>{tag.text}</Badge>
@@ -172,3 +186,37 @@ const EXPERIENCE = [
     }
   </ol>
 </section>
+
+<script is:inline>
+  function openExperienceModal(data) {
+    const modal = document.getElementById("modal-experience");
+    if (!modal) return;
+
+    const titleElem =
+      modal.querySelector("#modal-title") || modal.querySelector("h3");
+    if (titleElem) titleElem.textContent = `${data.title} @ ${data.company}`;
+
+    const imgElem = document.getElementById("modal-img");
+    if (imgElem) {
+      imgElem.src = data.logo;
+      imgElem.alt = data.company;
+      imgElem.parentElement.classList.remove("hidden");
+    }
+
+    const descElem = document.getElementById("modal-full-description");
+    if (descElem) descElem.textContent = data.description;
+
+    const tagsContainer = document.getElementById("modal-tags");
+    if (tagsContainer) {
+      tagsContainer.innerHTML = data.tags
+        .map(
+          (tag) =>
+            `<span class="px-2 py-1 text-xs rounded border border-app-soft bg-badge">${tag.text}</span>`,
+        )
+        .join("");
+    }
+
+    // 5. Abrir el modal usando tu función global
+    window.toggleDialog("modal-experience");
+  }
+</script>

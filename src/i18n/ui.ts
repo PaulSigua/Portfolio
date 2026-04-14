@@ -42,7 +42,7 @@ export const ui = {
     "projects.viewCode": "Ver código en GitHub",
     "projects.project1.title": "Medical System",
     "projects.project1.description":
-      "Medical System es una aplicación pensada para apoyar a los profesionales de la salud utilizando <strong>Inteligencia Artificial</strong> para pre-diagnosticar el cáncer cerebral a través de la clasificación de imágenes médicas. La aplicación también ofrece la explicación de predicciones mediante mapas de calor y lenguaje natural (LLM).",
+      "Medical System es una aplicación pensada para apoyar a los profesionales de la salud utilizando Inteligencia Artificial para pre-diagnosticar el cáncer cerebral a través de la clasificación de imágenes médicas. La aplicación también ofrece la explicación de predicciones mediante mapas de calor y lenguaje natural (LLM).",
     "projects.project1.alt": "Captura de pantalla de Medical System",
     "projects.project2.title": "DictSQL",
     "projects.project2.description":
@@ -77,6 +77,10 @@ export const ui = {
     "services.cta.description":
       "Estoy disponible para proyectos freelance y colaboraciones. Hablemos sobre cómo puedo ayudarte a alcanzar tus objetivos.",
     "services.cta.button": "Contáctame",
+    "contact.modal.title": "Opciones de Contacto",
+    "contact.modal.message": "¿Por qué medio prefieres contactarme?",
+    "contact.modal.email": "Enviar Correo Electrónico",
+    "contact.modal.linkedin": "Conectar en LinkedIn",
     "theme.light": "Claro",
     "theme.dark": "Oscuro",
     "theme.system": "Sistema",
@@ -154,6 +158,10 @@ export const ui = {
     "services.cta.description":
       "I'm available for freelance projects and collaborations. Let's talk about how I can help you achieve your goals.",
     "services.cta.button": "Contact Me",
+    "contact.modal.title": "Contact Options",
+    "contact.modal.message": "How would you prefer to contact me?",
+    "contact.modal.email": "Send an Email",
+    "contact.modal.linkedin": "Connect on LinkedIn",
     "theme.light": "Light",
     "theme.dark": "Dark",
     "theme.system": "System",

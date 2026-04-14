@@ -114,7 +114,6 @@ const languageEntries = Object.entries(languages);
       </span>
     </a>
 
-
     <a
       href="#services"
       aria-label={t("nav.services")}
@@ -353,6 +352,41 @@ const languageEntries = Object.entries(languages);
           }
         </ul>
       </div>
+    </div>
+
+    <div class="w-px h-4 bg-gray-300 dark:bg-gray-700 xl:w-10 xl:h-px xl:my-2">
+    </div>
+
+    <div class="relative w-12 h-10 flex items-center justify-center">
+      <button
+        id="color-palette-btn"
+        onclick="window.toggleDialog('color-selector')"
+        class="cursor-pointer appearance-none border-none flex items-center justify-center p-1 rounded-md
+              hover:scale-110 transition-transform will-change-transform focus:outline-none
+              focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+        title="Escoge tu color"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="text-app"
+        >
+          <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle>
+          <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle>
+          <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle>
+          <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle>
+          <path
+            d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"
+          ></path>
+        </svg>
+      </button>
     </div>
   </nav>
 </header>

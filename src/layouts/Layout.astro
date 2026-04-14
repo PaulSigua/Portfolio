@@ -1,68 +1,128 @@
 ---
-import Background from '../components/Background.astro';
-import '@fontsource/geist-sans';
-import '../styles/global.css';
+import Background from "../components/Background.astro";
+import Modal from "../components/Modal.astro";
+import "@fontsource/geist-sans";
+import "../styles/global.css";
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<!-- Google tag (gtag.js) -->
-		<script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-XKP7EHQW36"></script>
-		<script>
-			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
-			gtag('config', 'G-XKP7EHQW36');
-		</script>
-		<script is:inline>
-			(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-			new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-			})(window,document,'script','dataLayer','GTM-PV575ZHR');
-		</script>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Paul Sigua Dev</title>
-		<script src="/scripts/theme.js" defer></script>
-	</head>
-	<body class="font-sans antialiased bg-app text-app min-h-screen">
-		<noscript>
-			<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PV575ZHR"
-			height="0" width="0" style="display:none;visibility:hidden"></iframe>
-		</noscript>
-		<Background />
-		<slot />
-	</body>
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      is:inline
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-XKP7EHQW36"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-XKP7EHQW36");
+    </script>
+    <script is:inline>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-PV575ZHR");
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Paul Sigua Dev</title>
+    <script src="/scripts/theme.js" defer></script>
+  </head>
+  <body class="font-sans antialiased min-h-screen">
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-PV575ZHR"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <Background />
+    <slot />
+
+    <Modal id="color-selector" title="Elige tu color">
+      <div class="grid grid-cols-4 gap-4">
+        <!-- Default Azul -->
+        <button
+          class="w-12 h-12 rounded-full cursor-pointer hover:scale-110 transition-transform shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-app focus:ring-blue-500"
+          style="background-color: #4785FF"
+          onclick="document.documentElement.removeAttribute('data-color'); window.toggleDialog()"
+          aria-label="Azul"></button>
+        <!-- Verde -->
+        <button
+          class="w-12 h-12 rounded-full cursor-pointer hover:scale-110 transition-transform shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-app focus:ring-emerald-500"
+          style="background-color: #93f46f"
+          onclick="document.documentElement.setAttribute('data-color', 'green'); window.toggleDialog()"
+          aria-label="Verde"></button>
+        <!-- Naranja -->
+        <button
+          class="w-12 h-12 rounded-full cursor-pointer hover:scale-110 transition-transform shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-app focus:ring-orange-500"
+          style="background-color: #f97316"
+          onclick="document.documentElement.setAttribute('data-color', 'orange'); window.toggleDialog()"
+          aria-label="Naranja"></button>
+        <!-- Morado -->
+        <button
+          class="w-12 h-12 rounded-full cursor-pointer hover:scale-110 transition-transform shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-app focus:ring-purple-500"
+          style="background-color: #8b5cf6"
+          onclick="document.documentElement.setAttribute('data-color', 'purple'); window.toggleDialog()"
+          aria-label="Morado"></button>
+      </div>
+    </Modal>
+
+    <Modal id="modal-experience" title="">
+      <div class="flex flex-col gap-4">
+        <div
+          id="modal-header-logo"
+          class="w-16 h-16 p-2 bg-white rounded-lg border border-app-soft hidden"
+        >
+          <img
+            id="modal-img"
+            src=""
+            alt=""
+            class="w-full h-full object-contain"
+          />
+        </div>
+        <div id="modal-full-description" class="text-muted leading-relaxed">
+        </div>
+        <div id="modal-tags" class="flex flex-wrap gap-2"></div>
+      </div>
+    </Modal>
+  </body>
 </html>
 
 <style>
-	html {
-		font-family: 'Onest Variable', system-ui, sans-serif;
-		scroll-behavior: smooth;
-	}
+  html {
+    font-family: "Onest Variable", system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
 
-	body {
-		background: white;
-		color: black;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		min-height: 100vh;
-	}
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+  }
 
-	@media (prefers-reduced-motion: reduce) {
-		html {
-			scroll-behavior: auto;
-		}
-	}
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
 
-	@media (max-width: 1024px) {
-		body {
-			margin-bottom: 100px;
-		}
-	}
+  @media (max-width: 1024px) {
+    body {
+      margin-bottom: 100px;
+    }
+  }
 </style>

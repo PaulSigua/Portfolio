@@ -1,0 +1,104 @@
+---
+interface Props {
+  id: string;
+  title?: string;
+}
+
+const { id, title } = Astro.props;
+---
+
+<dialog
+  id={id}
+  class="custom-modal flex-col gap-4 bg-app text-app border border-white/60 rounded-2xl p-6"
+>
+  <div class="flex justify-between items-center w-full">
+    {title && <h3 class="text-xl font-semibold">{title}</h3>}
+    <button
+      class="close-btn text-muted hover:text-red-500 cursor-pointer p-2 bg-black/5 rounded-full"
+      onclick="window.toggleDialog()"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        ><line x1="18" y1="6" x2="6" y2="18"></line><line
+          x1="6"
+          y1="6"
+          x2="18"
+          y2="18"></line></svg
+      >
+    </button>
+  </div>
+  <div class="modal-content mt-4">
+    <slot />
+  </div>
+</dialog>
+
+<script>
+  if (typeof window.toggleDialog !== "function") {
+    window.toggleDialog = async function (dialogId) {
+      const viewTransitionClass = "vt-element-animation";
+      const viewTransitionClassClosing = "vt-element-animation-closing";
+
+      if (!dialogId) {
+        const openDialog = document.querySelector("dialog[open]");
+        const originElement = document.querySelector("[origin-element]");
+
+        if (!openDialog) return false;
+
+        openDialog.style.viewTransitionName = "vt-shared";
+        openDialog.style.viewTransitionClass = viewTransitionClassClosing;
+
+        const viewTransition = document.startViewTransition(() => {
+          if (originElement) {
+            originElement.style.viewTransitionName = "vt-shared";
+            originElement.style.viewTransitionClass =
+              viewTransitionClassClosing;
+          }
+          openDialog.style.viewTransitionName = "";
+          openDialog.style.viewTransitionClass = "";
+          openDialog.close();
+        });
+
+        await viewTransition.finished;
+        if (originElement) {
+          originElement.style.viewTransitionName = "";
+          originElement.style.viewTransitionClass = "";
+          originElement.removeAttribute("origin-element");
+        }
+
+        return false;
+      }
+
+      const dialog = document.getElementById(dialogId);
+      if (!dialog) return false;
+
+      const originElement = event
+        ? event.currentTarget || document.activeElement
+        : document.activeElement;
+
+      dialog.style.viewTransitionName = "vt-shared";
+      dialog.style.viewTransitionClass = viewTransitionClass;
+
+      originElement.style.viewTransitionName = "vt-shared";
+      originElement.style.viewTransitionClass = viewTransitionClass;
+      originElement.setAttribute("origin-element", "");
+
+      const viewTransition = document.startViewTransition(() => {
+        originElement.style.viewTransitionName = "";
+        originElement.style.viewTransitionClass = "";
+        dialog.showModal();
+      });
+
+      await viewTransition.finished;
+      dialog.style.viewTransitionName = "";
+      dialog.style.viewTransitionClass = "";
+    };
+  }
+</script>
