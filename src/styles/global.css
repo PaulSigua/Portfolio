@@ -7,6 +7,7 @@
 	--color-primary: var(--primary);
 	--color-primary-hover: var(--primary-hover);
 	--color-app-soft: var(--border-app-soft);
+	--color-primary-soft: var(--primary-soft);
 }
 
 :root {
@@ -17,6 +18,7 @@
 	--primary: #4785FF;
 	--primary-hover: #2E74FF;
 	--border-app-soft: #dadada;
+	--primary-soft: #182e5e;
 }
 
 :root[data-theme="light"] {
@@ -24,6 +26,7 @@
 	--bg: #ffffff;
 	--text-main: #001847;
 	--text-muted: #112e68;
+	--primary-soft: #e6eeff;
 }
 
 :root[data-theme="dark"] {
@@ -31,6 +34,7 @@
 	--bg: #17171b;
 	--text-main: #E6EEFF;
 	--text-muted: #8AB1FF;
+	--primary-soft: #182e5e;
 }
 
 :root[data-color="green"] {

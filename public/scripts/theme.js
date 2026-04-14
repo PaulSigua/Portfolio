@@ -13,6 +13,22 @@
     html.classList.toggle("dark", theme === "dark");
   }
 
+  function getColorPref() {
+    return localStorage.getItem("color") || "blue";
+  }
+  function applyColor(color) {
+    if (color && color !== "blue") {
+      document.documentElement.setAttribute("data-color", color);
+    } else {
+      document.documentElement.removeAttribute("data-color");
+    }
+  }
+
+  window.setAppColor = function (color) {
+    localStorage.setItem("color", color);
+    applyColor(color);
+  };
+
   function updateToggle(effectiveTheme) {
     const thumb = document.getElementById("theme-toggle-thumb");
     const sun = document.getElementById("icon-sun");
@@ -55,6 +71,9 @@
     document.documentElement.setAttribute("data-theme-pref", pref);
     apply(eff);
     updateToggle(eff);
+
+    const prefColor = getColorPref();
+    applyColor(prefColor);
   })();
 
   window.toggleTheme = function () {
@@ -156,5 +175,8 @@
     document.documentElement.setAttribute("data-theme-pref", pref);
     apply(eff);
     updateToggle(eff);
+
+    const prefColor = getColorPref();
+    applyColor(prefColor);
   });
 })();

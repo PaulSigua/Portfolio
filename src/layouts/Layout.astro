@@ -3,6 +3,14 @@ import Background from "../components/Background.astro";
 import Modal from "../components/Modal.astro";
 import "@fontsource/geist-sans";
 import "../styles/global.css";
+import { useTranslations } from "../i18n/utils";
+
+interface Props {
+  lang?: "en" | "es";
+}
+
+const { lang = "en" } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <!doctype html>
@@ -51,31 +59,27 @@ import "../styles/global.css";
     <Background />
     <slot />
 
-    <Modal id="color-selector" title="Elige tu color">
+    <Modal id="color-selector" title={t("header.color-selector")}>
       <div class="grid grid-cols-4 gap-4">
-        <!-- Default Azul -->
         <button
           class="w-12 h-12 rounded-full cursor-pointer hover:scale-110 transition-transform shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-app focus:ring-blue-500"
           style="background-color: #4785FF"
-          onclick="document.documentElement.removeAttribute('data-color'); window.toggleDialog()"
+          onclick="window.setAppColor('blue'); window.toggleDialog()"
           aria-label="Azul"></button>
-        <!-- Verde -->
         <button
           class="w-12 h-12 rounded-full cursor-pointer hover:scale-110 transition-transform shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-app focus:ring-emerald-500"
           style="background-color: #93f46f"
-          onclick="document.documentElement.setAttribute('data-color', 'green'); window.toggleDialog()"
+          onclick="window.setAppColor('green'); window.toggleDialog()"
           aria-label="Verde"></button>
-        <!-- Naranja -->
         <button
           class="w-12 h-12 rounded-full cursor-pointer hover:scale-110 transition-transform shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-app focus:ring-orange-500"
           style="background-color: #f97316"
-          onclick="document.documentElement.setAttribute('data-color', 'orange'); window.toggleDialog()"
+          onclick="window.setAppColor('orange'); window.toggleDialog()"
           aria-label="Naranja"></button>
-        <!-- Morado -->
         <button
           class="w-12 h-12 rounded-full cursor-pointer hover:scale-110 transition-transform shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-app focus:ring-purple-500"
           style="background-color: #8b5cf6"
-          onclick="document.documentElement.setAttribute('data-color', 'purple'); window.toggleDialog()"
+          onclick="window.setAppColor('purple'); window.toggleDialog()"
           aria-label="Morado"></button>
       </div>
     </Modal>

@@ -86,6 +86,7 @@ export const ui = {
     "theme.system": "Sistema",
     "theme.select": "Elige tema",
     "language.select": "Cambiar idioma",
+    "header.color-selector": "Elige tu color",
   },
   en: {
     "nav.home": "Home",
@@ -167,5 +168,6 @@ export const ui = {
     "theme.system": "System",
     "theme.select": "Choose theme",
     "language.select": "Change language",
+    "header.color-selector": "Choose your color",
   },
 } as const;
