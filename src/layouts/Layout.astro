@@ -1,27 +1,45 @@
 ---
 import Background from "../components/Background.astro";
 import Modal from "../components/Modal.astro";
-import "@fontsource/geist-sans";
+import "@fontsource-variable/onest";
 import "../styles/global.css";
 import { useTranslations } from "../i18n/utils";
 
 interface Props {
+  title?: string;
+  description?: string;
   lang?: "en" | "es";
+  canonicalURL?: string;
+  ogImage?: string;
 }
 
-const { lang = "en" } = Astro.props;
+const {
+  title = "Paúl Sigua | Portfolio",
+  description,
+  lang = "en",
+  canonicalURL = Astro.url.href,
+  ogImage = "https://avatars.githubusercontent.com/u/109354319?s=400&u=6e30a1b9fc1d804fdb55c573fe2519d42f311cf1&v=4",
+} = Astro.props;
+
 const t = useTranslations(lang);
+
+const defaultDescription =
+  lang === "es"
+    ? "Desarrollador fullstack especializado en Angular, React y FastAPI. Disponible para proyectos freelance y colaboraciones."
+    : "Fullstack developer specialized in Angular, React, and FastAPI. Available for freelance projects and collaborations.";
+
+const metaDescription = description || defaultDescription;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <!-- Google tag (gtag.js) -->
     <script
       is:inline
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-XKP7EHQW36"></script>
-    <script>
+    <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
@@ -41,11 +59,46 @@ const t = useTranslations(lang);
         f.parentNode.insertBefore(j, f);
       })(window, document, "script", "dataLayer", "GTM-PV575ZHR");
     </script>
+
+    <!-- Primary Meta -->
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
-    <title>Paul Sigua Dev</title>
+    <title>{title}</title>
+    <meta name="description" content={metaDescription} />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Hreflang for language alternates -->
+    <link rel="alternate" hreflang="en" href={Astro.site ?? "/"} />
+    <link rel="alternate" hreflang="es" href={`${Astro.site ?? ""}es/`} />
+    <link rel="alternate" hreflang="x-default" href={Astro.site ?? "/"} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="400" />
+    <meta property="og:image:height" content="400" />
+    <meta property="og:locale" content={lang === "es" ? "es_ES" : "en_US"} />
+    <meta property="og:site_name" content="Paúl Sigua | Portfolio" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={metaDescription} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Robots & indexing -->
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Paúl Sigua" />
+    <meta
+      name="keywords"
+      content="Paúl Sigua, portfolio, fullstack developer, Angular, React, FastAPI, freelance, Ecuador"
+    />
+
     <script src="/scripts/theme.js" defer></script>
   </head>
   <body class="font-sans antialiased min-h-screen">

@@ -14,6 +14,7 @@ export const ui = {
     "nav.contact": "Contacto",
     "hero.available": "Disponible para trabajar",
     "hero.greeting": "Hola, soy",
+    "hero.name": "Paúl Sigua",
     "hero.intro":
       'Soy <strong>desarrollador fullstack</strong> enfocado en crear y mantener aplicaciones web modernas con <span class="text-subtle font-semibold">Angular, React y FastAPI</span>. Ayudo a equipos y negocios a mejorar sus productos, resolver bugs y construir nuevas funcionalidades de forma eficiente.',
     "hero.passion":
@@ -96,6 +97,7 @@ export const ui = {
     "nav.contact": "Contact",
     "hero.available": "Available for work",
     "hero.greeting": "Hi, I'm",
+    "hero.name": "Paúl Sigua",
     "hero.intro":
       'I’m a fullstack developer focused on building and maintaining modern web applications using <span class="text-subtle font-semibold">Angular, React, and FastAPI</span>. I help teams and businesses improve their products, fix bugs, and develop new features efficiently.',
     "hero.passion":

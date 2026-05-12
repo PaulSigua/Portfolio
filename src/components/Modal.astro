@@ -12,9 +12,15 @@ const { id, title } = Astro.props;
   class="custom-modal flex-col gap-4 bg-app text-app border border-white/60 rounded-2xl p-6"
 >
   <div class="flex justify-between items-center w-full">
-    {title && <h3 class="text-xl font-semibold">{title}</h3>}
+    {
+      title && (
+        <h3 id={`${id}-title`} class="text-xl font-semibold">
+          {title}
+        </h3>
+      )
+    }
     <button
-      class="close-btn text-muted hover:text-red-500 cursor-pointer p-2 bg-black/5 rounded-full"
+      class="close-btn text-muted hover:text-red-500 cursor-pointer p-2 bg-black/5 rounded-full ml-auto"
       onclick="window.toggleDialog()"
     >
       <svg
@@ -35,70 +41,195 @@ const { id, title } = Astro.props;
       >
     </button>
   </div>
-  <div class="modal-content mt-4">
+  <div class="modal-content">
     <slot />
   </div>
 </dialog>
 
 <script>
+  import gsap from "gsap";
+  import { Flip } from "gsap/Flip";
+  import { CustomEase } from "gsap/CustomEase";
+
+  gsap.registerPlugin(Flip, CustomEase);
+
+  declare global {
+    interface Window {
+      toggleDialog: (dialogId?: string) => false;
+    }
+  }
+
   if (typeof window.toggleDialog !== "function") {
-    window.toggleDialog = async function (dialogId) {
-      const viewTransitionClass = "vt-element-animation";
-      const viewTransitionClassClosing = "vt-element-animation-closing";
+    const MARGIN = 12;
+    const EASE_OPEN = CustomEase.create(
+      "pm-open",
+      "M0,0 C0.305,0.206 0.116,0.567 0.3,0.8 0.394,0.921 0.491,1 1,1",
+    );
 
+    function measureDialog(dialog: HTMLDialogElement) {
+      dialog.style.visibility = "hidden";
+      dialog.show();
+      const w = dialog.offsetWidth || 320;
+      const h = dialog.offsetHeight || 200;
+      dialog.close();
+      dialog.style.visibility = "";
+      return { w, h };
+    }
+
+    function positionDialog(
+      dialog: HTMLDialogElement,
+      trigger: Element | null,
+    ) {
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const { w: dw, h: dh } = measureDialog(dialog);
+
+      let left: number;
+      let top: number;
+
+      if (trigger) {
+        const tr = trigger.getBoundingClientRect();
+        left = tr.left + tr.width / 2 - dw / 2;
+        top = tr.top + tr.height / 2 - dh / 2;
+        left = Math.max(MARGIN, Math.min(vw - dw - MARGIN, left));
+        top = Math.max(MARGIN, Math.min(vh - dh - MARGIN, top));
+      } else {
+        left = Math.max(MARGIN, (vw - dw) / 2);
+        top = Math.max(MARGIN, (vh - dh) / 2);
+      }
+
+      dialog.style.top = `${top}px`;
+      dialog.style.left = `${left}px`;
+    }
+
+    let lastOpenedAt = 0;
+
+    window.toggleDialog = function (dialogId?: string): false {
+      // ── CLOSE ────────────────────────────────────────────────────────
       if (!dialogId) {
-        const openDialog = document.querySelector("dialog[open]");
-        const originElement = document.querySelector("[origin-element]");
+        const open = document.querySelector<HTMLDialogElement>("dialog[open]");
+        if (!open) return false;
 
-        if (!openDialog) return false;
+        gsap.killTweensOf(open);
 
-        openDialog.style.viewTransitionName = "vt-shared";
-        openDialog.style.viewTransitionClass = viewTransitionClassClosing;
+        const originId = open.dataset.flipId;
+        const origin = originId
+          ? document.querySelector<Element>(
+              `[data-flip-id="${originId}"]:not([open])`,
+            )
+          : null;
 
-        const viewTransition = document.startViewTransition(() => {
-          if (originElement) {
-            originElement.style.viewTransitionName = "vt-shared";
-            originElement.style.viewTransitionClass =
-              viewTransitionClassClosing;
-          }
-          openDialog.style.viewTransitionName = "";
-          openDialog.style.viewTransitionClass = "";
-          openDialog.close();
-        });
-
-        await viewTransition.finished;
-        if (originElement) {
-          originElement.style.viewTransitionName = "";
-          originElement.style.viewTransitionClass = "";
-          originElement.removeAttribute("origin-element");
+        if (origin) {
+          const originState = Flip.getState(origin);
+          Flip.to(originState, {
+            targets: open,
+            scale: true,
+            ease: "power2.in",
+            duration: 0.5,
+            toggleClass: "pm-closing",
+            onComplete: () => {
+              gsap.set(open, { clearProps: "all" });
+              open.style.top = "";
+              open.style.left = "";
+              open.close();
+              open.removeAttribute("data-flip-id");
+              if (origin instanceof HTMLElement) delete origin.dataset.flipId;
+              document.body.style.overflow = "";
+            },
+          });
+        } else {
+          gsap.to(open, {
+            opacity: 0,
+            scale: 0.9,
+            duration: 0.25,
+            ease: "power2.in",
+            onComplete: () => {
+              gsap.set(open, { clearProps: "all" });
+              open.style.top = "";
+              open.style.left = "";
+              open.close();
+              document.body.style.overflow = "";
+            },
+          });
         }
-
         return false;
       }
 
-      const dialog = document.getElementById(dialogId);
+      // ── OPEN ─────────────────────────────────────────────────────────
+      const dialog = document.getElementById(
+        dialogId,
+      ) as HTMLDialogElement | null;
       if (!dialog) return false;
 
-      const originElement = event
-        ? event.currentTarget || document.activeElement
-        : document.activeElement;
+      const already = document.querySelector<HTMLDialogElement>("dialog[open]");
+      if (already && already !== dialog) {
+        gsap.killTweensOf(already);
+        gsap.set(already, { clearProps: "all" });
+        already.style.top = "";
+        already.style.left = "";
+        already.close();
+        already.removeAttribute("data-flip-id");
+      }
 
-      dialog.style.viewTransitionName = "vt-shared";
-      dialog.style.viewTransitionClass = viewTransitionClass;
+      const trigger: Element | null =
+        window.event instanceof Event &&
+        window.event.currentTarget instanceof Element
+          ? window.event.currentTarget
+          : null;
 
-      originElement.style.viewTransitionName = "vt-shared";
-      originElement.style.viewTransitionClass = viewTransitionClass;
-      originElement.setAttribute("origin-element", "");
+      positionDialog(dialog, trigger ?? document.activeElement);
 
-      const viewTransition = document.startViewTransition(() => {
-        originElement.style.viewTransitionName = "";
-        originElement.style.viewTransitionClass = "";
+      document.body.style.overflow = "hidden";
+
+      if (trigger instanceof HTMLElement) {
+        const randomId = Math.random().toString(16).slice(2);
+        dialog.dataset.flipId = randomId;
+        trigger.dataset.flipId = randomId;
+
+        gsap.killTweensOf(dialog);
+        const originState = Flip.getState(trigger);
         dialog.showModal();
-      });
+        Flip.from(originState, {
+          targets: dialog,
+          scale: true,
+          ease: EASE_OPEN,
+          duration: 0.7,
+          toggleClass: "pm-opening",
+        });
+      } else {
+        dialog.showModal();
+        gsap.from(dialog, {
+          opacity: 0,
+          scale: 0.9,
+          duration: 0.4,
+          ease: "power2.out",
+        });
+      }
 
-      await viewTransition.finished;
-      dialog.style.viewTransitionName = "";
-      dialog.style.viewTransitionClass = "";
+      lastOpenedAt = Date.now();
+      return false;
     };
+
+    document.addEventListener("click", (e) => {
+      if (Date.now() - lastOpenedAt < 100) return;
+      const dialog = document.querySelector<HTMLDialogElement>("dialog[open]");
+      if (!dialog) return;
+      const rect = dialog.getBoundingClientRect();
+      const inside =
+        e.clientX >= rect.left &&
+        e.clientX <= rect.right &&
+        e.clientY >= rect.top &&
+        e.clientY <= rect.bottom;
+      if (!inside) window.toggleDialog();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key !== "Escape") return;
+      const open = document.querySelector<HTMLDialogElement>("dialog[open]");
+      if (open) {
+        e.preventDefault();
+        window.toggleDialog();
+      }
+    });
   }
 </script>

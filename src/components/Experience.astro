@@ -61,11 +61,9 @@ const EXPERIENCE = [
 ];
 ---
 
-<section class="max-w-4xl mx-auto">
-  <div class="flex items-center gap-3 mb-8">
-    <span
-      class="p-2 rounded-lg bg-badge border border-app-soft text-[var(--primary)]"
-    >
+<section id="exp-section" class="max-w-4xl mx-auto">
+  <div class="flex items-center gap-3 mb-10">
+    <span class="p-2 rounded-lg bg-badge border border-app-soft text-[var(--primary)]">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         class="size-6"
@@ -77,9 +75,7 @@ const EXPERIENCE = [
         stroke-linejoin="round"
       >
         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-        <path
-          d="M3 7m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"
-        ></path>
+        <path d="M3 7m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"></path>
         <path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2"></path>
         <path d="M12 12l0 .01"></path>
         <path d="M3 13a20 20 0 0 0 18 0"></path>
@@ -90,39 +86,43 @@ const EXPERIENCE = [
     </h2>
   </div>
 
-  <ol class="relative border-s border-app-soft ml-3 space-y-12">
+  <ol class="relative ml-3 space-y-10">
+    <div id="exp-line" class="absolute left-0 top-2 bottom-0 w-px bg-app-soft will-change-transform"></div>
+
     {
       EXPERIENCE.map((exp) => (
-        <li class="relative pl-8 md:pl-10">
-          <span
-            class={`absolute -left-[5px] top-6 h-2.5 w-2.5 rounded-full border border-app-soft 
-                      ${exp.current ? "bg-[var(--primary)] ring-4 ring-[var(--primary)]/20" : "bg-[var(--border)]"}`}
-          />
+        <li class="exp-item relative pl-8 md:pl-10">
+          <!-- Timeline dot -->
+          <span class="absolute -left-[5px] top-7 h-2.5 w-2.5">
+            {exp.current && (
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--primary)] opacity-40 mt-[7px]" />
+            )}
+            <span
+              class={`relative inline-flex h-full w-full rounded-full border border-app-soft
+                ${exp.current ? "bg-[var(--primary)]" : "bg-badge"}`}
+            />
+          </span>
 
-          <article
-            class="group relative flex flex-col gap-4 p-5 rounded-2xl 
-                        bg-badge border border-app-soft shadow-sm
-                        transition-all duration-300 hover:shadow-[var(--shadow)] hover:border-[var(--primary)]/30"
-          >
+          <article class="group flex flex-col gap-4">
+            <!-- Header: logo + title/company + date -->
             <div class="flex flex-col sm:flex-row justify-between sm:items-start gap-4">
-              <div class="flex items-start gap-4">
-                <div class="relative shrink-0 p-1 rounded-lg bg-white/90 border border-app-soft w-12 h-12 flex items-center justify-center overflow-hidden">
+              <div class="flex items-center gap-3">
+                <div class="shrink-0 w-12 h-12 rounded-xl bg-white border border-app-soft p-1.5 flex items-center justify-center overflow-hidden shadow-sm">
                   <img
                     src={exp.logo}
-                    alt={`Logo de ${t(exp.companyKey as any)}`}
+                    alt={t(exp.companyKey as any)}
                     class="w-full h-full object-contain"
                   />
                 </div>
-
-                <div class="flex flex-col">
-                  <h3 class="text-lg font-bold text-app group-hover:text-[var(--primary)] transition-colors">
+                <div class="flex flex-col gap-0.5">
+                  <h3 class="text-base font-bold text-app group-hover:text-[var(--primary)] transition-colors duration-200">
                     {t(exp.titleKey as any)}
                   </h3>
                   <a
                     href={exp.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="text-sm font-medium text-muted hover:text-[var(--text-strong)] transition-colors flex items-center gap-1"
+                    class="text-sm text-muted hover:text-[var(--primary)] transition-colors flex items-center gap-1 w-fit"
                   >
                     {t(exp.companyKey as any)}
                     <svg
@@ -135,50 +135,50 @@ const EXPERIENCE = [
                       stroke-linecap="round"
                       stroke-linejoin="round"
                     >
-                      <>
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" />
-                        <path d="M11 13l9 -9" />
-                        <path d="M15 4h5v5" />
-                      </>
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" />
+                      <path d="M11 13l9 -9" />
+                      <path d="M15 4h5v5" />
                     </svg>
                   </a>
                 </div>
               </div>
 
               <span
-                class={`text-xs font-medium px-2.5 py-0.5 rounded border whitespace-nowrap self-start sm:self-auto
-                         ${
-                           exp.current
-                             ? "bg-[var(--primary)]/10 text-[var(--primary)] border-[var(--primary)]/20"
-                             : "bg-[var(--surface-1)] text-muted border-transparent"
-                         }`}
+                class={`text-xs font-medium px-2.5 py-1 rounded-full border whitespace-nowrap self-start sm:self-auto
+                  ${exp.current
+                    ? "bg-[var(--primary)]/10 text-[var(--primary)] border-[var(--primary)]/20"
+                    : "text-muted border-app-soft bg-badge"
+                  }`}
               >
                 {t(exp.dateKey as any)}
               </span>
             </div>
 
+            <!-- Description -->
             <p class="text-[15px] leading-relaxed text-muted">
               {t(exp.descriptionKey as any)}
             </p>
 
-            <button
-              class="text-[var(--primary)] text-sm font-semibold hover:underline w-fit cursor-pointer"
-              onclick={`openExperienceModal(${JSON.stringify({
-                title: t(exp.titleKey as any),
-                company: t(exp.companyKey as any),
-                description: t(exp.descriptionKey as any),
-                logo: exp.logo,
-                tags: exp.tags,
-              })})`}
-            >
-              {lang === "es" ? "Ver más detalles" : "View more details"}
-            </button>
-
-            <div class="flex flex-wrap gap-2 pt-1">
-              {exp.tags.map((tag) => (
-                <Badge color={tag.color}>{tag.text}</Badge>
-              ))}
+            <!-- Footer: tags + view more -->
+            <div class="flex flex-wrap items-center justify-between gap-4">
+              <div class="flex flex-wrap gap-2">
+                {exp.tags.map((tag) => (
+                  <Badge color={tag.color}>{tag.text}</Badge>
+                ))}
+              </div>
+              <button
+                class="text-[var(--primary)] text-sm font-semibold hover:underline cursor-pointer whitespace-nowrap shrink-0"
+                onclick={`openExperienceModal(${JSON.stringify({
+                  title: t(exp.titleKey as any),
+                  company: t(exp.companyKey as any),
+                  description: t(exp.descriptionKey as any),
+                  logo: exp.logo,
+                  tags: exp.tags,
+                })})`}
+              >
+                {lang === "es" ? "Ver más" : "View more"}
+              </button>
             </div>
           </article>
         </li>
@@ -218,4 +218,34 @@ const EXPERIENCE = [
 
     window.toggleDialog("modal-experience");
   }
+</script>
+
+<script>
+  import { gsap } from "gsap";
+
+  const section = document.getElementById("exp-section");
+  const items = document.querySelectorAll<HTMLElement>(".exp-item");
+  const line = document.getElementById("exp-line");
+
+  if (line) gsap.set(line, { scaleY: 0, transformOrigin: "top center" });
+  gsap.set(items, { x: -28, opacity: 0 });
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      if (entries[0].isIntersecting) {
+        if (line) gsap.to(line, { scaleY: 1, duration: 1.8, ease: "power2.out" });
+        gsap.to(items, {
+          x: 0,
+          opacity: 1,
+          duration: 0.6,
+          stagger: 0.14,
+          ease: "power3.out",
+        });
+        observer.disconnect();
+      }
+    },
+    { threshold: 0.1 },
+  );
+
+  if (section) observer.observe(section);
 </script>
