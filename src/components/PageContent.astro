@@ -1,0 +1,62 @@
+---
+import Experience from "./Experience.astro";
+import Header from "./Header.astro";
+import Hero from "./Hero.astro";
+import Projects from "./Projects.astro";
+import Services from "./Services.astro";
+import SectionContainer from "./SectionContainer.astro";
+import Layout from "../layouts/Layout.astro";
+import "../styles/global.css";
+
+interface Props {
+  lang: "en" | "es";
+}
+
+const { lang } = Astro.props;
+
+const titles = {
+  en: "Paúl Sigua | Fullstack Developer",
+  es: "Paúl Sigua | Desarrollador Fullstack",
+};
+
+const descriptions = {
+  en: "Fullstack developer specialized in Angular, React, and FastAPI. Available for freelance projects and collaborations.",
+  es: "Desarrollador fullstack especializado en Angular, React y FastAPI. Disponible para proyectos freelance y colaboraciones.",
+};
+---
+
+<Layout title={titles[lang]} description={descriptions[lang]} lang={lang}>
+  <main class="bg-app text-app relative">
+    <Header lang={lang} />
+
+    <SectionContainer class="xl:pt-0">
+      <section
+        id="hero"
+        class="pt-14 relative mx-auto w-full max-w-6xl px-6 min-h-[100dvh] grid items-center"
+      >
+        <Hero lang={lang} />
+      </section>
+
+      <section
+        id="experience"
+        class="pt-24 relative mx-auto w-full max-w-6xl px-6 min-h-[100dvh] grid items-center"
+      >
+        <Experience lang={lang} />
+      </section>
+
+      <section
+        id="services"
+        class="pt-24 relative mx-auto w-full max-w-6xl px-6 min-h-[100dvh] grid items-center"
+      >
+        <Services lang={lang} />
+      </section>
+
+      <section
+        id="projects"
+        class="pt-24 relative mx-auto w-full max-w-6xl px-6 min-h-[100dvh] grid items-center"
+      >
+        <Projects lang={lang} />
+      </section>
+    </SectionContainer>
+  </main>
+</Layout>
