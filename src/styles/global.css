@@ -232,3 +232,216 @@ dialog::backdrop {
   }
 }
 
+/* ──────────────────────────────────────────────────────────────────────────
+   REUSABLE PORTFOLIO DESIGN SYSTEM UTILITIES
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* Contenedor principal de sección con acabado Liquid Glass */
+.portfolio-card {
+  width: 100%;
+  border-radius: 2.5rem;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.6) inset, 0 16px 40px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+:root[data-theme="dark"] .portfolio-card,
+.dark .portfolio-card {
+  background: rgba(20, 20, 26, 0.65);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1) inset, 0 20px 50px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Badge píldora estándar para numeración y tags de sección */
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--text-muted);
+  border: 1px solid var(--border-app-soft);
+}
+
+:root[data-theme="dark"] .section-tag,
+.dark .section-tag {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Titular estándar de sección */
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--text-main);
+}
+
+/* Subtítulo descriptivo estándar */
+.section-subtitle {
+  color: var(--text-muted);
+  font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+  line-height: 1.6;
+  max-width: 34rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Tile cuadrado redondeado (squircle) para íconos de timeline / servicios */
+.step-icon-tile {
+  width: 3.75rem;
+  height: 3.75rem;
+  border-radius: 1.25rem;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #09090b;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  flex-shrink: 0;
+}
+
+:root[data-theme="dark"] .step-icon-tile,
+.dark .step-icon-tile {
+  background: #18181f;
+  color: #f4f4f5;
+  box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Badge numérico de paso (01, 02, etc.) */
+.step-num-badge {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-main);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  flex-shrink: 0;
+}
+
+:root[data-theme="dark"] .step-num-badge,
+.dark .step-num-badge {
+  background: #27272a;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #f4f4f5;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Caja de paso resaltada (Efecto active / hover) */
+.step-box {
+  border-radius: 1.75rem;
+  padding: 1.25rem 1.5rem;
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+:root[data-theme="dark"] .step-box,
+.dark .step-box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.step-box:hover,
+.step-box.is-active {
+  background: rgba(255, 255, 255, 0.75);
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08), 0 0 0 1px var(--primary) inset;
+}
+
+:root[data-theme="dark"] .step-box:hover,
+:root[data-theme="dark"] .step-box.is-active,
+.dark .step-box:hover,
+.dark .step-box.is-active {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(99, 102, 241, 0.35);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--primary) inset;
+}
+/* ──────────────────────────────────────────────────────────────────────────
+   ESTILOS ESTANDARIZADOS DE BOTONES
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* Botón Principal (Primary Pill) */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  background-color: var(--primary);
+  color: var(--primary-fg);
+  font-weight: 700;
+  font-size: 0.875rem;
+  box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.08);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+  transform: scale(1.03);
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.12);
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+/* Botón Secundario (Outline / Soft Pill) */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--text-main);
+  border: 1px solid var(--border-app-soft);
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+:root[data-theme="dark"] .btn-secondary,
+.dark .btn-secondary {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+  transform: scale(1.03);
+}
+
+:root[data-theme="dark"] .btn-secondary:hover,
+.dark .btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.btn-secondary:active {
+  transform: scale(0.97);
+}
