@@ -11,177 +11,183 @@ const t = useTranslations(lang);
 
 const PROJECTS = [
   {
-    titleKey: "projects.project3.title",
+    id: "thearomatrace",
+    titleKey: "projects.thearomatrace.title",
+    badgeKey: "projects.thearomatrace.badge",
+    descriptionKey: "projects.thearomatrace.description",
     url: "https://thearomatrace.com/",
-    descriptionKey: "projects.project3.description",
-    altKey: "projects.project3.alt",
-    icon: "ecommerce",
     tags: [
       { text: "WordPress", color: "purple" },
       { text: "WooCommerce", color: "purple" },
       { text: "PHP", color: "black" },
       { text: "CSS", color: "blue" },
     ],
-    gradient: "from-purple-500 to-pink-500",
-    type: "client",
+    gradientStyle:
+      "background: radial-gradient(circle at 10% 10%, rgba(224, 242, 254, 0.95) 0%, rgba(255, 255, 255, 1) 65%);",
   },
   {
-    titleKey: "projects.project4.title",
+    id: "ordania",
+    titleKey: "projects.ordania.title",
+    badgeKey: "projects.ordania.badge",
+    descriptionKey: "projects.ordania.description",
     url: "https://ordania.com/",
-    descriptionKey: "projects.project4.description",
-    altKey: "projects.project4.alt",
-    icon: "calendar",
     tags: [
       { text: "Angular", color: "red" },
       { text: "Tailwind CSS", color: "purple" },
       { text: "TypeScript", color: "blue" },
     ],
-    gradient: "from-blue-500 to-cyan-500",
-    type: "client",
+    gradientStyle:
+      "background: radial-gradient(circle at 10% 10%, rgba(209, 250, 229, 0.9) 0%, rgba(255, 255, 255, 1) 65%);",
   },
   {
-    titleKey: "projects.project1.title",
-    url: "https://github.com/PaulSigua/Medical-System",
-    descriptionKey: "projects.project1.description",
-    altKey: "projects.project1.alt",
-    icon: "ai",
-    tags: [
-      { text: "AI", color: "black" },
-      { text: "Angular", color: "red" },
-      { text: "Tailwind CSS", color: "orange" },
-      { text: "FastAPI", color: "green" },
-    ],
-    gradient: "from-red-500 to-orange-500",
-    type: "personal",
-  },
-  {
-    titleKey: "projects.project2.title",
-    url: "https://github.com/PaulSigua/DictSQL",
-    descriptionKey: "projects.project2.description",
-    altKey: "projects.project2.alt",
-    icon: "database",
+    id: "kea",
+    titleKey: "projects.kea.title",
+    badgeKey: "projects.kea.badge",
+    descriptionKey: "projects.kea.description",
+    url: "https://github.com/PaulSigua",
     tags: [
       { text: "Angular", color: "red" },
-      { text: "Python", color: "green" },
-      { text: "Tailwind CSS", color: "purple" },
-      { text: "FastAPI", color: "blue" },
+      { text: "CSS", color: "purple" },
     ],
-    gradient: "from-green-500 to-emerald-500",
-    type: "personal",
+    gradientStyle:
+      "background: radial-gradient(circle at 10% 10%, rgba(243, 232, 255, 0.9) 0%, rgba(255, 255, 255, 1) 65%);",
   },
 ];
-
-const ICONS = {
-  ecommerce: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M17 17h-11v-14h-2" /><path d="M6 5l14 1l-1 7h-13" />`,
-  calendar: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M11 15h1" /><path d="M12 15v3" />`,
-  ai: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" /><path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />`,
-  database: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 6m-8 0a8 3 0 1 0 16 0a8 3 0 1 0 -16 0" /><path d="M4 6v6a8 3 0 0 0 16 0v-6" /><path d="M4 12v6a8 3 0 0 0 16 0v-6" />`,
-};
 ---
 
-<div class="w-full max-w-5xl mx-auto">
-  <div class="text-center mb-6">
-    <div class="flex gap-3 mb-2">
-      <span
-        class="p-2 rounded-lg bg-badge border border-app-soft text-[var(--primary)]"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="size-6"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-          <path d="M7 8l-4 4l4 4"></path>
-          <path d="M17 8l4 4l-4 4"></path>
-          <path d="M14 4l-4 16"></path>
-        </svg>
-      </span>
-      <h2 class="text-3xl font-bold text-app tracking-tight">
+<section id="projects-section" class="w-full mx-auto">
+  <div class="portfolio-card p-6 sm:p-8 md:p-10">
+    <!-- Header de la Sección -->
+    <div class="text-center space-y-3 mb-10 sm:mb-12">
+      <div class="section-tag">
+        <span>04</span>
+        <span>•</span>
+        <span>{lang === "es" ? "PROYECTOS" : "PROJECTS"}</span>
+      </div>
+      <h2 class="section-title">
         {t("projects.title")}
       </h2>
+      <p class="section-subtitle">
+        {t("projects.subtitle")}
+      </p>
     </div>
-  </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    {
-      PROJECTS.map((project) => (
-        <article
-          class="group relative p-6 rounded-2xl bg-badge border border-app-soft
-                 transition-all duration-300 hover:shadow-[var(--shadow)] 
-                 hover:border-[var(--primary)]/30 hover:-translate-y-2"
-        >
-          <div class="flex flex-col h-full">
-            <div class="mb-4 flex items-start justify-between">
-              <div
-                class={`inline-flex p-3 rounded-xl bg-gradient-to-br ${project.gradient} 
-                        shadow-lg group-hover:scale-110 transition-transform duration-300`}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="size-6 text-white"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  set:html={ICONS[project.icon as keyof typeof ICONS]}
-                />
+    <!-- Cuadrícula Limpia y Espaciosa de 3 Tarjetas Blancas -->
+    <div
+      id="projects-grid"
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch"
+    >
+      {
+        PROJECTS.map((project) => (
+          <article
+            class="project-grid-card group rounded-[2rem] p-6 sm:p-7 flex flex-col justify-between min-h-[380px] bg-white text-zinc-950 border border-zinc-200/90 shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 relative overflow-hidden"
+            style={project.gradientStyle}
+          >
+            <!-- Capa Hover Liquid Glass Gradient hasta la mitad (con bordes redondeados exactos) -->
+            <div
+              class="liquid-glass-half absolute inset-x-0 bottom-0 h-1/2 rounded-b-[2rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10 overflow-hidden"
+            >
+              <div class="absolute inset-0 bg-gradient-to-t from-[var(--primary)]/20 via-[var(--primary)]/10 to-transparent"></div>
+            </div>
+
+            <!-- ── Cabecera: Título, Badge y Descripción ──────────────────────── -->
+            <div class="relative z-20">
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <h3 class="font-black text-2xl text-zinc-950 tracking-tight leading-tight transition-colors">
+                  {t(project.titleKey as any)}
+                </h3>
+                <span class="bg-black text-white text-[10px] sm:text-[11px] font-black uppercase tracking-wider px-3 py-1 rounded-full shadow-xs shrink-0 whitespace-nowrap">
+                  {t(project.badgeKey as any)}
+                </span>
               </div>
 
+              <!-- Descripción Real del Proyecto -->
+              <p class="text-xs sm:text-sm text-zinc-600 leading-relaxed mb-6 font-normal">
+                {t(project.descriptionKey as any)}
+              </p>
+            </div>
+
+            <!-- ── Pie: Badges de Tecnologías y Botón de Acción ───────────────── -->
+            <div class="relative z-20 pt-4 border-t border-zinc-100 flex flex-col gap-4">
+              <!-- Badges de Tecnologías Correctas -->
+              <div class="flex flex-wrap gap-1.5">
+                {project.tags.map((tag) => (
+                  <Badge color={tag.color}>{tag.text}</Badge>
+                ))}
+              </div>
+
+              <!-- Botón de Acción Estandarizado -->
               <a
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="p-2 rounded-full bg-[var(--surface-1)] text-muted hover:text-[var(--primary)] hover:bg-[var(--primary)]/10 transition-colors z-10"
+                class="btn-primary w-full py-3.5 text-xs sm:text-sm font-bold shadow-md hover:shadow-lg"
                 aria-label={`Ver proyecto ${t(project.titleKey as any)}`}
               >
+                <span>{t("projects.visit")}</span>
                 <svg
-                  xmlns="http://www.w3.org/2000/svg"
                   class="size-4"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"
+                  stroke-width="2.5"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" />
-                  <path d="M11 13l9 -9" />
-                  <path d="M15 4h5v5" />
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
                 </svg>
               </a>
             </div>
-
-            <a
-              href={project.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="block mb-3"
-            >
-              <h3 class="text-xl font-bold text-app group-hover:text-[var(--primary)] transition-colors">
-                {t(project.titleKey as any)}
-              </h3>
-            </a>
-
-            <p class="text-muted text-[15px] leading-relaxed mb-4 flex-grow">
-              {t(project.descriptionKey as any)}
-            </p>
-
-            <div class="flex flex-wrap gap-2 mt-auto">
-              {project.tags.map((tag) => (
-                <Badge color={tag.color}>{tag.text}</Badge>
-              ))}
-            </div>
-          </div>
-        </article>
-      ))
-    }
+          </article>
+        ))
+      }
+    </div>
   </div>
-</div>
+</section>
+
+<style>
+  .project-grid-card {
+    border-radius: 2rem;
+    overflow: hidden;
+    isolation: isolate;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+  }
+
+  .liquid-glass-half {
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    overflow: hidden;
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+
+  const section = document.getElementById("projects-section");
+  const cards = document.querySelectorAll<HTMLElement>(".project-grid-card");
+
+  if (section) {
+    gsap.set(cards, { y: 24, opacity: 0 });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          gsap.to(cards, {
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            stagger: 0.12,
+            ease: "power3.out",
+          });
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(section);
+  }
+</script>

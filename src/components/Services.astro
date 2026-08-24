@@ -1,5 +1,4 @@
 ---
-import Badge from "./icons/Badge.astro";
 import { useTranslations } from "../i18n/utils";
 import Modal from "./Modal.astro";
 import Linkedin from "./icons/Linkedin.astro";
@@ -12,261 +11,306 @@ interface Props {
 const { lang = "en" } = Astro.props;
 const t = useTranslations(lang);
 
-const SERVICES = [
+const WORKFLOW_STEPS = [
   {
-    titleKey: "services.service1.title",
-    descriptionKey: "services.service1.description",
-    icon: "bug",
-    tags: [
-      { text: "React", color: "blue" },
-      { text: "Angular", color: "red" },
-    ],
-    gradient: "from-red-500 to-orange-500",
+    key: "step1",
+    num: "01",
+    icon: "discovery",
   },
   {
-    titleKey: "services.service2.title",
-    descriptionKey: "services.service2.description",
-    icon: "code",
-    tags: [
-      { text: "React", color: "blue" },
-      { text: "Angular", color: "red" },
-      { text: "JavaScript", color: "yellow" },
-    ],
-    gradient: "from-blue-500 to-cyan-500",
+    key: "step2",
+    num: "02",
+    icon: "proposal",
   },
   {
-    titleKey: "services.service3.title",
-    descriptionKey: "services.service3.description",
-    icon: "api",
-    tags: [
-      { text: "FastAPI", color: "green" },
-      { text: "Python", color: "green" },
-    ],
-    gradient: "from-green-500 to-emerald-500",
+    key: "step3",
+    num: "03",
+    icon: "build",
   },
   {
-    titleKey: "services.service4.title",
-    descriptionKey: "services.service4.description",
-    icon: "palette",
-    tags: [
-      { text: "Tailwind CSS", color: "purple" },
-      { text: "CSS", color: "blue" },
-    ],
-    gradient: "from-purple-500 to-pink-500",
+    key: "step4",
+    num: "04",
+    icon: "testing",
   },
   {
-    titleKey: "services.service5.title",
-    descriptionKey: "services.service5.description",
-    icon: "wordpress",
-    tags: [
-      { text: "WordPress", color: "purple" },
-      { text: "PHP", color: "black" },
-    ],
-    gradient: "from-indigo-500 to-blue-500",
+    key: "step5",
+    num: "05",
+    icon: "deploy",
   },
 ];
-
-const ICONS = {
-  bug: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 9v-1a3 3 0 0 1 6 0v1" /><path d="M8 9h8a6 6 0 0 1 1 3v3a5 5 0 0 1 -10 0v-3a6 6 0 0 1 1 -3" /><path d="M3 13l4 0" /><path d="M17 13l4 0" /><path d="M12 20l0 -6" /><path d="M4 19l3.35 -2" /><path d="M20 19l-3.35 -2" /><path d="M4 7l3.75 2.4" /><path d="M20 7l-3.75 2.4" />`,
-  code: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 8l-4 4l4 4" /><path d="M17 8l4 4l-4 4" /><path d="M14 4l-4 16" />`,
-  api: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /><path d="M5 5m0 2a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2z" />`,
-  palette: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 21a9 9 0 0 1 0 -18c4.97 0 9 3.582 9 8c0 1.06 -.474 2.078 -1.318 2.828c-.844 .75 -1.989 1.172 -3.182 1.172h-2.5a2 2 0 0 0 -1 3.75a1.3 1.3 0 0 1 -1 2.25" /><path d="M8.5 10.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12.5 7.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M16.5 10.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />`,
-  wordpress: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9.5 9h3" /><path d="M4 9h2.5" /><path d="M11 9l3 11l4 -9" /><path d="M5.5 9l3.5 11l3 -7" /><path d="M18 11c.177 -.528 1 -1.364 1 -2.5c0 -1.78 -.776 -2.5 -1.875 -2.5c-.898 0 -1.125 .812 -1.125 1.429c0 1.83 2 2.058 2 3.571z" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />`,
-};
 ---
 
-<div id="services-section" class="w-full max-w-5xl mx-auto">
-  <div class="text-center mb-6">
-    <div class="flex gap-3 mb-2">
-      <span
-        class="p-2 rounded-lg bg-badge border border-app-soft text-[var(--primary)]"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="size-6"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-          <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5"></path>
-          <path d="M12 12l8 -4.5"></path>
-          <path d="M12 12l0 9"></path>
-          <path d="M12 12l-8 -4.5"></path>
-        </svg>
-      </span>
-      <h2 class="text-3xl font-bold text-app tracking-tight">
+<section id="services-section" class="w-full max-w-4xl mx-auto">
+  <div class="portfolio-card p-6 sm:p-10 md:p-14">
+    <!-- Header de la Sección -->
+    <div class="text-center space-y-3 mb-12 sm:mb-16">
+      <div class="section-tag">
+        <span>03</span>
+        <span>•</span>
+        <span>{lang === "es" ? "PROCESO & SERVICIOS" : "PROCESS & SERVICES"}</span>
+      </div>
+      <h2 class="section-title">
         {t("services.title")}
       </h2>
+      <p class="section-subtitle">
+        {t("services.subtitle")}
+      </p>
     </div>
-    <p class="text-muted text-lg max-w-2xl mx-auto">
-      {t("services.subtitle")}
-    </p>
-  </div>
 
-  <div id="services-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-    {
-      SERVICES.map((service) => (
-        <article
-          class="service-card group relative p-6 rounded-2xl bg-card border border-app-soft
-                 transition-all duration-300 hover:border-[var(--primary)]/40 hover:-translate-y-1.5"
-        >
-          <div class="flex flex-col h-full">
-            <div class="mb-4">
+    <!-- Línea de Tiempo Central Interactiva -->
+    <div class="relative max-w-3xl mx-auto py-2" id="workflow-timeline">
+      <!-- Línea Vertical de Conexión -->
+      <div
+        id="timeline-beam"
+        class="absolute left-6 md:left-1/2 top-4 bottom-8 w-0.5 -translate-x-1/2 bg-gradient-to-b from-[var(--primary)] via-indigo-500/50 to-[var(--primary)]/30 rounded-full will-change-transform"
+      >
+      </div>
+
+      <!-- Lista de Pasos del Proceso -->
+      <div class="flex flex-col gap-10 sm:gap-14 relative z-10">
+        {
+          WORKFLOW_STEPS.map((step, index) => {
+            const isEven = index % 2 !== 0;
+            return (
               <div
-                class={`inline-flex p-3 rounded-xl bg-gradient-to-br ${service.gradient}
-                        shadow-md group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300`}
+                class={`workflow-step group relative flex flex-col md:flex-row items-start md:items-center gap-4 sm:gap-6 ${
+                  isEven ? "md:flex-row-reverse" : ""
+                }`}
+                data-step={index}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="size-6 text-white"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  set:html={ICONS[service.icon as keyof typeof ICONS]}
-                />
+                <!-- 1. Tile de Ícono + Número de Paso -->
+                <div
+                  class={`flex items-center gap-3 w-full md:w-1/2 ${
+                    isEven
+                      ? "md:justify-start md:pl-10"
+                      : "md:justify-end md:pr-10"
+                  } pl-12 md:pl-0`}
+                >
+                  <div class="flex items-center gap-3">
+                    <div class="step-icon-tile group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                      {step.icon === "discovery" && (
+                        <svg
+                          class="size-6 text-app"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                        </svg>
+                      )}
+                      {step.icon === "proposal" && (
+                        <svg
+                          class="size-6 text-app"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <rect x="3" y="3" width="6" height="6" rx="1.5" />
+                          <rect x="15" y="3" width="6" height="6" rx="1.5" />
+                          <rect x="15" y="15" width="6" height="6" rx="1.5" />
+                          <rect x="3" y="15" width="6" height="6" rx="1.5" />
+                          <path d="M9 6h6" />
+                          <path d="M18 9v6" />
+                          <path d="M15 18H9" />
+                          <path d="M6 15V9" />
+                        </svg>
+                      )}
+                      {step.icon === "build" && (
+                        <svg
+                          class="size-6 text-app"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
+                          <circle cx="12" cy="12" r="3" />
+                        </svg>
+                      )}
+                      {step.icon === "testing" && (
+                        <svg
+                          class="size-6 text-app"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                          <path d="m9 12 2 2 4-4" />
+                        </svg>
+                      )}
+                      {step.icon === "deploy" && (
+                        <svg
+                          class="size-6 text-app"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
+                          <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
+                          <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
+                          <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
+                        </svg>
+                      )}
+                    </div>
+                    <span class="step-num-badge">{step.num}</span>
+                  </div>
+                </div>
+
+                <!-- 2. Nodo Conector Central Iluminado -->
+                <div class="absolute left-6 md:left-1/2 -translate-x-1/2 top-4 md:top-auto size-5 rounded-full bg-white dark:bg-zinc-900 border-2 border-[var(--primary)] flex items-center justify-center shadow-md z-20 group-hover:scale-125 transition-transform duration-300">
+                  <span class="size-1.5 rounded-full bg-[var(--primary)]"></span>
+                </div>
+
+                <!-- 3. Tarjeta Descriptiva del Paso -->
+                <div
+                  class={`w-full md:w-1/2 pl-12 md:pl-0 ${
+                    isEven ? "md:pr-10" : "md:pl-10"
+                  }`}
+                >
+                  <div class="step-box group-hover:shadow-xl transition-all duration-300">
+                    <div class="flex items-center justify-between gap-2 mb-1.5">
+                      <h3 class="font-bold text-base sm:text-lg text-app group-hover:text-[var(--primary)] transition-colors">
+                        {t(`services.${step.key}.title` as any)}
+                      </h3>
+                      <span class="text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[var(--primary)]/10 text-[var(--primary)] border border-[var(--primary)]/20 shrink-0">
+                        {t(`services.${step.key}.badge` as any)}
+                      </span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-muted leading-relaxed">
+                      {t(`services.${step.key}.desc` as any)}
+                    </p>
+                  </div>
+                </div>
               </div>
-            </div>
-
-            <h3 class="text-lg font-bold text-app mb-3 group-hover:text-[var(--primary)] transition-colors">
-              {t(service.titleKey as any)}
-            </h3>
-
-            <p class="text-muted text-[15px] leading-relaxed mb-4 flex-grow">
-              {t(service.descriptionKey as any)}
-            </p>
-
-            <div class="flex flex-wrap gap-2 mt-auto">
-              {service.tags.map((tag) => (
-                <Badge color={tag.color}>{tag.text}</Badge>
-              ))}
-            </div>
-          </div>
-        </article>
-      ))
-    }
-  </div>
-
-  <div
-    class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[var(--primary)]/10 to-[var(--text-strong)]/10
-           border border-[var(--primary)]/20 p-8 md:p-10"
-  >
-    <div
-      class="absolute inset-0 bg-gradient-to-tr from-[var(--primary)] to-[var(--text-strong)] opacity-5"
-    >
+            );
+          })
+        }
+      </div>
     </div>
 
-    <div class="relative z-10 text-center max-w-2xl mx-auto">
-      <h3 class="text-2xl md:text-3xl font-bold text-app mb-4">
+    <!-- Pie de Sección (Llamada a la Acción) -->
+    <div
+      class="mt-14 pt-8 border-t border-app-soft/40 text-center flex flex-col items-center justify-center gap-4 max-w-xl mx-auto"
+    >
+      <h3 class="text-lg sm:text-xl font-bold text-app">
         {t("services.cta.title")}
       </h3>
-      <p class="text-muted text-lg mb-6">
+      <p class="text-xs sm:text-sm text-muted leading-relaxed">
         {t("services.cta.description")}
       </p>
 
       <button
         onclick="window.toggleDialog('modal-service-contact')"
-        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl
-               bg-[var(--primary)]
-               text-white font-semibold shadow-lg
-               hover:shadow-xl hover:scale-105
-               transition-all duration-300 ease-out
-               focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2"
+        class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-[var(--primary-fg)] font-bold text-sm shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
       >
         <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="size-5"
+          class="size-4"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          stroke-width="2"
+          stroke-width="2.5"
           stroke-linecap="round"
           stroke-linejoin="round"
         >
-          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-          <path
-            d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"
-          ></path>
-          <path d="m22 6-10 7L2 6"></path>
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
         </svg>
-        {t("services.cta.button")}
+        <span>{t("services.cta.button")}</span>
       </button>
     </div>
   </div>
-</div>
+</section>
 
-<script>
-  import { gsap } from "gsap";
-
-  const section = document.getElementById("services-section");
-  const cards = document.querySelectorAll<HTMLElement>(".service-card");
-
-  gsap.set(cards, { y: 32, opacity: 0 });
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      if (entries[0].isIntersecting) {
-        gsap.to(cards, {
-          y: 0,
-          opacity: 1,
-          duration: 0.55,
-          stagger: 0.08,
-          ease: "power3.out",
-          clearProps: "transform,opacity",
-        });
-        observer.disconnect();
-      }
-    },
-    { threshold: 0.1 },
-  );
-
-  if (section) observer.observe(section);
-</script>
-
+<!-- Modal de Contacto Dinámico -->
 <Modal id="modal-service-contact" title={t("contact.modal.title" as any)}>
-  <div class="flex flex-col gap-6 p-2">
-    <p class="text-muted text-[15px]">
+  <div class="flex flex-col gap-5 p-1">
+    <p class="text-muted text-sm leading-relaxed">
       {t("contact.modal.message" as any)}
     </p>
 
     <div class="flex flex-col gap-3">
       <a
         href="mailto:paulmateo0208@gmail.com"
-        class="flex items-center gap-3 w-full p-4 rounded-xl
-               bg-badge border border-app-soft transition-all duration-300
-               text-app font-medium hover:border-[var(--primary)] hover:text-[var(--primary)]
-               hover:shadow-[var(--shadow)] hover:scale-[1.02] group"
+        class="flex items-center gap-3.5 w-full p-4 rounded-2xl bg-black/5 dark:bg-white/5 border border-app-soft transition-all duration-300 text-app font-semibold hover:border-[var(--primary)] hover:text-[var(--primary)] hover:scale-[1.02] group shadow-xs"
       >
         <div
-          class="p-2 rounded-lg bg-[var(--primary)]/10 text-[var(--primary)] group-hover:bg-[var(--primary)] group-hover:text-white transition-colors"
+          class="p-2 rounded-xl bg-[var(--primary)]/10 text-[var(--primary)] group-hover:bg-[var(--primary)] group-hover:text-[var(--primary-fg)] transition-colors"
         >
           <Mail class="size-5" />
         </div>
-        {t("contact.modal.email" as any)}
+        <div class="flex flex-col">
+          <span class="text-sm">{t("contact.modal.email" as any)}</span>
+          <span class="text-xs text-muted font-normal font-mono">paulmateo0208@gmail.com</span>
+        </div>
       </a>
 
       <a
         href="https://www.linkedin.com/in/paulsigua/"
         target="_blank"
         rel="noopener noreferrer"
-        class="flex items-center gap-3 w-full p-4 rounded-xl
-               bg-badge border border-app-soft transition-all duration-300
-               text-app font-medium hover:border-[var(--primary)] hover:text-[var(--primary)]
-               hover:shadow-[var(--shadow)] hover:scale-[1.02] group"
+        class="flex items-center gap-3.5 w-full p-4 rounded-2xl bg-black/5 dark:bg-white/5 border border-app-soft transition-all duration-300 text-app font-semibold hover:border-[var(--primary)] hover:text-[var(--primary)] hover:scale-[1.02] group shadow-xs"
       >
         <div
-          class="p-2 rounded-lg bg-[var(--primary)]/10 text-[var(--primary)] group-hover:bg-[var(--primary)] group-hover:text-white transition-colors"
+          class="p-2 rounded-xl bg-[var(--primary)]/10 text-[var(--primary)] group-hover:bg-[var(--primary)] group-hover:text-[var(--primary-fg)] transition-colors"
         >
           <Linkedin class="size-5" />
         </div>
-        {t("contact.modal.linkedin" as any)}
+        <div class="flex flex-col">
+          <span class="text-sm">{t("contact.modal.linkedin" as any)}</span>
+          <span class="text-xs text-muted font-normal">linkedin.com/in/paulsigua</span>
+        </div>
       </a>
     </div>
   </div>
 </Modal>
+
+<script>
+  import { gsap } from "gsap";
+
+  const section = document.getElementById("services-section");
+  const steps = document.querySelectorAll<HTMLElement>(".workflow-step");
+  const beam = document.getElementById("timeline-beam");
+
+  if (beam) gsap.set(beam, { scaleY: 0, transformOrigin: "top center" });
+  gsap.set(steps, { y: 30, opacity: 0 });
+
+  if (section) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          if (beam) {
+            gsap.to(beam, {
+              scaleY: 1,
+              duration: 1.4,
+              ease: "power2.out",
+            });
+          }
+          gsap.to(steps, {
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            stagger: 0.15,
+            ease: "power3.out",
+          });
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(section);
+  }
+</script>
