@@ -1,7 +1,6 @@
 ---
 import Badge from "./icons/Badge.astro";
 import { useTranslations } from "../i18n/utils";
-import Modal from "./Modal.astro";
 
 interface Props {
   lang?: "en" | "es";
@@ -61,191 +60,360 @@ const EXPERIENCE = [
 ];
 ---
 
-<section id="exp-section" class="max-w-4xl mx-auto">
-  <div class="flex items-center gap-3 mb-10">
-    <span class="p-2 rounded-lg bg-badge border border-app-soft text-[var(--primary)]">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="size-6"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-        <path d="M3 7m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"></path>
-        <path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2"></path>
-        <path d="M12 12l0 .01"></path>
-        <path d="M3 13a20 20 0 0 0 18 0"></path>
-      </svg>
-    </span>
-    <h2 class="text-2xl font-bold text-app tracking-tight">
-      {t("experience.title")}
-    </h2>
-  </div>
+<section id="exp-section" class="w-full max-w-4xl mx-auto">
+  <div class="portfolio-card p-6 sm:p-10 md:p-14">
+    <!-- Header de la Sección -->
+    <div class="text-center space-y-3 mb-10">
+      <div class="section-tag">
+        <span>02</span>
+        <span>•</span>
+        <span>{lang === "es" ? "EXPERIENCIA" : "EXPERIENCE"}</span>
+      </div>
+      <h2 class="section-title">
+        {t("experience.title")}
+      </h2>
+      <p class="section-subtitle">
+        {t("experience.subtitle")}
+      </p>
+    </div>
 
-  <ol class="relative ml-3 space-y-10">
-    <div id="exp-line" class="absolute left-0 top-2 bottom-0 w-px bg-app-soft will-change-transform"></div>
+    <!-- Stack de Tarjetas Interactivas Expandibles (Acordeón) -->
+    <div class="flex flex-col gap-4 max-w-3xl mx-auto" id="exp-accordion">
+      {
+        EXPERIENCE.map((exp, index) => {
+          const numStr = String(index + 1).padStart(2, "0");
+          const isOpen = index === 0; // Primer item abierto por defecto
+          return (
+            <div
+              class={`exp-card group overflow-hidden ${isOpen ? "is-open" : ""}`}
+              data-index={index}
+            >
+              <!-- Cabecera Clicable de la Tarjeta -->
+              <button
+                type="button"
+                class="exp-trigger w-full flex items-center justify-between p-4 sm:p-5 text-left cursor-pointer select-none gap-3 focus:outline-none"
+                aria-expanded={isOpen ? "true" : "false"}
+              >
+                <div class="flex items-center gap-3 sm:gap-4 min-w-0">
+                  <!-- Número Index Circular (Leve, sutil en dark mode) -->
+                  <span class="exp-num">
+                    {numStr}
+                  </span>
 
-    {
-      EXPERIENCE.map((exp) => (
-        <li class="exp-item relative pl-8 md:pl-10">
-          <!-- Timeline dot -->
-          <span class="absolute -left-[5px] top-7 h-2.5 w-2.5">
-            {exp.current && (
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--primary)] opacity-40 mt-[7px]" />
-            )}
-            <span
-              class={`relative inline-flex h-full w-full rounded-full border border-app-soft
-                ${exp.current ? "bg-[var(--primary)]" : "bg-badge"}`}
-            />
-          </span>
+                  <!-- Logo de la Empresa -->
+                  <div class="exp-logo-box shadow-2xs">
+                    <img
+                      src={exp.logo}
+                      alt={t(exp.companyKey as any)}
+                      class="w-full h-full object-contain"
+                      loading="lazy"
+                    />
+                  </div>
 
-          <article class="group flex flex-col gap-4">
-            <!-- Header: logo + title/company + date -->
-            <div class="flex flex-col sm:flex-row justify-between sm:items-start gap-4">
-              <div class="flex items-center gap-3">
-                <div class="shrink-0 w-12 h-12 rounded-xl bg-white border border-app-soft p-1.5 flex items-center justify-center overflow-hidden shadow-sm">
-                  <img
-                    src={exp.logo}
-                    alt={t(exp.companyKey as any)}
-                    class="w-full h-full object-contain"
-                  />
+                  <!-- Título del Puesto y Empresa -->
+                  <div class="flex flex-col min-w-0">
+                    <h3 class="font-bold text-sm sm:text-base md:text-lg text-app truncate">
+                      {t(exp.titleKey as any)}
+                    </h3>
+                    <span class="text-xs sm:text-sm text-muted truncate">
+                      {t(exp.companyKey as any)}
+                    </span>
+                  </div>
                 </div>
-                <div class="flex flex-col gap-0.5">
-                  <h3 class="text-base font-bold text-app group-hover:text-[var(--primary)] transition-colors duration-200">
-                    {t(exp.titleKey as any)}
-                  </h3>
-                  <a
-                    href={exp.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-sm text-muted hover:text-[var(--primary)] transition-colors flex items-center gap-1 w-fit"
+
+                <!-- Fecha y Botón de Toggle (+) -->
+                <div class="flex items-center gap-3 shrink-0">
+                  <span
+                    class={`text-[11px] sm:text-xs font-semibold px-3 py-1 rounded-full border whitespace-nowrap hidden sm:inline-flex ${
+                      exp.current
+                        ? "bg-[var(--primary)]/10 text-[var(--primary)] border-[var(--primary)]/20"
+                        : "bg-badge text-muted border-app-soft"
+                    }`}
                   >
-                    {t(exp.companyKey as any)}
+                    {t(exp.dateKey as any)}
+                  </span>
+
+                  <!-- Botón de Acción Circular -->
+                  <div class="exp-toggle-btn shadow-2xs">
                     <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="size-3"
+                      class={`size-4 transition-transform duration-300 ${isOpen ? "rotate-45" : "rotate-0"}`}
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
-                      stroke-width="2"
+                      stroke-width="2.5"
                       stroke-linecap="round"
                       stroke-linejoin="round"
                     >
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                      <path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" />
-                      <path d="M11 13l9 -9" />
-                      <path d="M15 4h5v5" />
+                      <line x1="12" y1="5" x2="12" y2="19"></line>
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
                     </svg>
-                  </a>
+                  </div>
+                </div>
+              </button>
+
+              <!-- Contenido Expandible -->
+              <div
+                class="exp-content transition-[max-height,opacity] duration-300 ease-in-out overflow-hidden"
+                style={
+                  isOpen
+                    ? "max-height: 500px; opacity: 1;"
+                    : "max-height: 0px; opacity: 0;"
+                }
+              >
+                <div class="px-5 sm:px-6 pb-6 pt-2 border-t border-app-soft/30 space-y-4">
+                  <!-- Badge de Fecha en Mobile -->
+                  <div class="sm:hidden">
+                    <span
+                      class={`text-[11px] font-semibold px-2.5 py-0.5 rounded-full border inline-flex ${
+                        exp.current
+                          ? "bg-[var(--primary)]/10 text-[var(--primary)] border-[var(--primary)]/20"
+                          : "bg-badge text-muted border-app-soft"
+                      }`}
+                    >
+                      {t(exp.dateKey as any)}
+                    </span>
+                  </div>
+
+                  <!-- Descripción Detallada -->
+                  <p class="text-sm sm:text-[15px] leading-relaxed text-muted">
+                    {t(exp.descriptionKey as any)}
+                  </p>
+
+                  <!-- Tecnologías y Enlace a la Empresa -->
+                  <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+                    <div class="flex flex-wrap gap-1.5">
+                      {exp.tags.map((tag) => (
+                        <Badge color={tag.color}>{tag.text}</Badge>
+                      ))}
+                    </div>
+
+                    <a
+                      href={exp.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-1 text-xs font-bold text-[var(--primary)] hover:underline ml-auto"
+                    >
+                      <span>{t("experience.visitCompany")}</span>
+                      <svg
+                        class="size-3.5"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M7 17L17 7"></path>
+                        <path d="M7 7h10v10"></path>
+                      </svg>
+                    </a>
+                  </div>
                 </div>
               </div>
-
-              <span
-                class={`text-xs font-medium px-2.5 py-1 rounded-full border whitespace-nowrap self-start sm:self-auto
-                  ${exp.current
-                    ? "bg-[var(--primary)]/10 text-[var(--primary)] border-[var(--primary)]/20"
-                    : "text-muted border-app-soft bg-badge"
-                  }`}
-              >
-                {t(exp.dateKey as any)}
-              </span>
             </div>
+          );
+        })
+      }
+    </div>
 
-            <!-- Description -->
-            <p class="text-[15px] leading-relaxed text-muted">
-              {t(exp.descriptionKey as any)}
-            </p>
-
-            <!-- Footer: tags + view more -->
-            <div class="flex flex-wrap items-center justify-between gap-4">
-              <div class="flex flex-wrap gap-2">
-                {exp.tags.map((tag) => (
-                  <Badge color={tag.color}>{tag.text}</Badge>
-                ))}
-              </div>
-              <button
-                class="text-[var(--primary)] text-sm font-semibold hover:underline cursor-pointer whitespace-nowrap shrink-0"
-                onclick={`openExperienceModal(${JSON.stringify({
-                  title: t(exp.titleKey as any),
-                  company: t(exp.companyKey as any),
-                  description: t(exp.descriptionKey as any),
-                  logo: exp.logo,
-                  tags: exp.tags,
-                })})`}
-              >
-                {lang === "es" ? "Ver más" : "View more"}
-              </button>
-            </div>
-          </article>
-        </li>
-      ))
-    }
-  </ol>
+    <!-- Pie de Sección -->
+    <div
+      class="mt-10 pt-6 border-t border-app-soft/40 text-center flex flex-col sm:flex-row items-center justify-center gap-2"
+    >
+      <p class="text-xs sm:text-sm text-muted">
+        {t("experience.footer.text")}
+      </p>
+      <button
+        onclick="window.toggleDialog('modal-service-contact')"
+        class="text-xs sm:text-sm font-bold text-[var(--primary)] hover:underline inline-flex items-center gap-1 cursor-pointer"
+      >
+        <span>{t("experience.footer.cta")}</span>
+        <span>→</span>
+      </button>
+    </div>
+  </div>
 </section>
 
-<script is:inline>
-  function openExperienceModal(data) {
-    const modal = document.getElementById("modal-experience");
-    if (!modal) return;
-
-    const titleElem =
-      modal.querySelector("#modal-title") || modal.querySelector("h3");
-    if (titleElem) titleElem.textContent = `${data.title} @ ${data.company}`;
-
-    const imgElem = document.getElementById("modal-img");
-    if (imgElem) {
-      imgElem.src = data.logo;
-      imgElem.alt = data.company;
-      imgElem.parentElement.classList.remove("hidden");
-    }
-
-    const descElem = document.getElementById("modal-full-description");
-    if (descElem) descElem.textContent = data.description;
-
-    const tagsContainer = document.getElementById("modal-tags");
-    if (tagsContainer) {
-      tagsContainer.innerHTML = data.tags
-        .map(
-          (tag) =>
-            `<span class="px-2 py-1 text-xs rounded border border-app-soft bg-badge">${tag.text}</span>`,
-        )
-        .join("");
-    }
-
-    window.toggleDialog("modal-experience");
+<style>
+  .exp-card {
+    border-radius: 1.5rem;
+    background: rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
-</script>
+
+  :root[data-theme="dark"] .exp-card,
+  .dark .exp-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .exp-card:hover {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.12);
+  }
+
+  :root[data-theme="dark"] .exp-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  /* Estado Abierto: Sutil y elegante en ambos temas */
+  .exp-card.is-open {
+    background: rgba(255, 255, 255, 0.5);
+    border-color: var(--primary);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05), 0 0 0 1px var(--primary) inset;
+  }
+
+  :root[data-theme="dark"] .exp-card.is-open,
+  .dark .exp-card.is-open {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--primary);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 0 1px var(--primary) inset;
+  }
+
+  /* Numeradores circulares 01, 02, 03: Leves, sin blanco chillón */
+  .exp-num {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 9999px;
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: ui-monospace, SFMono-Regular, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-main);
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+  }
+
+  :root[data-theme="dark"] .exp-num,
+  .dark .exp-num {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #e4e4e7;
+  }
+
+  .exp-card:hover .exp-num,
+  .exp-card.is-open .exp-num {
+    color: var(--primary);
+    border-color: var(--primary);
+    background: rgba(var(--primary-rgb, 99, 102, 241), 0.1);
+  }
+
+  /* Contenedor de Logo */
+  .exp-logo-box {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.75rem;
+    background: #ffffff;
+    padding: 0.35rem;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  :root[data-theme="dark"] .exp-logo-box,
+  .dark .exp-logo-box {
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  /* Botón Circular de Toggle (+ / x) */
+  .exp-toggle-btn {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 9999px;
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  :root[data-theme="dark"] .exp-toggle-btn,
+  .dark .exp-toggle-btn {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #f4f4f5;
+  }
+
+  .exp-card.is-open .exp-toggle-btn {
+    background: var(--primary);
+    color: var(--primary-fg);
+    border-color: var(--primary);
+  }
+</style>
 
 <script>
   import { gsap } from "gsap";
 
-  const section = document.getElementById("exp-section");
-  const items = document.querySelectorAll<HTMLElement>(".exp-item");
-  const line = document.getElementById("exp-line");
+  // Lógica interactiva del acordeón
+  const cards = document.querySelectorAll<HTMLElement>(".exp-card");
 
-  if (line) gsap.set(line, { scaleY: 0, transformOrigin: "top center" });
-  gsap.set(items, { x: -28, opacity: 0 });
+  cards.forEach((card) => {
+    const trigger = card.querySelector<HTMLButtonElement>(".exp-trigger");
+    const content = card.querySelector<HTMLElement>(".exp-content");
+    const icon = card.querySelector<SVGElement>(".exp-toggle-btn svg");
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      if (entries[0].isIntersecting) {
-        if (line) gsap.to(line, { scaleY: 1, duration: 1.8, ease: "power2.out" });
-        gsap.to(items, {
-          x: 0,
-          opacity: 1,
-          duration: 0.6,
-          stagger: 0.14,
-          ease: "power3.out",
-        });
-        observer.disconnect();
+    if (!trigger || !content) return;
+
+    trigger.addEventListener("click", () => {
+      const isOpen = card.classList.contains("is-open");
+
+      if (isOpen) {
+        // Cerrar tarjeta
+        card.classList.remove("is-open");
+        content.style.maxHeight = "0px";
+        content.style.opacity = "0";
+        trigger.setAttribute("aria-expanded", "false");
+        if (icon) {
+          icon.classList.remove("rotate-45");
+          icon.classList.add("rotate-0");
+        }
+      } else {
+        // Abrir esta tarjeta
+        card.classList.add("is-open");
+        content.style.maxHeight = `${content.scrollHeight + 40}px`;
+        content.style.opacity = "1";
+        trigger.setAttribute("aria-expanded", "true");
+        if (icon) {
+          icon.classList.remove("rotate-0");
+          icon.classList.add("rotate-45");
+        }
       }
-    },
-    { threshold: 0.1 },
-  );
+    });
+  });
 
-  if (section) observer.observe(section);
+  // Animación de entrada GSAP al scroll
+  const section = document.getElementById("exp-section");
+  if (section) {
+    gsap.set(cards, { y: 24, opacity: 0 });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          gsap.to(cards, {
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            stagger: 0.12,
+            ease: "power3.out",
+          });
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(section);
+  }
 </script>
