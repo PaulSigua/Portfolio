@@ -89,132 +89,65 @@ const languageEntries = Object.entries(languages);
 
     <!-- Controles, CTA & Mobile Toggle (Derecha) -->
     <div class="flex-shrink-0 flex items-center gap-1 sm:gap-2">
-      <!-- Selector de Idioma -->
-      <div class="relative flex items-center justify-center">
-        <button
-          id="language-toggle-btn"
-          class="cursor-pointer size-9 rounded-full flex items-center justify-center hover:bg-black/5 dark:hover:bg-white/10 text-app transition-transform duration-200 hover:scale-105 focus:outline-none"
-          aria-haspopup="menu"
-          aria-expanded="false"
-          aria-controls="language-menu"
-          title={t("language.select")}
-        >
-          <LanguageIcon class="size-4.5 transition-all text-app" />
-        </button>
+      <!-- Selector de Idioma (Modal dinámico) -->
+      <button
+        id="language-toggle-btn"
+        onclick="window.toggleDialog('language-selector')"
+        class="cursor-pointer size-9 rounded-full flex items-center justify-center hover:bg-black/5 dark:hover:bg-white/10 text-app transition-transform duration-200 hover:scale-105 focus:outline-none"
+        title={t("language.select")}
+      >
+        <LanguageIcon class="size-4.5 transition-all text-app" />
+      </button>
 
-        <div
-          id="language-menu"
-          class="absolute hidden top-full mt-3 right-0 text-sm p-1.5 min-w-[8.5rem] rounded-2xl liquid-glass shadow-xl z-50 dropdown-menu-animate"
-          role="menu"
-          aria-label="Seleccionar idioma"
-        >
-          <ul class="flex flex-col gap-1 outline-none" id="language-list">
-            {
-              languageEntries.map(([code, name]) => (
-                <li>
-                  <a
-                    href={getRouteFromLang(code as "en" | "es")}
-                    class="w-full px-3 py-2 rounded-xl hover:bg-black/5 dark:hover:bg-white/10 flex items-center gap-2.5 justify-between text-app cursor-pointer transition-colors text-xs font-medium"
-                    role="menuitemradio"
-                    aria-checked={lang === code ? "true" : "false"}
-                    data-language={code}
-                  >
-                    <span class="flex items-center gap-2">
-                      <span>{code === "en" ? "🇺🇸" : "🇪🇸"}</span>
-                      <span>{name}</span>
-                    </span>
-                    {lang === code && (
-                      <span class="size-1.5 rounded-full bg-[var(--primary)]" />
-                    )}
-                  </a>
-                </li>
-              ))
-            }
-          </ul>
+      <!-- Selector de Tema (Modal dinámico) -->
+      <button
+        id="theme-toggle-btn"
+        onclick="window.toggleDialog('theme-selector')"
+        class="cursor-pointer size-9 rounded-full flex items-center justify-center hover:bg-black/5 dark:hover:bg-white/10 text-app transition-transform duration-200 hover:scale-105 focus:outline-none relative"
+        title={t("theme.select")}
+      >
+        <div class="relative size-5 flex items-center justify-center">
+          <SunIcon
+            id="light"
+            class="theme-toggle-icon absolute inset-0 m-auto size-4.5 transition-all duration-300 origin-center"
+          />
+          <MoonIcon
+            id="dark"
+            class="theme-toggle-icon absolute inset-0 m-auto size-4.5 transition-all duration-300 origin-center"
+          />
+          <SystemIcon
+            id="system"
+            class="theme-toggle-icon absolute inset-0 m-auto size-4.5 transition-all duration-300 origin-center"
+          />
         </div>
-      </div>
+      </button>
 
-      <!-- Selector de Tema (Centrado perfecto de iconos) -->
-      <div class="relative flex items-center justify-center">
-        <button
-          id="theme-toggle-btn"
-          class="cursor-pointer size-9 rounded-full flex items-center justify-center hover:bg-black/5 dark:hover:bg-white/10 text-app transition-transform duration-200 hover:scale-105 focus:outline-none relative"
-          aria-haspopup="menu"
-          aria-expanded="false"
-          aria-controls="themes-menu"
-          title={t("theme.select")}
+      <!-- Selector de Paleta de Color (Modal dinámico) -->
+      <button
+        id="color-palette-btn"
+        onclick="window.toggleDialog('color-selector')"
+        class="cursor-pointer size-9 rounded-full flex items-center justify-center hover:bg-black/5 dark:hover:bg-white/10 text-app transition-transform duration-200 hover:scale-105 focus:outline-none"
+        title={t("header.color-selector")}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="size-4.5 text-app"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
         >
-          <div class="relative size-5 flex items-center justify-center">
-            <SunIcon
-              id="light"
-              class="theme-toggle-icon absolute inset-0 m-auto size-4.5 transition-all duration-300 origin-center"
-            />
-            <MoonIcon
-              id="dark"
-              class="theme-toggle-icon absolute inset-0 m-auto size-4.5 transition-all duration-300 origin-center"
-            />
-            <SystemIcon
-              id="system"
-              class="theme-toggle-icon absolute inset-0 m-auto size-4.5 transition-all duration-300 origin-center"
-            />
-          </div>
-        </button>
-
-        <div
-          id="themes-menu"
-          class="absolute hidden top-full mt-3 right-0 text-sm p-1.5 min-w-[7.5rem] rounded-2xl liquid-glass shadow-xl z-50 dropdown-menu-animate"
-          role="menu"
-          aria-label="Seleccionar tema"
-        >
-          <ul class="flex flex-col gap-1 outline-none" id="themes-list">
-            {
-              THEMES.map((theme) => (
-                <li>
-                  <button
-                    type="button"
-                    class="themes-menu-option w-full px-3 py-1.5 rounded-xl hover:bg-black/5 dark:hover:bg-white/10 flex items-center gap-2 justify-between text-app cursor-pointer transition-colors text-xs font-medium"
-                    role="menuitemradio"
-                    aria-checked="false"
-                    data-theme={theme.toLowerCase()}
-                  >
-                    <span>{t(`theme.${theme.toLowerCase()}` as any)}</span>
-                    <span class="check-dot hidden size-1.5 rounded-full bg-[var(--primary)]" />
-                  </button>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-      </div>
-
-      <!-- Selector de Paleta de Color -->
-      <div class="relative flex items-center justify-center">
-        <button
-          id="color-palette-btn"
-          onclick="window.toggleDialog('color-selector')"
-          class="cursor-pointer size-9 rounded-full flex items-center justify-center hover:bg-black/5 dark:hover:bg-white/10 text-app transition-transform duration-200 hover:scale-105 focus:outline-none"
-          title={t("header.color-selector")}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="size-4.5 text-app"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle>
-            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle>
-            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle>
-            <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle>
-            <path
-              d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"
-            ></path>
-          </svg>
-        </button>
-      </div>
+          <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle>
+          <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle>
+          <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle>
+          <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle>
+          <path
+            d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"
+          ></path>
+        </svg>
+      </button>
 
       <!-- Botón CTA Contacto (Escritorio) -->
       <a
@@ -391,82 +324,9 @@ const languageEntries = Object.entries(languages);
     link.addEventListener("click", () => toggleMobileMenu(false));
   });
 
-  // ── Language Menu Toggle ─────────────────────────────────────────
-  const languageToggleBtn = document.getElementById("language-toggle-btn");
-  const languageMenu = document.getElementById("language-menu");
-
-  if (languageToggleBtn && languageMenu) {
-    languageToggleBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      const isOpen = !languageMenu.classList.contains("hidden");
-      if (isOpen) {
-        languageMenu.classList.add("hidden");
-        languageToggleBtn.setAttribute("aria-expanded", "false");
-      } else {
-        // Cerrar tema si está abierto
-        document.getElementById("themes-menu")?.classList.add("hidden");
-        document.getElementById("theme-toggle-btn")?.setAttribute("aria-expanded", "false");
-
-        languageMenu.classList.remove("hidden");
-        languageToggleBtn.setAttribute("aria-expanded", "true");
-      }
-    });
-
-    const languageLinks = languageMenu.querySelectorAll("a[data-language]");
-    languageLinks.forEach((link) => {
-      link.addEventListener("click", (e) => {
-        e.preventDefault();
-        sessionStorage.setItem("scrollPosition", window.scrollY.toString());
-        sessionStorage.setItem("currentHash", window.location.hash);
-        window.location.href = link.getAttribute("href") || "/";
-      });
-    });
-  }
-
-  // ── Theme Menu Toggle ────────────────────────────────────────────
-  const themeBtn = document.getElementById("theme-toggle-btn");
-  const themeMenu = document.getElementById("themes-menu");
-
-  if (themeBtn && themeMenu) {
-    themeBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      const isOpen = !themeMenu.classList.contains("hidden");
-      if (isOpen) {
-        themeMenu.classList.add("hidden");
-        themeBtn.setAttribute("aria-expanded", "false");
-      } else {
-        // Cerrar idioma si está abierto
-        languageMenu?.classList.add("hidden");
-        languageToggleBtn?.setAttribute("aria-expanded", "false");
-
-        themeMenu.classList.remove("hidden");
-        themeBtn.setAttribute("aria-expanded", "true");
-      }
-    });
-  }
-
-  // ── Global Clicks & Escape Key ───────────────────────────────────
+  // ── Close Mobile Menu on Click Outside / Escape ──────────────────
   document.addEventListener("click", (e) => {
     const target = e.target as Node;
-
-    if (
-      languageMenu &&
-      !languageMenu.contains(target) &&
-      !languageToggleBtn?.contains(target)
-    ) {
-      languageMenu.classList.add("hidden");
-      languageToggleBtn?.setAttribute("aria-expanded", "false");
-    }
-
-    if (
-      themeMenu &&
-      !themeMenu.contains(target) &&
-      !themeBtn?.contains(target)
-    ) {
-      themeMenu.classList.add("hidden");
-      themeBtn?.setAttribute("aria-expanded", "false");
-    }
-
     if (
       mobileMenu &&
       !mobileMenu.contains(target) &&
@@ -478,10 +338,6 @@ const languageEntries = Object.entries(languages);
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
-      languageMenu?.classList.add("hidden");
-      languageToggleBtn?.setAttribute("aria-expanded", "false");
-      themeMenu?.classList.add("hidden");
-      themeBtn?.setAttribute("aria-expanded", "false");
       toggleMobileMenu(false);
     }
   });

@@ -1,9 +1,13 @@
 ---
 import Background from "../components/Background.astro";
 import Modal from "../components/Modal.astro";
+import SunIcon from "../components/icons/Sun.astro";
+import MoonIcon from "../components/icons/Moon.astro";
+import SystemIcon from "../components/icons/System.astro";
 import "@fontsource-variable/onest";
 import "../styles/global.css";
-import { useTranslations } from "../i18n/utils";
+import { languages } from "../i18n/ui";
+import { useTranslations, getRouteFromLang } from "../i18n/utils";
 
 interface Props {
   title?: string;
@@ -112,43 +116,101 @@ const metaDescription = description || defaultDescription;
     <Background />
     <slot />
 
+    <!-- Modal Selector de Color -->
     <Modal id="color-selector" title={t("header.color-selector")}>
-      <div class="flex items-center justify-center gap-4 flex-wrap p-2">
+      <div class="flex items-center justify-center gap-4 flex-wrap py-2">
         <button
-          class="size-11 rounded-full cursor-pointer hover:scale-110 transition-transform shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-app focus:ring-zinc-400 border border-app-soft relative overflow-hidden"
+          class="size-12 rounded-xl cursor-pointer hover:scale-110 active:scale-95 transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-app focus:ring-zinc-400 border border-white/20 relative overflow-hidden"
           style="background: linear-gradient(135deg, #09090b 50%, #ffffff 50%);"
           onclick="window.setAppColor('mono'); window.toggleDialog('color-selector')"
           aria-label="Monocromo (Blanco y Negro)"
           title="Monocromo (Blanco y Negro)"
         ></button>
         <button
-          class="size-11 rounded-full cursor-pointer hover:scale-110 transition-transform shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-app focus:ring-blue-500"
+          class="size-12 rounded-xl cursor-pointer hover:scale-110 active:scale-95 transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-app focus:ring-blue-500"
           style="background-color: #3b82f6"
           onclick="window.setAppColor('blue'); window.toggleDialog('color-selector')"
           aria-label="Azul"
           title="Azul"
         ></button>
         <button
-          class="size-11 rounded-full cursor-pointer hover:scale-110 transition-transform shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-app focus:ring-emerald-500"
+          class="size-12 rounded-xl cursor-pointer hover:scale-110 active:scale-95 transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-app focus:ring-emerald-500"
           style="background-color: #22c55e"
           onclick="window.setAppColor('green'); window.toggleDialog('color-selector')"
           aria-label="Verde"
           title="Verde"
         ></button>
         <button
-          class="size-11 rounded-full cursor-pointer hover:scale-110 transition-transform shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-app focus:ring-orange-500"
+          class="size-12 rounded-xl cursor-pointer hover:scale-110 active:scale-95 transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-app focus:ring-orange-500"
           style="background-color: #f97316"
           onclick="window.setAppColor('orange'); window.toggleDialog('color-selector')"
           aria-label="Naranja"
           title="Naranja"
         ></button>
         <button
-          class="size-11 rounded-full cursor-pointer hover:scale-110 transition-transform shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-app focus:ring-purple-500"
+          class="size-12 rounded-xl cursor-pointer hover:scale-110 active:scale-95 transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-app focus:ring-purple-500"
           style="background-color: #8b5cf6"
           onclick="window.setAppColor('purple'); window.toggleDialog('color-selector')"
           aria-label="Morado"
           title="Morado"
         ></button>
+      </div>
+    </Modal>
+
+    <!-- Modal Selector de Tema -->
+    <Modal id="theme-selector" title={t("theme.select")}>
+      <div class="grid grid-cols-3 gap-3 py-2">
+        <button
+          type="button"
+          class="flex flex-col items-center justify-center gap-2.5 p-4 rounded-xl hover:bg-black/5 dark:hover:bg-white/10 text-app cursor-pointer transition-all hover:scale-105 active:scale-95 border border-app-soft/40 group"
+          onclick="window.setTheme('light'); window.toggleDialog('theme-selector')"
+        >
+          <SunIcon class="size-6 text-app group-hover:text-[var(--primary)] transition-colors" />
+          <span class="text-xs font-semibold">{t("theme.light")}</span>
+        </button>
+        <button
+          type="button"
+          class="flex flex-col items-center justify-center gap-2.5 p-4 rounded-xl hover:bg-black/5 dark:hover:bg-white/10 text-app cursor-pointer transition-all hover:scale-105 active:scale-95 border border-app-soft/40 group"
+          onclick="window.setTheme('dark'); window.toggleDialog('theme-selector')"
+        >
+          <MoonIcon class="size-6 text-app group-hover:text-[var(--primary)] transition-colors" />
+          <span class="text-xs font-semibold">{t("theme.dark")}</span>
+        </button>
+        <button
+          type="button"
+          class="flex flex-col items-center justify-center gap-2.5 p-4 rounded-xl hover:bg-black/5 dark:hover:bg-white/10 text-app cursor-pointer transition-all hover:scale-105 active:scale-95 border border-app-soft/40 group"
+          onclick="window.setTheme('system'); window.toggleDialog('theme-selector')"
+        >
+          <SystemIcon class="size-6 text-app group-hover:text-[var(--primary)] transition-colors" />
+          <span class="text-xs font-semibold">{t("theme.system")}</span>
+        </button>
+      </div>
+    </Modal>
+
+    <!-- Modal Selector de Idioma -->
+    <Modal id="language-selector" title={t("language.select")}>
+      <div class="grid grid-cols-2 gap-3 py-2">
+        {
+          Object.entries(languages).map(([code, name]) => (
+            <a
+              href={getRouteFromLang(code as "en" | "es")}
+              class="flex items-center gap-3 p-3.5 rounded-xl hover:bg-black/5 dark:hover:bg-white/10 text-app cursor-pointer transition-all hover:scale-105 active:scale-95 border border-app-soft/40 group"
+            >
+              <span class="text-2xl">{code === "en" ? "🇺🇸" : "🇪🇸"}</span>
+              <div class="flex flex-col text-left">
+                <span class="text-sm font-semibold group-hover:text-[var(--primary)] transition-colors">
+                  {name}
+                </span>
+                <span class="text-xs text-muted font-mono uppercase">
+                  {code}
+                </span>
+              </div>
+              {lang === code && (
+                <span class="ml-auto size-2 rounded-full bg-[var(--primary)]" />
+              )}
+            </a>
+          ))
+        }
       </div>
     </Modal>
 

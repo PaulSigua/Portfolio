@@ -138,7 +138,6 @@ const SOCIALS = [
         src="https://avatars.githubusercontent.com/u/109354319?s=400&u=6e30a1b9fc1d804fdb55c573fe2519d42f311cf1&v=4"
         alt={t("hero.avatar")}
         class="w-full h-full object-cover rounded-full"
-        style="outline: 3px solid var(--primary); outline-offset: 5px;"
       />
     </div>
   </div>
@@ -197,22 +196,7 @@ const SOCIALS = [
     .from(".hero-subtitle", { duration: 0.7, y: 30, opacity: 0 }, "-=0.45")
     .from(location, { duration: 0.5, y: 16, opacity: 0 }, "-=0.4")
     .from(socials, { duration: 0.5, y: 16, opacity: 0 }, "-=0.3")
-    .from(
-      avatarWrapper,
-      { duration: 0.9, y: -24, opacity: 0, scale: 0.95 },
-      0.15,
-    )
     .from(scrollIndicator, { duration: 0.6, opacity: 0 }, "-=0.2");
-
-  // Float loop — starts after entrance completes
-  gsap.to(avatarWrapper, {
-    y: -10,
-    duration: 3,
-    ease: "sine.inOut",
-    repeat: -1,
-    yoyo: true,
-    delay: 1.6,
-  });
 
   const SCALES = [1.2, 1.0, 1.0];
 

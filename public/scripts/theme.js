@@ -103,6 +103,7 @@
     apply(eff);
     updateToggle(eff);
   };
+  window.setTheme = window.setThemeExplicit;
 
   const btn = document.getElementById("theme-toggle-btn");
   const menu = document.getElementById("themes-menu");

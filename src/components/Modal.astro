@@ -9,42 +9,64 @@ const { id, title } = Astro.props;
 
 <dialog
   id={id}
-  class="custom-modal flex-col gap-4 bg-app text-app border border-white/60 rounded-2xl p-6"
+  class="custom-modal flex-col gap-4 text-app border-0 shadow-2xl rounded-2xl p-6 outline-none max-w-md w-[calc(100%-32px)]"
 >
   <div class="flex justify-between items-center w-full">
     {
       title && (
-        <h3 id={`${id}-title`} class="text-xl font-semibold">
+        <h3 id={`${id}-title`} class="text-lg font-bold text-app">
           {title}
         </h3>
       )
     }
     <button
-      class="close-btn text-muted hover:text-red-500 cursor-pointer p-2 bg-black/5 rounded-full ml-auto"
+      class="close-btn text-muted hover:text-app cursor-pointer p-1.5 hover:bg-black/5 dark:hover:bg-white/10 rounded-full ml-auto transition-colors focus:outline-none"
       onclick="window.toggleDialog()"
+      aria-label="Cerrar modal"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
+        class="size-5"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
-        ><line x1="18" y1="6" x2="6" y2="18"></line><line
-          x1="6"
-          y1="6"
-          x2="18"
-          y2="18"></line></svg
       >
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
     </button>
   </div>
   <div class="modal-content">
     <slot />
   </div>
 </dialog>
+
+<style>
+  dialog.custom-modal {
+    background: rgba(22, 22, 28, 0.78);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    box-shadow: 0 16px 48px -4px rgba(0, 0, 0, 0.55);
+    border: none;
+  }
+
+  :root[data-theme="light"] dialog.custom-modal {
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    box-shadow: 0 16px 48px -4px rgba(0, 0, 0, 0.12);
+    border: none;
+  }
+
+  dialog.custom-modal::backdrop {
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+</style>
 
 <script>
   import gsap from "gsap";
@@ -56,22 +78,45 @@ const { id, title } = Astro.props;
   declare global {
     interface Window {
       toggleDialog: (dialogId?: string) => false;
+      setTheme: (theme: string) => void;
     }
   }
 
   if (typeof window.toggleDialog !== "function") {
-    const MARGIN = 12;
+    const MARGIN = 16;
     const EASE_OPEN = CustomEase.create(
       "pm-open",
       "M0,0 C0.305,0.206 0.116,0.567 0.3,0.8 0.394,0.921 0.491,1 1,1",
     );
 
     function measureDialog(dialog: HTMLDialogElement) {
+      if (dialog.open) {
+        return {
+          w: dialog.offsetWidth || 340,
+          h: dialog.offsetHeight || 220,
+        };
+      }
       dialog.style.visibility = "hidden";
-      dialog.show();
-      const w = dialog.offsetWidth || 320;
-      const h = dialog.offsetHeight || 200;
-      dialog.close();
+      dialog.style.display = "flex";
+      dialog.style.position = "fixed";
+      dialog.style.top = "0px";
+      dialog.style.left = "0px";
+      try {
+        dialog.show();
+      } catch {
+        // Safe fallback
+      }
+      const w = dialog.offsetWidth || 340;
+      const h = dialog.offsetHeight || 220;
+      try {
+        if (dialog.open) dialog.close();
+      } catch {
+        // Safe fallback
+      }
+      dialog.style.position = "";
+      dialog.style.top = "";
+      dialog.style.left = "";
+      dialog.style.display = "";
       dialog.style.visibility = "";
       return { w, h };
     }
@@ -84,18 +129,31 @@ const { id, title } = Astro.props;
       const vh = window.innerHeight;
       const { w: dw, h: dh } = measureDialog(dialog);
 
+      // Locate the floating navbar so the modal is always positioned strictly BELOW it
+      const headerContainer = document.getElementById("header-container");
+      const navPill = document.getElementById("nav-pill");
+      const headerRect = navPill?.getBoundingClientRect() || headerContainer?.getBoundingClientRect();
+      const minTop = headerRect ? headerRect.bottom + 12 : 88;
+
       let left: number;
       let top: number;
 
       if (trigger) {
         const tr = trigger.getBoundingClientRect();
+        // Position horizontally aligned with the trigger button
         left = tr.left + tr.width / 2 - dw / 2;
-        top = tr.top + tr.height / 2 - dh / 2;
         left = Math.max(MARGIN, Math.min(vw - dw - MARGIN, left));
-        top = Math.max(MARGIN, Math.min(vh - dh - MARGIN, top));
+
+        // Always position vertically below the header / trigger
+        top = Math.max(minTop, tr.bottom + 10);
       } else {
         left = Math.max(MARGIN, (vw - dw) / 2);
-        top = Math.max(MARGIN, (vh - dh) / 2);
+        top = Math.max(minTop, (vh - dh) / 2);
+      }
+
+      // Ensure it doesn't overflow bottom of screen if possible
+      if (top + dh > vh - MARGIN && top > minTop) {
+        top = Math.max(minTop, vh - dh - MARGIN);
       }
 
       dialog.style.top = `${top}px`;
@@ -105,49 +163,54 @@ const { id, title } = Astro.props;
     let lastOpenedAt = 0;
 
     window.toggleDialog = function (dialogId?: string): false {
+      const currentOpen = document.querySelector<HTMLDialogElement>("dialog[open]");
+
       // ── CLOSE ────────────────────────────────────────────────────────
-      if (!dialogId) {
-        const open = document.querySelector<HTMLDialogElement>("dialog[open]");
-        if (!open) return false;
+      if (!dialogId || (currentOpen && currentOpen.id === dialogId)) {
+        if (!currentOpen) return false;
 
-        gsap.killTweensOf(open);
+        gsap.killTweensOf(currentOpen);
 
-        const originId = open.dataset.flipId;
+        const originId = currentOpen.dataset.flipId;
         const origin = originId
           ? document.querySelector<Element>(
-              `[data-flip-id="${originId}"]:not([open])`,
+              `[data-flip-id="${originId}"]:not(dialog)`,
             )
           : null;
 
         if (origin) {
           const originState = Flip.getState(origin);
           Flip.to(originState, {
-            targets: open,
+            targets: currentOpen,
             scale: true,
-            ease: "power2.in",
-            duration: 0.5,
+            ease: "power2.inOut",
+            duration: 0.35,
             toggleClass: "pm-closing",
             onComplete: () => {
-              gsap.set(open, { clearProps: "all" });
-              open.style.top = "";
-              open.style.left = "";
-              open.close();
-              open.removeAttribute("data-flip-id");
+              gsap.set(currentOpen, { clearProps: "all" });
+              currentOpen.style.top = "";
+              currentOpen.style.left = "";
+              try {
+                currentOpen.close();
+              } catch {}
+              currentOpen.removeAttribute("data-flip-id");
               if (origin instanceof HTMLElement) delete origin.dataset.flipId;
               document.body.style.overflow = "";
             },
           });
         } else {
-          gsap.to(open, {
+          gsap.to(currentOpen, {
             opacity: 0,
-            scale: 0.9,
-            duration: 0.25,
+            scale: 0.95,
+            duration: 0.2,
             ease: "power2.in",
             onComplete: () => {
-              gsap.set(open, { clearProps: "all" });
-              open.style.top = "";
-              open.style.left = "";
-              open.close();
+              gsap.set(currentOpen, { clearProps: "all" });
+              currentOpen.style.top = "";
+              currentOpen.style.left = "";
+              try {
+                currentOpen.close();
+              } catch {}
               document.body.style.overflow = "";
             },
           });
@@ -161,24 +224,27 @@ const { id, title } = Astro.props;
       ) as HTMLDialogElement | null;
       if (!dialog) return false;
 
-      const already = document.querySelector<HTMLDialogElement>("dialog[open]");
-      if (already && already !== dialog) {
-        gsap.killTweensOf(already);
-        gsap.set(already, { clearProps: "all" });
-        already.style.top = "";
-        already.style.left = "";
-        already.close();
-        already.removeAttribute("data-flip-id");
+      if (currentOpen) {
+        gsap.killTweensOf(currentOpen);
+        gsap.set(currentOpen, { clearProps: "all" });
+        currentOpen.style.top = "";
+        currentOpen.style.left = "";
+        try {
+          currentOpen.close();
+        } catch {}
+        currentOpen.removeAttribute("data-flip-id");
       }
 
-      const trigger: Element | null =
-        window.event instanceof Event &&
-        window.event.currentTarget instanceof Element
-          ? window.event.currentTarget
-          : null;
+      let trigger: Element | null = null;
+      if (window.event instanceof Event) {
+        if (window.event.currentTarget instanceof Element) {
+          trigger = window.event.currentTarget;
+        } else if (window.event.target instanceof Element) {
+          trigger = window.event.target.closest("button, a") || window.event.target;
+        }
+      }
 
       positionDialog(dialog, trigger ?? document.activeElement);
-
       document.body.style.overflow = "hidden";
 
       if (trigger instanceof HTMLElement) {
@@ -188,22 +254,25 @@ const { id, title } = Astro.props;
 
         gsap.killTweensOf(dialog);
         const originState = Flip.getState(trigger);
-        dialog.showModal();
+        try {
+          dialog.showModal();
+        } catch {}
         Flip.from(originState, {
           targets: dialog,
           scale: true,
           ease: EASE_OPEN,
-          duration: 0.7,
+          duration: 0.45,
           toggleClass: "pm-opening",
         });
       } else {
-        dialog.showModal();
-        gsap.from(dialog, {
-          opacity: 0,
-          scale: 0.9,
-          duration: 0.4,
-          ease: "power2.out",
-        });
+        try {
+          dialog.showModal();
+        } catch {}
+        gsap.fromTo(
+          dialog,
+          { opacity: 0, scale: 0.95 },
+          { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }
+        );
       }
 
       lastOpenedAt = Date.now();
@@ -211,7 +280,7 @@ const { id, title } = Astro.props;
     };
 
     document.addEventListener("click", (e) => {
-      if (Date.now() - lastOpenedAt < 100) return;
+      if (Date.now() - lastOpenedAt < 120) return;
       const dialog = document.querySelector<HTMLDialogElement>("dialog[open]");
       if (!dialog) return;
       const rect = dialog.getBoundingClientRect();
