@@ -14,10 +14,10 @@
   }
 
   function getColorPref() {
-    return localStorage.getItem("color") || "blue";
+    return localStorage.getItem("color") || "mono";
   }
   function applyColor(color) {
-    if (color && color !== "blue") {
+    if (color && color !== "mono" && color !== "default") {
       document.documentElement.setAttribute("data-color", color);
     } else {
       document.documentElement.removeAttribute("data-color");

@@ -17,485 +17,490 @@ const THEMES = ["Light", "Dark", "System"];
 const languageEntries = Object.entries(languages);
 ---
 
-<header class="flex justify-center items-center">
+<header
+  id="header-container"
+  class="fixed w-full z-50 top-0 pt-6 px-4 transition-all duration-500 ease-in-out flex justify-center"
+>
+  <!-- Contenedor Píldora Liquid Glass -->
   <nav
-    class="fixed top-4 left-1/2 -translate-x-1/2 flex flex-row items-center justify-center gap-2 text-app z-50
-              py-2 px-4 rounded-full w-max max-w-[95vw] shadow-lg
-              backdrop-blur-xl bg-app/80 border border-gray-200/20 dark:border-white/10
-              
-              xl:fixed xl:right-6 xl:top-1/2 xl:-translate-y-1/2 xl:translate-x-0
-              xl:flex xl:flex-col xl:justify-center xl:items-end
-              xl:py-4 xl:px-3 xl:gap-4 xl:rounded-2xl xl:border-none xl:shadow-none xl:bg-transparent xl:w-fit
-              xl:left-auto xl:mx-0"
+    id="nav-pill"
+    class="relative w-full max-w-[1200px] h-16 liquid-glass rounded-full px-4 sm:px-6 flex justify-between items-center gap-2 md:gap-4 z-20"
   >
-    <a
-      href="#hero"
-      aria-label={t("nav.home")}
-      class="group relative flex items-center justify-center rounded-xl overflow-hidden transition-all duration-300 ease-in-out h-10 border border-transparent
-             w-12 hover:w-32
-             xl:hover:bg-app/80 xl:hover:backdrop-blur-md xl:hover:border-gray-200/20 xl:dark:hover:border-white/10 xl:hover:shadow-lg"
+    <!-- Logo / Brand (Izquierda) -->
+    <div class="flex-shrink-0 flex items-center">
+      <a href="#hero" class="flex items-center gap-2.5 group focus:outline-none">
+        <span
+          class="size-9 rounded-full bg-[var(--primary)]/15 border border-[var(--primary)]/30 flex items-center justify-center text-[var(--primary)] group-hover:scale-105 transition-transform duration-300 shadow-xs"
+        >
+          <svg
+            class="size-4.5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+        </span>
+        <span
+          class="font-bold text-base md:text-lg text-app tracking-tight group-hover:text-[var(--primary)] transition-colors duration-200 whitespace-nowrap"
+        >
+          Paúl Sigua
+        </span>
+      </a>
+    </div>
+
+    <!-- Links Escritorio (Centro en flujo Flex) -->
+    <div
+      class="hidden md:flex items-center justify-center gap-1 lg:gap-2 flex-1 min-w-0"
     >
-      <svg
-        class="w-5 h-5 stroke-current text-app absolute inset-0 m-auto
-                  transition-all duration-300 ease-out
-                  group-hover:opacity-0 group-hover:scale-75"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+      <a
+        href="#hero"
+        class="nav-item relative text-app/80 hover:text-app dark:hover:text-white px-3 lg:px-4 py-2 text-sm font-semibold transition-colors duration-200 whitespace-nowrap"
       >
-        <path
-          d="M3 9.5L12 3l9 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 20.5v-11z"
-        ></path>
-        <path d="M9 21V12h6v9"></path>
-      </svg>
+        <span class="relative z-10">{t("nav.home")}</span>
+        <div class="menu-blur-spot"></div>
+      </a>
+      <a
+        href="#experience"
+        class="nav-item relative text-app/80 hover:text-app dark:hover:text-white px-3 lg:px-4 py-2 text-sm font-semibold transition-colors duration-200 whitespace-nowrap"
+      >
+        <span class="relative z-10">{t("nav.experience")}</span>
+        <div class="menu-blur-spot"></div>
+      </a>
+      <a
+        href="#services"
+        class="nav-item relative text-app/80 hover:text-app dark:hover:text-white px-3 lg:px-4 py-2 text-sm font-semibold transition-colors duration-200 whitespace-nowrap"
+      >
+        <span class="relative z-10">{t("nav.services")}</span>
+        <div class="menu-blur-spot"></div>
+      </a>
+      <a
+        href="#projects"
+        class="nav-item relative text-app/80 hover:text-app dark:hover:text-white px-3 lg:px-4 py-2 text-sm font-semibold transition-colors duration-200 whitespace-nowrap"
+      >
+        <span class="relative z-10">{t("nav.projects")}</span>
+        <div class="menu-blur-spot"></div>
+      </a>
+    </div>
 
-      <span
-        class="absolute inset-0 flex items-center justify-center
-                  opacity-0 scale-90 translate-y-2
-                  transition-all duration-300 ease-out
-                  group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0
-                  text-muted text-sm font-semibold whitespace-nowrap"
-      >
-        {t("nav.home")}
-      </span>
+    <!-- Controles, CTA & Mobile Toggle (Derecha) -->
+    <div class="flex-shrink-0 flex items-center gap-1 sm:gap-2">
+      <!-- Selector de Idioma -->
+      <div class="relative flex items-center justify-center">
+        <button
+          id="language-toggle-btn"
+          class="cursor-pointer size-9 rounded-full flex items-center justify-center hover:bg-black/5 dark:hover:bg-white/10 text-app transition-transform duration-200 hover:scale-105 focus:outline-none"
+          aria-haspopup="menu"
+          aria-expanded="false"
+          aria-controls="language-menu"
+          title={t("language.select")}
+        >
+          <LanguageIcon class="size-4.5 transition-all text-app" />
+        </button>
 
-      <span
-        class="pointer-events-none absolute inset-0 rounded-xl
-                  opacity-0 scale-90
-                  transition-all duration-500 ease-out
-                  group-hover:opacity-100 group-hover:scale-110
-                  bg-gray-200/20 dark:bg-white/10 xl:bg-transparent"
-      >
-      </span>
-    </a>
-
-    <a
-      href="#experience"
-      aria-label={t("nav.experience")}
-      class="group relative flex items-center justify-center rounded-xl overflow-hidden transition-all duration-300 ease-in-out h-10 border border-transparent
-             w-12 hover:w-32
-             xl:hover:bg-app/80 xl:hover:backdrop-blur-md xl:hover:border-gray-200/20 xl:dark:hover:border-white/10 xl:hover:shadow-lg"
-    >
-      <svg
-        class="w-5 h-5 stroke-current text-app absolute inset-0 m-auto
-                  transition-all duration-300 ease-out
-                  group-hover:opacity-0 group-hover:scale-75"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path d="M3 7h18v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-        <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-        <path d="M12 12v1"></path>
-        <path d="M3 11h18"></path>
-      </svg>
-
-      <span
-        class="absolute inset-0 flex items-center justify-center
-                  opacity-0 scale-90 translate-y-2
-                  transition-all duration-300 ease-out
-                  group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0
-                  text-app text-sm font-semibold whitespace-nowrap"
-      >
-        {t("nav.experience")}
-      </span>
-
-      <span
-        class="pointer-events-none absolute inset-0 rounded-xl
-                  opacity-0 scale-90
-                  transition-all duration-500 ease-out
-                  group-hover:opacity-100 group-hover:scale-110
-                  bg-white/10 xl:bg-transparent"
-      >
-      </span>
-    </a>
-
-    <a
-      href="#services"
-      aria-label={t("nav.services")}
-      class="group relative flex items-center justify-center rounded-xl overflow-hidden transition-all duration-300 ease-in-out h-10 border border-transparent
-             w-12 hover:w-32
-             xl:hover:bg-app/80 xl:hover:backdrop-blur-md xl:hover:border-gray-200/20 xl:dark:hover:border-white/10 xl:hover:shadow-lg"
-    >
-      <svg
-        class="w-5 h-5 stroke-current text-app absolute inset-0 m-auto
-                  transition-all duration-300 ease-out
-                  group-hover:opacity-0 group-hover:scale-75"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-        <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5"></path>
-        <path d="M12 12l8 -4.5"></path>
-        <path d="M12 12l0 9"></path>
-        <path d="M12 12l-8 -4.5"></path>
-      </svg>
-
-      <span
-        class="absolute inset-0 flex items-center justify-center
-                  opacity-0 scale-90 translate-y-2
-                  transition-all duration-300 ease-out
-                  group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0
-                  text-app text-sm font-semibold whitespace-nowrap"
-      >
-        {t("nav.services")}
-      </span>
-
-      <span
-        class="pointer-events-none absolute inset-0 rounded-xl
-                  opacity-0 scale-90
-                  transition-all duration-500 ease-out
-                  group-hover:opacity-100 group-hover:scale-110
-                  bg-app/10 xl:bg-transparent"
-      >
-      </span>
-    </a>
-
-    <a
-      href="#projects"
-      aria-label={t("nav.projects")}
-      class="group relative flex items-center justify-center rounded-xl overflow-hidden transition-all duration-300 ease-in-out h-10 border border-transparent
-             w-12 hover:w-32
-             xl:hover:bg-app/80 xl:hover:backdrop-blur-md xl:hover:border-gray-200/20 xl:dark:hover:border-white/10 xl:hover:shadow-lg"
-    >
-      <svg
-        class="w-5 h-5 stroke-current text-app absolute inset-0 m-auto
-                  transition-all duration-300 ease-out
-                  group-hover:opacity-0 group-hover:scale-75"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path d="M3 7h5l2 2h11v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-        <path d="M3 7v10"></path>
-      </svg>
-
-      <span
-        class="absolute inset-0 flex items-center justify-center
-                  opacity-0 scale-90 translate-y-2
-                  transition-all duration-300 ease-out
-                  group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0
-                  text-app text-sm font-semibold whitespace-nowrap"
-      >
-        {t("nav.projects")}
-      </span>
-
-      <span
-        class="pointer-events-none absolute inset-0 rounded-xl
-                  opacity-0 scale-90
-                  transition-all duration-500 ease-out
-                  group-hover:opacity-100 group-hover:scale-110
-                  bg-app/10 xl:bg-transparent"
-      >
-      </span>
-    </a>
-
-    <a
-      href="mailto:paulmateo0208@gmail.com"
-      aria-label={t("nav.contact")}
-      class="group relative flex items-center justify-center rounded-xl overflow-hidden transition-all duration-300 ease-in-out h-10 border border-transparent
-             w-12 hover:w-32
-             xl:hover:bg-app/80 xl:hover:backdrop-blur-md xl:hover:border-gray-200/20 xl:dark:hover:border-white/10 xl:hover:shadow-lg"
-    >
-      <svg
-        class="w-5 h-5 stroke-current text-app absolute inset-0 m-auto
-                  transition-all duration-300 ease-out
-                  group-hover:opacity-0 group-hover:scale-75"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path
-          d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"
-        ></path>
-        <path d="m22 6-10 7L2 6"></path>
-      </svg>
-
-      <span
-        class="absolute inset-0 flex items-center justify-center
-                  opacity-0 scale-90 translate-y-2
-                  transition-all duration-300 ease-out
-                  group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0
-                  text-muted text-sm font-semibold whitespace-nowrap"
-      >
-        {t("nav.contact")}
-      </span>
-
-      <span
-        class="pointer-events-none absolute inset-0 rounded-xl
-                  opacity-0 scale-90
-                  transition-all duration-500 ease-out
-                  group-hover:opacity-100 group-hover:scale-110
-                  bg-red-500/10 xl:bg-transparent"
-      >
-      </span>
-    </a>
-
-    <!-- Language Selector -->
-    <div class="relative w-12 h-10 flex items-center justify-center">
-      <button
-        id="language-toggle-btn"
-        class="cursor-pointer appearance-none border-none flex items-center justify-center p-1 rounded-md
-              hover:scale-110 transition-transform will-change-transform focus:outline-none
-              focus-visible:ring-2 focus-visible:ring-app/70 focus-visible:ring-offset-2"
-        aria-haspopup="menu"
-        aria-expanded="false"
-        aria-controls="language-menu"
-        title={t("language.select")}
-      >
-        <LanguageIcon class="size-5 transition-all text-app" />
-      </button>
-
-      <div
-        id="language-menu"
-        class="absolute hidden scale-90 top-full mt-2 right-0 xl:right-full xl:top-0 xl:mr-2 text-sm p-1 min-w-[8rem] rounded-md
-              border border-gray-100 bg-app dark:bg-gray-900/90 dark:border-white/10
-              shadow-[0_8px_24px_rgba(0,0,0,0.2)] backdrop-blur-md z-50"
-        role="menu"
-        aria-label="Seleccionar idioma"
-      >
-        <ul class="outline-none" id="language-list">
-          {
-            languageEntries.map(([code, name]) => (
-              <li>
-                <a
-                  href={getRouteFromLang(code as "en" | "es")}
-                  class="language-menu-option w-full px-3 py-2 cursor-default rounded-sm
-                        hover:bg-neutral-400/30 dark:hover:bg-gray-500/40
-                        focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-400/70
-                        flex items-center gap-2 justify-between cursor-pointer transition-colors"
-                  role="menuitemradio"
-                  aria-checked={lang === code ? "true" : "false"}
-                  data-language={code}
-                >
-                  <span class="flex items-center gap-2">
-                    <span class="text-lg">{code === "en" ? "🇺🇸" : "🇪🇸"}</span>
-                    <span>{name}</span>
-                  </span>
-                  <span
-                    class={`check-dot size-2 rounded-full bg-purple-500 ${lang === code ? "" : "hidden"}`}
-                  />
-                </a>
-              </li>
-            ))
-          }
-        </ul>
+        <div
+          id="language-menu"
+          class="absolute hidden top-full mt-3 right-0 text-sm p-1.5 min-w-[8.5rem] rounded-2xl liquid-glass shadow-xl z-50 dropdown-menu-animate"
+          role="menu"
+          aria-label="Seleccionar idioma"
+        >
+          <ul class="flex flex-col gap-1 outline-none" id="language-list">
+            {
+              languageEntries.map(([code, name]) => (
+                <li>
+                  <a
+                    href={getRouteFromLang(code as "en" | "es")}
+                    class="w-full px-3 py-2 rounded-xl hover:bg-black/5 dark:hover:bg-white/10 flex items-center gap-2.5 justify-between text-app cursor-pointer transition-colors text-xs font-medium"
+                    role="menuitemradio"
+                    aria-checked={lang === code ? "true" : "false"}
+                    data-language={code}
+                  >
+                    <span class="flex items-center gap-2">
+                      <span>{code === "en" ? "🇺🇸" : "🇪🇸"}</span>
+                      <span>{name}</span>
+                    </span>
+                    {lang === code && (
+                      <span class="size-1.5 rounded-full bg-[var(--primary)]" />
+                    )}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
       </div>
-    </div>
 
-    <div class="w-px h-4 bg-gray-300 dark:bg-gray-700 xl:w-10 xl:h-px xl:my-2">
-    </div>
+      <!-- Selector de Tema (Centrado perfecto de iconos) -->
+      <div class="relative flex items-center justify-center">
+        <button
+          id="theme-toggle-btn"
+          class="cursor-pointer size-9 rounded-full flex items-center justify-center hover:bg-black/5 dark:hover:bg-white/10 text-app transition-transform duration-200 hover:scale-105 focus:outline-none relative"
+          aria-haspopup="menu"
+          aria-expanded="false"
+          aria-controls="themes-menu"
+          title={t("theme.select")}
+        >
+          <div class="relative size-5 flex items-center justify-center">
+            <SunIcon
+              id="light"
+              class="theme-toggle-icon absolute inset-0 m-auto size-4.5 transition-all duration-300 origin-center"
+            />
+            <MoonIcon
+              id="dark"
+              class="theme-toggle-icon absolute inset-0 m-auto size-4.5 transition-all duration-300 origin-center"
+            />
+            <SystemIcon
+              id="system"
+              class="theme-toggle-icon absolute inset-0 m-auto size-4.5 transition-all duration-300 origin-center"
+            />
+          </div>
+        </button>
 
-    <div class="relative w-12 h-10 flex items-center justify-center">
-      <button
-        id="theme-toggle-btn"
-        class="cursor-pointer appearance-none border-none flex items-center justify-center p-1 rounded-md
-              hover:scale-110 transition-transform will-change-transform focus:outline-none
-              focus-visible:ring-2 focus-visible:ring-green-400/70 focus-visible:ring-offset-2"
-        aria-haspopup="menu"
-        aria-expanded="false"
-        aria-controls="themes-menu"
-        title={t("theme.select")}
-      >
-        <SunIcon
-          id="light"
-          class="theme-toggle-icon size-5 transition-all origin-center"
-        />
-        <MoonIcon
-          id="dark"
-          class="theme-toggle-icon absolute size-5 transition-all origin-center"
-        />
-        <SystemIcon
-          id="system"
-          class="theme-toggle-icon absolute size-5 transition-all origin-center"
-        />
-      </button>
-
-      <div
-        id="themes-menu"
-        class="absolute hidden scale-90 top-full mt-2 right-0 xl:right-full xl:top-0 xl:mr-2 text-sm p-1 min-w-[6rem] rounded-md
-              border border-gray-100 bg-app dark:bg-gray-900/90 dark:border-white/10
-              shadow-[0_8px_24px_rgba(0,0,0,0.2)] backdrop-blur-md z-50"
-        role="menu"
-        aria-label="Seleccionar tema"
-      >
-        <ul class="outline-none" id="themes-list">
-          {
-            THEMES.map((theme) => (
-              <li>
-                <button
-                  type="button"
-                  class="themes-menu-option w-full px-2 py-1.5 cursor-default rounded-sm
-                        hover:bg-neutral-400/30 dark:hover:bg-gray-500/40
-                        focus:outline-none focus-visible:ring-2 focus-visible:ring-green-400/70
-                        flex items-center gap-2 justify-between cursor-pointer"
-                  role="menuitemradio"
-                  aria-checked="false"
-                  data-theme={theme.toLowerCase()}
-                >
-                  <span>{t(`theme.${theme.toLowerCase()}` as any)}</span>
-                  <span class="check-dot hidden size-2 rounded-full bg-green-500" />
-                </button>
-              </li>
-            ))
-          }
-        </ul>
+        <div
+          id="themes-menu"
+          class="absolute hidden top-full mt-3 right-0 text-sm p-1.5 min-w-[7.5rem] rounded-2xl liquid-glass shadow-xl z-50 dropdown-menu-animate"
+          role="menu"
+          aria-label="Seleccionar tema"
+        >
+          <ul class="flex flex-col gap-1 outline-none" id="themes-list">
+            {
+              THEMES.map((theme) => (
+                <li>
+                  <button
+                    type="button"
+                    class="themes-menu-option w-full px-3 py-1.5 rounded-xl hover:bg-black/5 dark:hover:bg-white/10 flex items-center gap-2 justify-between text-app cursor-pointer transition-colors text-xs font-medium"
+                    role="menuitemradio"
+                    aria-checked="false"
+                    data-theme={theme.toLowerCase()}
+                  >
+                    <span>{t(`theme.${theme.toLowerCase()}` as any)}</span>
+                    <span class="check-dot hidden size-1.5 rounded-full bg-[var(--primary)]" />
+                  </button>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
       </div>
-    </div>
 
-    <div class="w-px h-4 bg-gray-300 dark:bg-gray-700 xl:w-10 xl:h-px xl:my-2">
-    </div>
+      <!-- Selector de Paleta de Color -->
+      <div class="relative flex items-center justify-center">
+        <button
+          id="color-palette-btn"
+          onclick="window.toggleDialog('color-selector')"
+          class="cursor-pointer size-9 rounded-full flex items-center justify-center hover:bg-black/5 dark:hover:bg-white/10 text-app transition-transform duration-200 hover:scale-105 focus:outline-none"
+          title={t("header.color-selector")}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="size-4.5 text-app"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle>
+            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle>
+            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle>
+            <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle>
+            <path
+              d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"
+            ></path>
+          </svg>
+        </button>
+      </div>
 
-    <div class="relative w-12 h-10 flex items-center justify-center">
+      <!-- Botón CTA Contacto (Escritorio) -->
+      <a
+        href="#services"
+        class="hidden md:inline-flex items-center justify-center h-10 px-6 rounded-full font-bold text-sm bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-[var(--primary-fg)] shadow-xs hover:shadow-md hover:scale-105 active:scale-95 transition-all duration-200 ml-1 cursor-pointer"
+      >
+        <span>{t("nav.contact")}</span>
+      </a>
+
+      <!-- Botón Menú Móvil -->
       <button
-        id="color-palette-btn"
-        onclick="window.toggleDialog('color-selector')"
-        class="cursor-pointer appearance-none border-none flex items-center justify-center p-1 rounded-md
-              hover:scale-110 transition-transform will-change-transform focus:outline-none
-              focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-        title="Escoge tu color"
+        id="mobile-menu-button"
+        class="md:hidden text-app size-9 rounded-full flex items-center justify-center hover:bg-black/5 dark:hover:bg-white/10 transition-colors focus:outline-none cursor-pointer"
+        aria-label="Abrir menú de navegación"
+        aria-expanded="false"
       >
         <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
+          id="mobile-menu-icon-open"
+          class="size-5"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
-          class="text-app"
         >
-          <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle>
-          <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle>
-          <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle>
-          <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle>
-          <path
-            d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"
-          ></path>
+          <line x1="4" y1="6" x2="20" y2="6"></line>
+          <line x1="4" y1="12" x2="20" y2="12"></line>
+          <line x1="4" y1="18" x2="20" y2="18"></line>
+        </svg>
+        <svg
+          id="mobile-menu-icon-close"
+          class="size-5 hidden"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
       </button>
     </div>
   </nav>
+
+  <!-- Menú Móvil Desplegable -->
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden absolute top-full left-4 right-4 mt-2.5 p-5 rounded-3xl liquid-glass liquid-glass-scrolled shadow-2xl flex-col gap-4 dropdown-menu-animate z-50"
+  >
+    <div class="flex flex-col gap-1.5">
+      <a
+        href="#hero"
+        class="mobile-nav-link text-app font-semibold text-base py-2.5 px-4 rounded-2xl hover:bg-black/5 dark:hover:bg-white/10 transition-colors flex items-center justify-between"
+      >
+        <span>{t("nav.home")}</span>
+        <span class="text-xs text-muted font-mono">01</span>
+      </a>
+      <a
+        href="#experience"
+        class="mobile-nav-link text-app font-semibold text-base py-2.5 px-4 rounded-2xl hover:bg-black/5 dark:hover:bg-white/10 transition-colors flex items-center justify-between"
+      >
+        <span>{t("nav.experience")}</span>
+        <span class="text-xs text-muted font-mono">02</span>
+      </a>
+      <a
+        href="#services"
+        class="mobile-nav-link text-app font-semibold text-base py-2.5 px-4 rounded-2xl hover:bg-black/5 dark:hover:bg-white/10 transition-colors flex items-center justify-between"
+      >
+        <span>{t("nav.services")}</span>
+        <span class="text-xs text-muted font-mono">03</span>
+      </a>
+      <a
+        href="#projects"
+        class="mobile-nav-link text-app font-semibold text-base py-2.5 px-4 rounded-2xl hover:bg-black/5 dark:hover:bg-white/10 transition-colors flex items-center justify-between"
+      >
+        <span>{t("nav.projects")}</span>
+        <span class="text-xs text-muted font-mono">04</span>
+      </a>
+    </div>
+
+    <div class="h-px bg-app-soft/40 my-1"></div>
+
+    <div class="flex items-center justify-between pt-1">
+      <span class="text-xs text-muted font-medium">Paúl Sigua</span>
+      <a
+        href="#services"
+        class="mobile-nav-link inline-flex items-center justify-center h-10 px-5 rounded-full font-bold text-sm bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-[var(--primary-fg)] shadow-md"
+      >
+        <span>{t("nav.contact")}</span>
+      </a>
+    </div>
+  </div>
 </header>
 
 <style>
-  #themes-menu.open {
-    display: inline-block;
-    animation: scale-up-center 140ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-  }
-  @keyframes scale-up-center {
-    from {
-      transform: scale(0.9);
-      opacity: 0;
-    }
-    to {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
-
   .theme-toggle-icon {
     transform: scale(0);
     opacity: 0;
+    pointer-events: none;
   }
   .theme-toggle-icon.active {
     transform: scale(1);
     opacity: 1;
-  }
-
-  #language-menu.open {
-    display: inline-block;
-    animation: scale-up-center 140ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    pointer-events: auto;
   }
 </style>
 
 <script>
-  // Language menu toggle functionality
+  // ── Scroll Interaction ───────────────────────────────────────────
+  const headerContainer = document.getElementById("header-container");
+  const navPill = document.getElementById("nav-pill");
+
+  let isScrolled = false;
+
+  function updateScrollState() {
+    const shouldBeScrolled = window.scrollY > 20;
+    if (shouldBeScrolled !== isScrolled) {
+      isScrolled = shouldBeScrolled;
+      if (isScrolled) {
+        headerContainer?.classList.remove("pt-6");
+        headerContainer?.classList.add("pt-2");
+        navPill?.setAttribute("nav-compacted", "");
+        navPill?.classList.remove("max-w-[1200px]");
+        navPill?.classList.add("max-w-[880px]", "liquid-glass-scrolled");
+      } else {
+        headerContainer?.classList.remove("pt-2");
+        headerContainer?.classList.add("pt-6");
+        navPill?.removeAttribute("nav-compacted");
+        navPill?.classList.remove("max-w-[880px]", "liquid-glass-scrolled");
+        navPill?.classList.add("max-w-[1200px]");
+      }
+    }
+  }
+
+  window.addEventListener("scroll", updateScrollState, { passive: true });
+  updateScrollState();
+
+  // ── Mobile Menu Toggle ───────────────────────────────────────────
+  const mobileMenuButton = document.getElementById("mobile-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const iconOpen = document.getElementById("mobile-menu-icon-open");
+  const iconClose = document.getElementById("mobile-menu-icon-close");
+
+  function toggleMobileMenu(open?: boolean) {
+    if (!mobileMenu) return;
+    const isHidden = mobileMenu.classList.contains("hidden");
+    const show = open !== undefined ? open : isHidden;
+
+    if (show) {
+      mobileMenu.classList.remove("hidden");
+      mobileMenu.classList.add("flex");
+      mobileMenuButton?.setAttribute("aria-expanded", "true");
+      iconOpen?.classList.add("hidden");
+      iconClose?.classList.remove("hidden");
+    } else {
+      mobileMenu.classList.add("hidden");
+      mobileMenu.classList.remove("flex");
+      mobileMenuButton?.setAttribute("aria-expanded", "false");
+      iconOpen?.classList.remove("hidden");
+      iconClose?.classList.add("hidden");
+    }
+  }
+
+  mobileMenuButton?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    toggleMobileMenu();
+  });
+
+  // Cerrar menú móvil al hacer clic en un enlace interno
+  document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+    link.addEventListener("click", () => toggleMobileMenu(false));
+  });
+
+  // ── Language Menu Toggle ─────────────────────────────────────────
   const languageToggleBtn = document.getElementById("language-toggle-btn");
   const languageMenu = document.getElementById("language-menu");
 
   if (languageToggleBtn && languageMenu) {
-    // Toggle menu on button click
     languageToggleBtn.addEventListener("click", (e) => {
       e.stopPropagation();
-      const isOpen = languageMenu.classList.contains("open");
-
+      const isOpen = !languageMenu.classList.contains("hidden");
       if (isOpen) {
-        languageMenu.classList.remove("open");
+        languageMenu.classList.add("hidden");
         languageToggleBtn.setAttribute("aria-expanded", "false");
       } else {
-        languageMenu.classList.add("open");
+        // Cerrar tema si está abierto
+        document.getElementById("themes-menu")?.classList.add("hidden");
+        document.getElementById("theme-toggle-btn")?.setAttribute("aria-expanded", "false");
+
+        languageMenu.classList.remove("hidden");
         languageToggleBtn.setAttribute("aria-expanded", "true");
       }
     });
 
-    // Handle language change with scroll preservation
     const languageLinks = languageMenu.querySelectorAll("a[data-language]");
     languageLinks.forEach((link) => {
       link.addEventListener("click", (e) => {
         e.preventDefault();
-
-        // Save current scroll position and hash
         sessionStorage.setItem("scrollPosition", window.scrollY.toString());
         sessionStorage.setItem("currentHash", window.location.hash);
-
-        // Navigate to new language
         window.location.href = link.getAttribute("href") || "/";
       });
     });
+  }
 
-    // Close menu when clicking outside
-    document.addEventListener("click", (e) => {
-      if (
-        !languageMenu.contains(e.target as Node) &&
-        !languageToggleBtn.contains(e.target as Node)
-      ) {
-        languageMenu.classList.remove("open");
-        languageToggleBtn.setAttribute("aria-expanded", "false");
-      }
-    });
+  // ── Theme Menu Toggle ────────────────────────────────────────────
+  const themeBtn = document.getElementById("theme-toggle-btn");
+  const themeMenu = document.getElementById("themes-menu");
 
-    // Close menu on escape key
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && languageMenu.classList.contains("open")) {
-        languageMenu.classList.remove("open");
-        languageToggleBtn.setAttribute("aria-expanded", "false");
-        languageToggleBtn.focus();
+  if (themeBtn && themeMenu) {
+    themeBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = !themeMenu.classList.contains("hidden");
+      if (isOpen) {
+        themeMenu.classList.add("hidden");
+        themeBtn.setAttribute("aria-expanded", "false");
+      } else {
+        // Cerrar idioma si está abierto
+        languageMenu?.classList.add("hidden");
+        languageToggleBtn?.setAttribute("aria-expanded", "false");
+
+        themeMenu.classList.remove("hidden");
+        themeBtn.setAttribute("aria-expanded", "true");
       }
     });
   }
 
-  // Restore scroll position after language change
+  // ── Global Clicks & Escape Key ───────────────────────────────────
+  document.addEventListener("click", (e) => {
+    const target = e.target as Node;
+
+    if (
+      languageMenu &&
+      !languageMenu.contains(target) &&
+      !languageToggleBtn?.contains(target)
+    ) {
+      languageMenu.classList.add("hidden");
+      languageToggleBtn?.setAttribute("aria-expanded", "false");
+    }
+
+    if (
+      themeMenu &&
+      !themeMenu.contains(target) &&
+      !themeBtn?.contains(target)
+    ) {
+      themeMenu.classList.add("hidden");
+      themeBtn?.setAttribute("aria-expanded", "false");
+    }
+
+    if (
+      mobileMenu &&
+      !mobileMenu.contains(target) &&
+      !mobileMenuButton?.contains(target)
+    ) {
+      toggleMobileMenu(false);
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      languageMenu?.classList.add("hidden");
+      languageToggleBtn?.setAttribute("aria-expanded", "false");
+      themeMenu?.classList.add("hidden");
+      themeBtn?.setAttribute("aria-expanded", "false");
+      toggleMobileMenu(false);
+    }
+  });
+
+  // ── Restore Scroll on Language Switch ────────────────────────────
   window.addEventListener("load", () => {
     const savedScrollPosition = sessionStorage.getItem("scrollPosition");
     const savedHash = sessionStorage.getItem("currentHash");
 
     if (savedScrollPosition) {
-      // Clear the saved position
       sessionStorage.removeItem("scrollPosition");
       sessionStorage.removeItem("currentHash");
 
-      // Restore scroll position
       setTimeout(() => {
         window.scrollTo({
           top: parseInt(savedScrollPosition),
           behavior: "smooth",
         });
 
-        // If there was a hash, update the URL without scrolling
         if (savedHash) {
           history.replaceState(null, "", savedHash);
         }

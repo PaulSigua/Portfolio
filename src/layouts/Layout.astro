@@ -113,27 +113,42 @@ const metaDescription = description || defaultDescription;
     <slot />
 
     <Modal id="color-selector" title={t("header.color-selector")}>
-      <div class="grid grid-cols-4 gap-4">
+      <div class="flex items-center justify-center gap-4 flex-wrap p-2">
         <button
-          class="w-12 h-12 rounded-full cursor-pointer hover:scale-110 transition-transform shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-app focus:ring-blue-500"
-          style="background-color: #4785FF"
-          onclick="window.setAppColor('blue'); window.toggleDialog()"
-          aria-label="Azul"></button>
+          class="size-11 rounded-full cursor-pointer hover:scale-110 transition-transform shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-app focus:ring-zinc-400 border border-app-soft relative overflow-hidden"
+          style="background: linear-gradient(135deg, #09090b 50%, #ffffff 50%);"
+          onclick="window.setAppColor('mono'); window.toggleDialog('color-selector')"
+          aria-label="Monocromo (Blanco y Negro)"
+          title="Monocromo (Blanco y Negro)"
+        ></button>
         <button
-          class="w-12 h-12 rounded-full cursor-pointer hover:scale-110 transition-transform shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-app focus:ring-emerald-500"
-          style="background-color: #93f46f"
-          onclick="window.setAppColor('green'); window.toggleDialog()"
-          aria-label="Verde"></button>
+          class="size-11 rounded-full cursor-pointer hover:scale-110 transition-transform shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-app focus:ring-blue-500"
+          style="background-color: #3b82f6"
+          onclick="window.setAppColor('blue'); window.toggleDialog('color-selector')"
+          aria-label="Azul"
+          title="Azul"
+        ></button>
         <button
-          class="w-12 h-12 rounded-full cursor-pointer hover:scale-110 transition-transform shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-app focus:ring-orange-500"
+          class="size-11 rounded-full cursor-pointer hover:scale-110 transition-transform shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-app focus:ring-emerald-500"
+          style="background-color: #22c55e"
+          onclick="window.setAppColor('green'); window.toggleDialog('color-selector')"
+          aria-label="Verde"
+          title="Verde"
+        ></button>
+        <button
+          class="size-11 rounded-full cursor-pointer hover:scale-110 transition-transform shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-app focus:ring-orange-500"
           style="background-color: #f97316"
-          onclick="window.setAppColor('orange'); window.toggleDialog()"
-          aria-label="Naranja"></button>
+          onclick="window.setAppColor('orange'); window.toggleDialog('color-selector')"
+          aria-label="Naranja"
+          title="Naranja"
+        ></button>
         <button
-          class="w-12 h-12 rounded-full cursor-pointer hover:scale-110 transition-transform shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-app focus:ring-purple-500"
+          class="size-11 rounded-full cursor-pointer hover:scale-110 transition-transform shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-app focus:ring-purple-500"
           style="background-color: #8b5cf6"
-          onclick="window.setAppColor('purple'); window.toggleDialog()"
-          aria-label="Morado"></button>
+          onclick="window.setAppColor('purple'); window.toggleDialog('color-selector')"
+          aria-label="Morado"
+          title="Morado"
+        ></button>
       </div>
     </Modal>
 
@@ -174,12 +189,6 @@ const metaDescription = description || defaultDescription;
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    body {
-      margin-bottom: 100px;
     }
   }
 </style>

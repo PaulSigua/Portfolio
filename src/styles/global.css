@@ -6,54 +6,76 @@
   --color-text-muted: var(--text-muted);
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
+  --color-primary-fg: var(--primary-fg);
   --color-app-soft: var(--border-app-soft);
   --color-primary-soft: var(--primary-soft);
   --color-card: var(--card);
 }
 
 :root {
-  --bg: #17171b;
-  --text-main: #e6eeff;
-  --text-muted: #8ab1ff;
+  /* Default Monochrome Dark Theme */
+  --bg: #09090b;
+  --text-main: #f4f4f5;
+  --text-muted: #a1a1aa;
+  --border-app-soft: #27272a;
+  --primary-soft: #18181b;
+  --card: #121217;
 
-  --primary: #4785ff;
-  --primary-hover: #2e74ff;
-  --border-app-soft: #434343;
-  --primary-soft: #182e5e;
-  --card: #21212a;
+  --primary: #ffffff;
+  --primary-hover: #e4e4e7;
+  --primary-fg: #09090b;
 }
 
 :root[data-theme="light"] {
-  --border-app-soft: #dadada;
+  /* Default Monochrome Light Theme */
   --bg: #ffffff;
-  --text-main: #001847;
-  --text-muted: #112e68;
-  --primary-soft: #e6eeff;
-  --card: #f5f7ff;
+  --text-main: #09090b;
+  --text-muted: #52525b;
+  --border-app-soft: #e4e4e7;
+  --primary-soft: #f4f4f5;
+  --card: #fafafa;
+
+  --primary: #09090b;
+  --primary-hover: #27272a;
+  --primary-fg: #ffffff;
 }
 
 :root[data-theme="dark"] {
-  --border-app-soft: #434343;
-  --bg: #17171b;
-  --text-main: #e6eeff;
-  --text-muted: #8ab1ff;
-  --primary-soft: #182e5e;
-  --card: #21212a;
+  /* Default Monochrome Dark Theme */
+  --bg: #09090b;
+  --text-main: #f4f4f5;
+  --text-muted: #a1a1aa;
+  --border-app-soft: #27272a;
+  --primary-soft: #18181b;
+  --card: #121217;
+
+  --primary: #ffffff;
+  --primary-hover: #e4e4e7;
+  --primary-fg: #09090b;
+}
+
+:root[data-color="blue"] {
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --primary-fg: #ffffff;
 }
 
 :root[data-color="green"] {
-  --primary: #43a028;
-  --primary-hover: #327a1f;
+  --primary: #22c55e;
+  --primary-hover: #16a34a;
+  --primary-fg: #ffffff;
 }
 
 :root[data-color="orange"] {
   --primary: #f97316;
   --primary-hover: #ea580c;
+  --primary-fg: #ffffff;
 }
 
 :root[data-color="purple"] {
   --primary: #8b5cf6;
   --primary-hover: #7c3aed;
+  --primary-fg: #ffffff;
 }
 
 html {
@@ -133,3 +155,80 @@ dialog::backdrop {
     opacity: 0;
   }
 }
+
+/* Liquid Glass Navbar Utilities */
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.7) inset, 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+  border: none;
+  transition: max-width 0.5s cubic-bezier(0.36, 0.6, 0, 1),
+              background 0.5s cubic-bezier(0.36, 0.6, 0, 1),
+              transform 0.3s cubic-bezier(0, 0, 0.5, 1),
+              box-shadow 0.3s cubic-bezier(0, 0, 0.5, 1),
+              padding 0.4s cubic-bezier(0.36, 0.6, 0, 1);
+}
+
+:root[data-theme="dark"] .liquid-glass,
+.dark .liquid-glass {
+  background: rgba(20, 20, 26, 0.65);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1) inset, 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+  border: none;
+}
+
+.liquid-glass-scrolled,
+[nav-compacted] {
+  background: rgba(255, 255, 255, 0.75) !important;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.9) inset, 0 12px 36px 0 rgba(0, 0, 0, 0.08) !important;
+}
+
+:root[data-theme="dark"] .liquid-glass-scrolled,
+.dark .liquid-glass-scrolled,
+:root[data-theme="dark"] [nav-compacted],
+.dark [nav-compacted] {
+  background: rgba(24, 24, 32, 0.85) !important;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14) inset, 0 14px 44px 0 rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Blur spot del menú (Efecto de resplandor dinámico según el color de acento activo) */
+.menu-blur-spot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 110px;
+  height: 44px;
+  background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+  filter: blur(14px);
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  border-radius: 9999px;
+  transition: opacity 0.35s ease-in-out;
+}
+
+.nav-item:hover .menu-blur-spot,
+.nav-item:focus-visible .menu-blur-spot {
+  opacity: 0.7;
+}
+
+/* Submenu animations */
+.dropdown-menu-animate {
+  animation: dropdown-scale 180ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform-origin: top center;
+}
+
+@keyframes dropdown-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
