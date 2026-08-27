@@ -12,37 +12,40 @@ export const ui = {
     "nav.projects": "Proyectos",
     "nav.services": "Servicios",
     "nav.contact": "Contacto",
+
+    // Hero
     "hero.available": "Disponible para trabajar",
     "hero.greeting": "Hola, soy",
     "hero.name": "Paúl Sigua",
-    "hero.eyebrow": "Desarrollador Fullstack",
-    "hero.title.main": "Creando Software",
-    "hero.title.highlight": "Moderno y Escalable.",
+    "hero.eyebrow": "Frontend Engineer & Full Stack Dev",
+    "hero.title.main": "Desarrollador Frontend",
+    "hero.title.highlight": "& Full Stack Engineer.",
     "hero.description":
-      "Especialista en desarrollo web de alto rendimiento con Angular, React y FastAPI. Diseño arquitecturas robustas y experiencias interactivas que transforman ideas en productos sólidos.",
+      "Especialista en desarrollo Frontend con Angular, React y TypeScript, complementado con sólida experiencia Full Stack en JavaScript, PHP y WordPress. Construyo interfaces dinámicas, código limpio y sistemas escalables.",
     "hero.intro":
-      'Soy <strong>desarrollador fullstack</strong> enfocado en crear y mantener aplicaciones web modernas con <span class="text-subtle font-semibold">Angular, React y FastAPI</span>. Ayudo a equipos y negocios a mejorar sus productos, resolver bugs y construir nuevas funcionalidades de forma eficiente.',
+      'Soy <strong>desarrollador Frontend & Full Stack</strong> enfocado en crear experiencias interactivas modernas con <span class="text-subtle font-semibold">Angular, React, TypeScript, PHP y WordPress</span>. Ayudo a negocios y equipos a construir productos web rápidos, accesibles y de alto impacto.',
     "hero.passion":
-      "Disfruto convertir ideas en soluciones funcionales, cuidando tanto la lógica como la experiencia de usuario.",
-    "hero.cta": "Disponible para proyectos freelance y colaboraciones 🚀",
+      "Disfruto transformar requerimientos complejos en interfaces fluidas y arquitecturas robustas que garantizan una experiencia de usuario impecable.",
+    "hero.cta": "Disponible para proyectos freelance y equipos remotos 🚀",
     "hero.cta.projects": "Explorar Proyectos",
     "hero.cta.contact": "Contáctame",
-    "hero.badge.card": "Disponible para proyectos freelance y equipos remotos",
+    "hero.badge.card": "Disponible para proyectos freelance y roles remotos",
     "hero.badge.action": "Hablemos",
-    "hero.card.main.badge": "Fullstack Specialist",
-    "hero.card.main.title": "Arquitectura & Desarrollo",
-    "hero.card.main.desc": "FastAPI + React / Angular · Clean Code",
-    "hero.card.service1.title": "Frontend Moderno",
-    "hero.card.service1.sub": "React · Angular · Astro",
-    "hero.card.service2.title": "APIs & Backend",
-    "hero.card.service2.sub": "FastAPI · Python · REST",
-    "hero.card.service3.title": "Bases de Datos",
-    "hero.card.service3.sub": "PostgreSQL · MongoDB · SQL",
-    "hero.card.service4.title": "Cloud & Performance",
-    "hero.card.service4.sub": "Docker · Tailwind · CI/CD",
     "hero.location": "Cuenca, Ecuador 🇪🇨",
     "hero.avatar": "Avatar de Paúl Sigua",
-    "experience.badge": "02 • EXPERIENCIA",
+
+    // Hero HTTP Status & Code Window
+    "hero.status.200": "200 OK • UI Renderizada",
+    "hero.status.201": "201 Created • Componente Activo",
+    "hero.status.404": "404 Not Found • 0 Errores UI",
+    "hero.status.401": "401 Auth • Token Validado",
+    "hero.status.304": "304 Cache • Carga Instantánea",
+    "hero.code.role": "Frontend & Full Stack Dev",
+    "hero.code.stack": "TS · JS · PHP · Angular · React · WordPress",
+    "hero.code.terminal": "HTTP/2.0 200 OK • Core Web Vitals 99.9%",
+
+    // Experiencia
+    "experience.badge": "Experiencia",
     "experience.title": "Experiencia Laboral",
     "experience.subtitle": "Trayectoria profesional y proyectos destacados en los que he colaborado.",
     "experience.current": "Actualidad",
@@ -53,86 +56,93 @@ export const ui = {
     "experience.job1.title": "Desarrollador Frontend",
     "experience.job1.company": "MyCodedMind",
     "experience.job1.description":
-      "Especialización en desarrollo Frontend creando experiencias web atractivas y funcionales. Trabajo activo con tecnologías modernas para clientes reales.",
+      "Especialización en desarrollo Frontend creando experiencias web atractivas y funcionales con Angular, React y WordPress. Construcción de componentes modulares, consumo de APIs y optimización de rendimiento.",
     "experience.job2.date": "Abril 2024 - 2025",
     "experience.job2.title": "Desarrollador de Software",
     "experience.job2.company": "StarFlowers Cia. Ltda.",
     "experience.job2.description":
-      "Desarrollo de soluciones de datos y mantenimiento de sistemas críticos. Aseguré la continuidad operativa y la calidad técnica durante más de un año.",
+      "Desarrollo de interfaces con Angular, integración con backend FastAPI y bases de datos SQL. Mantenimiento y optimización de sistemas críticos con alta disponibilidad.",
     "experience.job3.date": "Septiembre 2021 - Agosto 2025",
     "experience.job3.title": "Formación Profesional",
     "experience.job3.company": "Universidad Politécnica Salesiana",
     "experience.job3.description":
-      "Proyectos académicos de alto nivel aplicando arquitecturas de software, desarrollo móvil y estructuras de datos complejas.",
-    "projects.badge": "04 • PROYECTOS SELECCIONADOS",
+      "Proyectos de ingeniería de software aplicando arquitecturas frontend y backend, TypeScript, algoritmos complejos y patrones de diseño modernos.",
+
+    // Proyectos
+    "projects.badge": "Proyectos Seleccionados",
     "projects.title": "Proyectos Destacados",
     "projects.subtitle":
       "Selección de aplicaciones web, plataformas e-commerce y sistemas a medida desarrollados con altos estándares de calidad y rendimiento.",
     "projects.visit": "Ver Proyecto",
     "projects.viewCode": "Ver Código",
     "projects.thearomatrace.title": "The Aroma Trace",
-    "projects.thearomatrace.badge": "E-Commerce",
+    "projects.thearomatrace.badge": "WordPress & E-Commerce",
     "projects.thearomatrace.description":
-      "Plataforma global de comercio electrónico para marketing olfativo y fragancias personalizadas. Desarrollo y personalización frontend con WordPress y WooCommerce.",
+      "Plataforma global de comercio electrónico para marketing olfativo y fragancias personalizadas. Desarrollo y personalización frontend con WordPress, WooCommerce, PHP y CSS.",
     "projects.thearomatrace.alt": "Captura de The Aroma Trace",
     "projects.ordania.title": "Ordania",
-    "projects.ordania.badge": "Healthcare SaaS",
+    "projects.ordania.badge": "Angular SaaS",
     "projects.ordania.description":
-      "Software de agendamiento y gestión clínica para profesionales de la salud que automatiza citas, recordatorios y cobros, desarrollado con Angular y Tailwind CSS.",
+      "Software de agendamiento y gestión clínica para profesionales de la salud. Desarrollado con Angular, TypeScript y Tailwind CSS con arquitectura reactiva modular.",
     "projects.ordania.alt": "Captura de Ordania",
     "projects.kea.title": "Kea",
-    "projects.kea.badge": "Gestión Escolar",
+    "projects.kea.badge": "Frontend App",
     "projects.kea.description":
-      "Sistema integral de gestión escolar y académica para el control de calificaciones, asistencias, matrículas y roles administrativos en tiempo real.",
+      "Sistema integral de gestión escolar para el control de calificaciones, asistencias y roles administrativos en tiempo real con Angular y TypeScript.",
     "projects.kea.alt": "Captura de Kea",
-    "services.badge": "03 • PROCESO & SERVICIOS",
+
+    // Servicios
+    "services.badge": "Proceso & Servicios",
     "services.title": "Cómo Trabajo",
     "services.subtitle":
       "Un flujo de trabajo transparente, ágil y probado para llevar tu proyecto desde la idea inicial hasta producción con calidad garantizada.",
     "services.step1.num": "01",
-    "services.step1.title": "Descubrimiento & Reunión Inicial",
+    "services.step1.title": "Descubrimiento & Arquitectura UI",
     "services.step1.desc":
-      "Reunión 1 a 1 de 30-45 min para entender tu visión, requerimientos técnicos, definir el problema del usuario y alinear los objetivos clave del negocio.",
+      "Reunión 1 a 1 de 30-45 min para entender tu visión, definir estructura de componentes, stack ideal (Angular/React/WordPress) y objetivos clave.",
     "services.step1.badge": "Kickoff",
     "services.step2.num": "02",
     "services.step2.title": "Propuesta Técnica & Roadmap",
     "services.step2.desc":
-      "Diseño de la arquitectura adecuada (Frontend, Backend, DB), cronograma claro con entregables por hitos y presupuesto transparente sin costos ocultos.",
+      "Diseño de arquitectura (Frontend, Backend, APIs), cronograma claro con entregables por hitos y presupuesto transparente sin costos ocultos.",
     "services.step2.badge": "Planificación",
     "services.step3.num": "03",
-    "services.step3.title": "Desarrollo Ágil & Demos Semanales",
+    "services.step3.title": "Desarrollo Frontend & Integración",
     "services.step3.desc":
-      "Construcción iterativa con código limpio y moderno (Angular, React, FastAPI). Demos funcionales periódicos para revisar avances y retroalimentar en tiempo real.",
+      "Construcción iterativa con código limpio (TypeScript, Angular, React, PHP). Demos funcionales periódicos para revisar avances y retroalimentar.",
     "services.step3.badge": "Construcción",
     "services.step4.num": "04",
     "services.step4.title": "Pruebas, QA & Optimización",
     "services.step4.desc":
-      "Pruebas exhaustivas de responsive, validación de endpoints y seguridad, corrección de bugs y optimización de velocidad de carga y rendimiento.",
+      "Pruebas exhaustivas de responsive, optimización de velocidad de carga, validación de endpoints y accesibilidad web.",
     "services.step4.badge": "Calidad",
     "services.step5.num": "05",
     "services.step5.title": "Despliegue & Soporte Continuo",
     "services.step5.desc":
-      "Puesta en marcha en producción (Vercel, Docker, VPS o Cloud), entrega de código fuente documentado y acompañamiento post-lanzamiento para garantizar estabilidad.",
+      "Puesta en marcha en producción (Vercel, Cloud, VPS o Hosting), entrega de código fuente documentado y acompañamiento post-lanzamiento.",
     "services.step5.badge": "Producción",
-    "services.service1.title": "Corrección de Bugs",
+
+    "services.service1.title": "Desarrollo Frontend React & Angular",
     "services.service1.description":
-      "Identifico y soluciono errores en aplicaciones React y Angular, mejorando la estabilidad y rendimiento de tu producto.",
-    "services.service2.title": "Desarrollo Frontend",
+      "Construyo aplicaciones SPA fluidas, componentes modulares en TypeScript y arquitecturas escalables con React y Angular.",
+    "services.service2.title": "Desarrollo WordPress & PHP",
     "services.service2.description":
-      "Implemento nuevas funcionalidades y componentes con las mejores prácticas, código limpio y diseño responsive.",
-    "services.service3.title": "Desarrollo de APIs",
+      "Personalizo y desarrollo sitios web de alto impacto, temas a medida, plugins y plataformas WooCommerce con PHP y JavaScript.",
+    "services.service3.title": "Integración Full Stack & APIs",
     "services.service3.description":
-      "Creo APIs robustas y escalables con FastAPI, incluyendo documentación automática y validación de datos.",
-    "services.service4.title": "Mejoras de UI/UX",
+      "Conecto interfaces Frontend con servicios Backend robustos, autenticación segura y consumo eficiente de APIs REST.",
+    "services.service4.title": "Diseño UI/UX & Tailwind CSS",
     "services.service4.description":
-      "Optimizo interfaces de usuario con Tailwind CSS, creando experiencias visuales modernas y atractivas.",
-    "services.service5.title": "Personalización WordPress",
+      "Transformo requerimientos en interfaces visuales modernas, adaptativas y con animaciones sutiles cuidando cada detalle visual.",
+    "services.service5.title": "Refactorización & Solución de Bugs",
     "services.service5.description":
-      "Personalizo y optimizo sitios WordPress, desde temas hasta plugins, adaptándolos a tus necesidades específicas.",
+      "Diagnostico y resuelvo errores complejos en aplicaciones web, optimizando rendimiento y migrando código a TypeScript.",
     "services.cta.title": "¿Tienes un proyecto en mente?",
     "services.cta.description":
-      "Estoy disponible para proyectos freelance y colaboraciones. Hablemos sobre cómo puedo ayudarte a alcanzar tus objetivos.",
+      "Estoy disponible para proyectos freelance y roles remotos. Hablemos sobre cómo puedo ayudarte a construir una gran experiencia digital.",
     "services.cta.button": "Agendar Reunión",
+
+    // Modales & General
     "contact.modal.title": "Opciones de Contacto",
     "contact.modal.message": "¿Por qué medio prefieres contactarme?",
     "contact.modal.email": "Enviar Correo Electrónico",
@@ -150,37 +160,40 @@ export const ui = {
     "nav.projects": "Projects",
     "nav.services": "Services",
     "nav.contact": "Contact",
+
+    // Hero
     "hero.available": "Available for work",
     "hero.greeting": "Hi, I'm",
     "hero.name": "Paúl Sigua",
-    "hero.eyebrow": "Fullstack Developer & Web Architect",
-    "hero.title.main": "Crafting Scalable",
-    "hero.title.highlight": "Modern Web Systems.",
+    "hero.eyebrow": "Frontend Engineer & Full Stack Dev",
+    "hero.title.main": "Frontend Developer",
+    "hero.title.highlight": "& Full Stack Engineer.",
     "hero.description":
-      "Specialized in high-performance web engineering with Angular, React, and FastAPI. Designing resilient architectures and intuitive user experiences that turn ideas into production-ready software.",
+      "High-performance Frontend specialist with Angular, React, and TypeScript, backed by strong Full Stack expertise in JavaScript, PHP, and WordPress. Crafting fluid user interfaces, clean architectures, and scalable web solutions.",
     "hero.intro":
-      'I’m a fullstack developer focused on building and maintaining modern web applications using <span class="text-subtle font-semibold">Angular, React, and FastAPI</span>. I help teams and businesses improve their products, fix bugs, and develop new features efficiently.',
+      'I’m a <strong>Frontend & Full Stack Developer</strong> specialized in building modern web applications using <span class="text-subtle font-semibold">Angular, React, TypeScript, PHP, and WordPress</span>. I help teams and businesses create fast, accessible, and high-impact digital products.',
     "hero.passion":
-      "I enjoy turning ideas into functional solutions while taking care of both logic and user experience.",
-    "hero.cta": "Open to freelance projects and collaborations 🚀",
+      "I love transforming complex requirements into delightful interfaces while ensuring top-tier performance and solid architecture.",
+    "hero.cta": "Open for freelance projects and remote teams 🚀",
     "hero.cta.projects": "Explore Projects",
-    "hero.cta.contact": "Get in Touch",
+    "hero.cta.contact": "Let's Talk",
     "hero.badge.card": "Available for freelance projects & remote roles",
-    "hero.badge.action": "Let's Talk",
-    "hero.card.main.badge": "Fullstack Specialist",
-    "hero.card.main.title": "Architecture & Engineering",
-    "hero.card.main.desc": "FastAPI + React / Angular · Clean Code",
-    "hero.card.service1.title": "Modern Frontend",
-    "hero.card.service1.sub": "React · Angular · Astro",
-    "hero.card.service2.title": "APIs & Backend",
-    "hero.card.service2.sub": "FastAPI · Python · REST",
-    "hero.card.service3.title": "Databases",
-    "hero.card.service3.sub": "PostgreSQL · MongoDB · SQL",
-    "hero.card.service4.title": "Cloud & Performance",
-    "hero.card.service4.sub": "Docker · Tailwind · CI/CD",
+    "hero.badge.action": "Get in touch",
     "hero.location": "Cuenca, Ecuador 🇪🇨",
     "hero.avatar": "Paúl Sigua's Avatar",
-    "experience.badge": "02 • EXPERIENCE",
+
+    // Hero HTTP Status & Code Window
+    "hero.status.200": "200 OK • UI Rendered",
+    "hero.status.201": "201 Created • Component Active",
+    "hero.status.404": "404 Not Found • 0 UI Bugs",
+    "hero.status.401": "401 Auth • Token Validated",
+    "hero.status.304": "304 Cache • Instant Load",
+    "hero.code.role": "Frontend & Full Stack Dev",
+    "hero.code.stack": "TS · JS · PHP · Angular · React · WordPress",
+    "hero.code.terminal": "HTTP/2.0 200 OK • Core Web Vitals 99.9%",
+
+    // Experience
+    "experience.badge": "Experience",
     "experience.title": "Work Experience",
     "experience.subtitle": "Professional journey and featured projects I have contributed to.",
     "experience.current": "Present",
@@ -191,86 +204,93 @@ export const ui = {
     "experience.job1.title": "Frontend Developer",
     "experience.job1.company": "MyCodedMind",
     "experience.job1.description":
-      "Frontend development for real-world projects using Angular and modern UI practices. I worked on feature implementation, bug fixing, and UI improvements, collaborating with designers and backend developers.",
+      "Frontend engineering building responsive web experiences with Angular, React, and WordPress. Modular component design, API consumption, and speed optimization.",
     "experience.job2.date": "April 2024 - 2025",
     "experience.job2.title": "Software Developer",
     "experience.job2.company": "StarFlowers Cia. Ltda.",
     "experience.job2.description":
-      "Development of data solutions and maintenance of critical systems. Ensured operational continuity and technical quality for over a year.",
+      "Interface engineering with Angular, backend integration with FastAPI, and SQL databases. Maintenance and performance improvements on high-reliability systems.",
     "experience.job3.date": "September 2021 - August 2025",
     "experience.job3.title": "Professional Training",
     "experience.job3.company": "Salesian Polytechnic University",
     "experience.job3.description":
-      "High-level academic projects applying software architectures, mobile development, and complex data structures.",
-    "projects.badge": "04 • FEATURED PROJECTS",
+      "Software engineering coursework and projects applying frontend & backend architectures, TypeScript, advanced algorithms, and modern UI patterns.",
+
+    // Projects
+    "projects.badge": "Featured Projects",
     "projects.title": "Featured Projects",
     "projects.subtitle":
       "Curated selection of web applications, e-commerce platforms, and custom software systems built with high engineering and design standards.",
     "projects.visit": "View Project",
     "projects.viewCode": "View Code",
     "projects.thearomatrace.title": "The Aroma Trace",
-    "projects.thearomatrace.badge": "E-Commerce",
+    "projects.thearomatrace.badge": "WordPress & E-Commerce",
     "projects.thearomatrace.description":
-      "International e-commerce platform for olfactory marketing and custom scents. Developed responsive frontend and custom integrations with WordPress and WooCommerce.",
+      "International e-commerce platform for olfactory marketing. Developed and customized responsive frontend with WordPress, WooCommerce, PHP, and modern CSS.",
     "projects.thearomatrace.alt": "Screenshot of The Aroma Trace",
     "projects.ordania.title": "Ordania",
-    "projects.ordania.badge": "Healthcare SaaS",
+    "projects.ordania.badge": "Angular SaaS",
     "projects.ordania.description":
-      "Scheduling and clinic practice management software for healthcare professionals to automate appointments and patient workflows, built with Angular and Tailwind CSS.",
+      "Healthcare scheduling and clinic practice management SaaS. Engineered with Angular, TypeScript, and Tailwind CSS using a reactive modular architecture.",
     "projects.ordania.alt": "Screenshot of Ordania",
     "projects.kea.title": "Kea",
-    "projects.kea.badge": "School Management",
+    "projects.kea.badge": "Frontend App",
     "projects.kea.description":
-      "Comprehensive school and academic management platform to streamline grades, attendance tracking, student enrollments, and administrative workflows in real time.",
+      "Comprehensive school and academic management application to streamline student grades, attendance, and administrative workflows in real time with Angular.",
     "projects.kea.alt": "Screenshot of Kea",
-    "services.badge": "03 • PROCESS & SERVICES",
+
+    // Services
+    "services.badge": "Process & Services",
     "services.title": "How I Work",
     "services.subtitle":
       "A transparent, agile, and proven workflow designed to take your ideas from initial discovery to high-performance, production-ready software.",
     "services.step1.num": "01",
-    "services.step1.title": "Discovery & Initial Kickoff",
+    "services.step1.title": "Discovery & UI Architecture",
     "services.step1.desc":
-      "1-on-1 discovery session (30-45 min) to analyze your vision, technical requirements, user needs, and align on clear business objectives.",
+      "1-on-1 session to analyze your needs, define component structures, recommend technical stacks (Angular/React/WordPress), and align business goals.",
     "services.step1.badge": "Kickoff",
     "services.step2.num": "02",
     "services.step2.title": "Technical Proposal & Roadmap",
     "services.step2.desc":
-      "Designing the optimal architecture (Frontend, Backend, DB), clear milestone roadmap with deliverables, and upfront transparent pricing.",
+      "Designing optimal architecture (Frontend, Backend, APIs), clear milestone roadmap with deliverables, and upfront transparent pricing.",
     "services.step2.badge": "Planning",
     "services.step3.num": "03",
-    "services.step3.title": "Agile Development & Demos",
+    "services.step3.title": "Frontend Engineering & Integration",
     "services.step3.desc":
-      "Iterative development with clean, scalable code (Angular, React, FastAPI). Regular live demos to review progress and refine features in real time.",
+      "Iterative development with clean, typed code (TypeScript, Angular, React, PHP). Regular live demos to review progress and refine features.",
     "services.step3.badge": "Build",
     "services.step4.num": "04",
-    "services.step4.title": "Testing, QA & Optimization",
+    "services.step4.title": "Testing, Performance & QA",
     "services.step4.desc":
-      "Comprehensive cross-device testing, API security validation, bug fixing, and Core Web Vitals speed optimization.",
+      "Cross-browser and responsive testing, Core Web Vitals optimization, accessibility auditing, and API validation.",
     "services.step4.badge": "Quality",
     "services.step5.num": "05",
     "services.step5.title": "Deployment & Handover",
     "services.step5.desc":
-      "Production deployment (Vercel, Docker, VPS or Cloud), documented source code delivery, and post-launch support to ensure smooth operations.",
+      "Production deployment (Vercel, Cloud, VPS, Hosting), documented clean code handover, and post-launch support to ensure stability.",
     "services.step5.badge": "Production",
-    "services.service1.title": "Bug Fixing",
+
+    "services.service1.title": "Frontend React & Angular Development",
     "services.service1.description":
-      "I identify and fix bugs in React and Angular applications, improving your product's stability and performance.",
-    "services.service2.title": "Frontend Development",
+      "I engineer dynamic SPAs, reusable TypeScript components, and scalable architectures with React and Angular.",
+    "services.service2.title": "WordPress & PHP Engineering",
     "services.service2.description":
-      "I implement new features and components following best practices, with clean code and responsive design.",
-    "services.service3.title": "API Development",
+      "Custom WordPress theme and plugin development, WooCommerce integrations, and tailored PHP web applications built for speed and security.",
+    "services.service3.title": "Full Stack & API Integration",
     "services.service3.description":
-      "I build robust and scalable APIs with FastAPI, including automatic documentation and data validation.",
-    "services.service4.title": "UI/UX Improvements",
+      "Seamlessly connecting frontend interfaces with robust backend services, secure authentication, and optimized REST APIs.",
+    "services.service4.title": "UI/UX Design & Tailwind CSS",
     "services.service4.description":
-      "I optimize user interfaces with Tailwind CSS, creating modern and attractive visual experiences.",
-    "services.service5.title": "WordPress Customization",
+      "Translating wireframes and ideas into pixel-perfect, responsive interfaces with fluid micro-interactions.",
+    "services.service5.title": "Code Refactoring & Bug Fixing",
     "services.service5.description":
-      "I customize and optimize WordPress sites, from themes to plugins, adapting them to your specific needs.",
+      "Diagnosing and resolving tricky frontend/backend bugs, optimizing performance, and migrating legacy codebases to TypeScript.",
     "services.cta.title": "Have a project in mind?",
     "services.cta.description":
-      "I'm available for freelance projects and collaborations. Let's talk about how I can help you achieve your goals.",
+      "I'm available for freelance projects, frontend consulting, and remote roles. Let's talk about how I can help you achieve your goals.",
     "services.cta.button": "Schedule a Call",
+
+    // Modals & General
     "contact.modal.title": "Contact Options",
     "contact.modal.message": "How would you prefer to contact me?",
     "contact.modal.email": "Send an Email",

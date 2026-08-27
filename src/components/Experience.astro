@@ -18,10 +18,10 @@ const EXPERIENCE = [
     logo: "https://mycodedmind.com/images/logotipo.png",
     descriptionKey: "experience.job1.description",
     tags: [
-      { text: "React", color: "blue" },
-      { text: "WordPress", color: "purple" },
+      { text: "TypeScript", color: "blue" },
       { text: "Angular", color: "red" },
-      { text: "Vue.js", color: "green" },
+      { text: "React", color: "sky" },
+      { text: "WordPress", color: "purple" },
       { text: "JavaScript", color: "yellow" },
       { text: "PHP", color: "black" },
     ],
@@ -32,7 +32,7 @@ const EXPERIENCE = [
     titleKey: "experience.job2.title",
     companyKey: "experience.job2.company",
     url: "https://starflowers.com.ec",
-    logo: "https://starflowers.com.ec/_astro/icon-logo.Bi0O_rGO_Z1iLfJp.svg",
+    logo: "https://starflowers.com.ec/_astro/icon-logo.Bi0O_rGO_Z1W71Dl.svg",
     descriptionKey: "experience.job2.description",
     tags: [
       { text: "Python", color: "green" },
@@ -64,11 +64,6 @@ const EXPERIENCE = [
   <div class="portfolio-card p-6 sm:p-10 md:p-14">
     <!-- Header de la Sección -->
     <div class="text-center space-y-3 mb-10">
-      <div class="section-tag">
-        <span>02</span>
-        <span>•</span>
-        <span>{lang === "es" ? "EXPERIENCIA" : "EXPERIENCE"}</span>
-      </div>
       <h2 class="section-title">
         {t("experience.title")}
       </h2>
@@ -238,7 +233,6 @@ const EXPERIENCE = [
   .exp-card {
     border-radius: 1.5rem;
     background: rgba(0, 0, 0, 0.03);
-    border: 1px solid rgba(0, 0, 0, 0.08);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 

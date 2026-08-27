@@ -1,6 +1,13 @@
 (function () {
   const mm = window.matchMedia("(prefers-color-scheme: dark)");
 
+  const COLOR_HEX_MAP = {
+    blue: "#3b82f6",
+    green: "#22c55e",
+    orange: "#f97316",
+    purple: "#a855f7",
+  };
+
   function getPref() {
     return localStorage.getItem("theme") || "system";
   }
@@ -11,6 +18,7 @@
     const html = document.documentElement;
     html.setAttribute("data-theme", theme);
     html.classList.toggle("dark", theme === "dark");
+    updateFavicon();
   }
 
   function getColorPref() {
@@ -22,6 +30,28 @@
     } else {
       document.documentElement.removeAttribute("data-color");
     }
+    updateFavicon();
+  }
+
+  function updateFavicon() {
+    const color = getColorPref();
+    const effTheme = getEffective(getPref());
+    let hex = COLOR_HEX_MAP[color];
+    if (!hex) {
+      hex = effTheme === "dark" ? "#ffffff" : "#09090b";
+    }
+
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="${hex}" d="M1.293,11.293l4-4A1,1,0,1,1,6.707,8.707L3.414,12l3.293,3.293a1,1,0,1,1-1.414,1.414l-4-4A1,1,0,0,1,1.293,11.293Zm17.414-4a1,1,0,1,0-1.414,1.414L20.586,12l-3.293,3.293a1,1,0,1,0,1.414,1.414l4-4a1,1,0,0,0,0-1.414ZM13.039,4.726l-4,14a1,1,0,0,0,.686,1.236A1.053,1.053,0,0,0,10,20a1,1,0,0,0,.961-.726l4-14a1,1,0,1,0-1.922-.548Z"/></svg>`;
+
+    const dataUri = "data:image/svg+xml," + encodeURIComponent(svg);
+    let link = document.querySelector("link[rel*='icon']");
+    if (!link) {
+      link = document.createElement("link");
+      link.rel = "icon";
+      link.type = "image/svg+xml";
+      document.head.appendChild(link);
+    }
+    link.href = dataUri;
   }
 
   window.setAppColor = function (color) {

@@ -29,8 +29,8 @@ const t = useTranslations(lang);
 
 const defaultDescription =
   lang === "es"
-    ? "Desarrollador fullstack especializado en Angular, React y FastAPI. Disponible para proyectos freelance y colaboraciones."
-    : "Fullstack developer specialized in Angular, React, and FastAPI. Available for freelance projects and collaborations.";
+    ? "Desarrollador Frontend & Full Stack especializado en TypeScript, JavaScript, PHP, Angular, React y WordPress. Disponible para proyectos y colaboraciones."
+    : "Frontend & Full Stack Developer specialized in TypeScript, JavaScript, PHP, Angular, React, and WordPress. Available for freelance projects and remote teams.";
 
 const metaDescription = description || defaultDescription;
 ---
@@ -63,6 +63,7 @@ const metaDescription = description || defaultDescription;
         f.parentNode.insertBefore(j, f);
       })(window, document, "script", "dataLayer", "GTM-KD5RJZLR");
     </script>
+    <!-- End Google Tag Manager -->
 
     <!-- Primary Meta -->
     <meta charset="UTF-8" />
@@ -95,12 +96,20 @@ const metaDescription = description || defaultDescription;
     <meta name="twitter:description" content={metaDescription} />
     <meta name="twitter:image" content={ogImage} />
 
+    <!-- Modern Developer Google Fonts: JetBrains Mono, Fira Code & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- Robots & indexing -->
     <meta name="robots" content="index, follow" />
     <meta name="author" content="Paúl Sigua" />
     <meta
       name="keywords"
-      content="Paúl Sigua, portfolio, fullstack developer, Angular, React, FastAPI, freelance, Ecuador"
+      content="Paúl Sigua, portfolio, frontend developer, fullstack developer, TypeScript, JavaScript, PHP, Angular, React, WordPress, freelance, Ecuador"
     />
 
     <script src="/scripts/theme.js" defer></script>
@@ -237,8 +246,12 @@ const metaDescription = description || defaultDescription;
 
 <style>
   html {
-    font-family: "Onest Variable", system-ui, sans-serif;
+    font-family: "Plus Jakarta Sans", "Onest Variable", system-ui, -apple-system, sans-serif;
     scroll-behavior: smooth;
+  }
+
+  code, pre, .font-mono, .font-code {
+    font-family: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   }
 
   body {

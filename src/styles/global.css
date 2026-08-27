@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
 @theme {
+  --font-sans: "Plus Jakarta Sans", "Onest Variable", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-code: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
   --color-bg: var(--bg);
   --color-text-main: var(--text-main);
   --color-text-muted: var(--text-muted);
@@ -28,7 +31,7 @@
 
 :root[data-theme="light"] {
   /* Default Monochrome Light Theme */
-  --bg: #ffffff;
+  --bg: #f6f6f6ed;
   --text-main: #09090b;
   --text-muted: #52525b;
   --border-app-soft: #e4e4e7;
@@ -181,7 +184,7 @@ dialog::backdrop {
 
 .liquid-glass-scrolled,
 [nav-compacted] {
-  background: rgba(255, 255, 255, 0.75) !important;
+  background: rgb(255 255 255 / 10%) !important;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.9) inset, 0 12px 36px 0 rgba(0, 0, 0, 0.08) !important;
 }
 
@@ -270,28 +273,6 @@ dialog::backdrop {
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1) inset, 0 20px 50px rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-/* Badge píldora estándar para numeración y tags de sección */
-.section-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.35rem 0.85rem;
-  border-radius: 9999px;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  background: rgba(0, 0, 0, 0.05);
-  color: var(--text-muted);
-  border: 1px solid var(--border-app-soft);
-}
-
-:root[data-theme="dark"] .section-tag,
-.dark .section-tag {
-  background: rgba(255, 255, 255, 0.06);
 }
 
 /* Titular estándar de sección */

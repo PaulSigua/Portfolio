@@ -28,44 +28,100 @@ const SOCIALS = [
     label: "Email",
   },
 ];
+
+const TECH_STACK = [
+  { name: ".ts", label: "TypeScript" },
+  { name: ".js", label: "JavaScript" },
+  { name: ".php", label: "PHP" },
+  { name: "Angular", label: "Angular" },
+  { name: "React", label: "React" },
+  { name: "WordPress", label: "WordPress" },
+];
 ---
 
 <section
   id="hero-content"
-  class="grid lg:grid-cols-12 gap-12 lg:gap-14 items-center w-full py-8 sm:py-12 lg:py-16"
+  class="relative grid lg:grid-cols-12 gap-10 lg:gap-12 items-center w-full lg:py-14"
 >
-  <!-- Columna Izquierda: Información, Tipografía y Acciones -->
-  <div class="lg:col-span-6 space-y-7 text-left">
-    <!-- Eyebrow Tag -->
-    <div id="hero-eyebrow" class="flex items-center gap-2.5">
-      <span class="text-xs sm:text-sm font-bold tracking-wider text-muted uppercase">
-        {t("hero.eyebrow")}
-      </span>
-    </div>
+  <!-- ── Fondo Tecnológico / Ambient Glow Dinámico ── -->
+  <div class="absolute inset-0 -z-20 overflow-hidden pointer-events-none">
+    <div class="absolute -top-24 -left-24 size-96 bg-[var(--primary)]/20 rounded-full blur-3xl"></div>
+    <div class="absolute top-1/2 -right-24 size-96 bg-[var(--primary)]/15 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-24 left-1/3 size-96 bg-[var(--primary)]/15 rounded-full blur-3xl"></div>
+  </div>
+
+  <!-- ── Columna Izquierda: Presentación & Textos Frontend/Fullstack ── -->
+  <div class="lg:col-span-6 space-y-6 text-left relative z-10">
 
     <!-- Título Principal de Alto Impacto -->
     <h1
       id="hero-title"
       class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-app leading-[1.08]"
     >
-      <span>{t("hero.title.main")}</span>
-      <span
-        class="block mt-1"
-      >
+      <span class="block">{t("hero.title.main")}</span>
+      <span class="block mt-1 bg-gradient-to-r from-blue-500 via-indigo-400 to-purple-400 bg-clip-text text-transparent">
         {t("hero.title.highlight")}
       </span>
     </h1>
 
-    <!-- Descripción del Desarrollador -->
+    <!-- Píldoras de Tecnologías con Color Primario Dinámico -->
+    <div id="hero-tech-chips" class="flex flex-wrap gap-2 pt-1">
+      {
+        TECH_STACK.map((tech) => (
+          <span
+            class="px-2.5 py-1 rounded-lg text-xs font-mono font-bold bg-[var(--primary)]/10 text-app border border-[var(--primary)]/20 hover:border-[var(--primary)] hover:bg-[var(--primary)]/20 hover:text-[var(--primary)] transition-all duration-200 hover:scale-105 select-none"
+          >
+            {tech.name}
+          </span>
+        ))
+      }
+    </div>
+
+    <!-- Descripción del Perfil -->
     <p
       id="hero-desc"
-      class="text-base sm:text-lg text-muted leading-relaxed max-w-xl"
+      class="text-base sm:text-lg text-muted leading-relaxed max-w-xl font-normal"
     >
       {t("hero.description")}
     </p>
 
+    <!-- Barra de Códigos de Respuesta HTTP con Color Primario Dinámico -->
+    <div id="hero-http-codes" class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1 max-w-xl font-mono text-xs">
+      <div class="p-2.5 rounded-xl bg-black/5 dark:bg-white/5 border border-app-soft hover:border-[var(--primary)]/40 transition-all flex flex-col gap-0.5">
+        <div class="flex items-center gap-1.5">
+          <span class="size-1.5 rounded-full bg-[var(--primary)]"></span>
+          <span class="font-bold text-[var(--primary)]">200 OK</span>
+        </div>
+        <span class="text-[10px] text-muted font-sans">UI Ready</span>
+      </div>
+
+      <div class="p-2.5 rounded-xl bg-black/5 dark:bg-white/5 border border-app-soft hover:border-[var(--primary)]/40 transition-all flex flex-col gap-0.5">
+        <div class="flex items-center gap-1.5">
+          <span class="size-1.5 rounded-full bg-[var(--primary)]"></span>
+          <span class="font-bold text-[var(--primary)]">201 CREATED</span>
+        </div>
+        <span class="text-[10px] text-muted font-sans">Clean Code</span>
+      </div>
+
+      <div class="p-2.5 rounded-xl bg-black/5 dark:bg-white/5 border border-app-soft hover:border-[var(--primary)]/40 transition-all flex flex-col gap-0.5">
+        <div class="flex items-center gap-1.5">
+          <span class="size-1.5 rounded-full bg-[var(--primary)]/70"></span>
+          <span class="font-bold text-app">401 AUTH</span>
+        </div>
+        <span class="text-[10px] text-muted font-sans">Secure API</span>
+      </div>
+
+      <div class="p-2.5 rounded-xl bg-black/5 dark:bg-white/5 border border-app-soft hover:border-[var(--primary)]/40 transition-all flex flex-col gap-0.5">
+        <div class="flex items-center gap-1.5">
+          <span class="size-1.5 rounded-full bg-[var(--primary)]/70"></span>
+          <span class="font-bold text-app">404 NONE</span>
+        </div>
+        <span class="text-[10px] text-muted font-sans">0 Bugs Left</span>
+      </div>
+    </div>
+
     <!-- Botones de Acción (CTA) -->
-    <div id="hero-actions" class="flex flex-wrap items-center gap-4 pt-1">
+    <div id="hero-actions" class="flex flex-wrap items-center gap-4 pt-2">
       <button
         onclick="window.toggleDialog('modal-service-contact')"
         class="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-[var(--primary-fg)] font-bold text-sm shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
@@ -93,24 +149,14 @@ const SOCIALS = [
       </a>
     </div>
 
-    <!-- Micro Tarjeta Inferior de Disponibilidad y Redes -->
+    <!-- Micro Footer de Disponibilidad y Redes -->
     <div
       id="hero-footer"
-      class="pt-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-t border-app-soft/40 max-w-xl"
+      class="pt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-t border-app-soft/40 max-w-xl"
     >
-      <div class="flex items-center gap-3">
-        <div class="flex flex-col">
-          <span class="text-xs font-semibold text-app leading-tight">
-            {t("hero.badge.card")}
-          </span>
-          <button
-            onclick="window.toggleDialog('modal-service-contact')"
-            class="text-xs font-bold text-[var(--primary)] hover:underline mt-0.5 text-left inline-flex items-center gap-1 cursor-pointer"
-          >
-            <span>{t("hero.badge.action")}</span>
-            <span>→</span>
-          </button>
-        </div>
+      <div class="flex items-center gap-2 text-xs font-medium text-muted font-mono">
+        <span class="size-2 rounded-full bg-[var(--primary)]"></span>
+        <span>{t("hero.badge.card")}</span>
       </div>
 
       <!-- Redes Sociales -->
@@ -132,201 +178,123 @@ const SOCIALS = [
     </div>
   </div>
 
-  <!-- Columna Derecha: Stack de Tarjetas de Servicios Flotantes (Liquid Glass) -->
+  <!-- ── Columna Derecha: IDE Code Terminal & HTTP Status Orbit Showcase ── -->
   <div
     id="hero-cards-stack"
-    class="lg:col-span-6 relative flex justify-center items-center py-8 lg:py-4 select-none"
+    class="lg:col-span-6 relative flex justify-center items-center lg:py-2 select-none"
   >
-    <!-- Resplandor Ambiental de Fondo (Aurora Glow) -->
+    <!-- Resplandor Primario Dinámico de Fondo -->
     <div
-      class="absolute -inset-4 sm:-inset-8 bg-gradient-to-tr from-pink-500/15 via-purple-500/15 to-cyan-400/20 blur-3xl opacity-60 dark:opacity-35 rounded-full pointer-events-none -z-10 animate-pulse"
-      style="animation-duration: 8s;"
+      class="absolute -inset-4 sm:-inset-8 bg-gradient-to-tr from-[var(--primary)]/15 via-[var(--primary)]/10 to-transparent blur-3xl opacity-60 dark:opacity-30 rounded-full pointer-events-none -z-10 animate-pulse"
+      style="animation-duration: 7s;"
     >
     </div>
 
-    <!-- Contenedor Maestro de Tarjetas -->
-    <div class="relative w-full max-w-[420px] mx-auto">
-      <!-- ── 1. Tarjeta Flotante Superior (Frontend Apps) ────────────────── -->
+    <!-- Contenedor Maestro de la Ventana de Código -->
+    <div class="relative w-full max-w-[480px] mx-auto">
+      <!-- ── Ventana Principal de Código / IDE ── -->
       <div
-        class="absolute -top-7 right-2 sm:right-4 z-20 liquid-glass rounded-2xl p-3 shadow-xl flex items-center gap-3 border border-white/30 dark:border-white/10 backdrop-blur-xl animate-float-slow hover:scale-105 transition-transform duration-300"
+        class="relative z-10 w-full rounded-3xl liquid-glass p-5 sm:p-6 shadow-2xl border border-white/40 dark:border-white/10 backdrop-blur-2xl flex flex-col gap-4 font-mono hover:shadow-3xl transition-shadow duration-300"
       >
-        <div
-          class="size-8 rounded-xl bg-gradient-to-tr from-blue-500 to-cyan-400 flex items-center justify-center text-white shrink-0 shadow-sm"
-        >
-          <svg
-            class="size-4.5"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <polyline points="16 18 22 12 16 6"></polyline>
-            <polyline points="8 6 2 12 8 18"></polyline>
-          </svg>
-        </div>
-        <div class="flex flex-col pr-1">
-          <span class="text-[11px] font-bold text-app leading-tight">
-            {t("hero.card.service1.title")}
-          </span>
-          <span class="text-[10px] text-muted font-medium">
-            {t("hero.card.service1.sub")}
-          </span>
-        </div>
-        <span
-          class="size-2 rounded-full bg-[var(--primary)] ml-1 shadow-xs"
-        ></span>
-      </div>
-
-      <!-- ── 2. Tarjeta Flotante Izquierda (APIs & Microservicios) ───────── -->
-      <div
-        class="absolute top-1/4 -left-4 sm:-left-8 z-20 liquid-glass rounded-2xl p-3 shadow-xl flex flex-col items-center gap-2 border border-white/30 dark:border-white/10 backdrop-blur-xl animate-float-delay hover:scale-105 transition-transform duration-300"
-      >
-        <div
-          class="size-9 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-400 flex items-center justify-center text-white shadow-sm"
-        >
-          <svg
-            class="size-5"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
-          </svg>
-        </div>
-        <div class="text-center">
-          <span class="block text-[11px] font-bold text-app">FastAPI</span>
-          <span class="block text-[9px] text-muted font-medium">99.9% Speed</span>
-        </div>
-        <span
-          class="text-[9px] font-bold text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded-full"
-        >
-          Active
-        </span>
-      </div>
-
-      <!-- ── 3. Tarjeta Principal Central (Fintech-Glass Showcase) ────────── -->
-      <div
-        class="relative z-10 w-full rounded-3xl liquid-glass p-6 sm:p-7 shadow-2xl border border-white/40 dark:border-white/10 backdrop-blur-2xl flex flex-col gap-5 hover:shadow-3xl transition-shadow duration-300"
-      >
-        <!-- Header de la Tarjeta Principal -->
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-3">
-            <div class="relative size-10 rounded-full overflow-hidden ring-2 ring-[var(--primary)]/40">
-              <img
-                src="https://avatars.githubusercontent.com/u/109354319?s=400&u=6e30a1b9fc1d804fdb55c573fe2519d42f311cf1&v=4"
-                alt={t("hero.avatar")}
-                class="w-full h-full object-cover"
-              />
-            </div>
-            <div>
-              <span class="block text-xs font-bold text-app">Paúl Sigua</span>
-              <span class="block text-[10px] text-muted font-medium">
-                {t("hero.card.main.badge")}
-              </span>
-            </div>
+        <!-- Header de la Ventana (Controles MacOS + Tabs de Código) -->
+        <div class="flex items-center justify-between pb-3 border-b border-white/10">
+          <!-- Botones de Control MacOS sutiles -->
+          <div class="flex items-center gap-1.5">
+            <span class="size-3 rounded-full bg-rose-500/70"></span>
+            <span class="size-3 rounded-full bg-amber-500/70"></span>
+            <span class="size-3 rounded-full bg-emerald-500/70"></span>
           </div>
-          <span
-            class="text-xs font-semibold px-2.5 py-1 rounded-full bg-[var(--primary)]/10 text-[var(--primary)] border border-[var(--primary)]/20"
-          >
-            PRO
-          </span>
-        </div>
 
-        <!-- Bloque Principal de Valor / Métricas -->
-        <div class="p-4 rounded-2xl bg-black/5 dark:bg-white/5 border border-white/10 flex flex-col gap-1">
-          <span class="text-[11px] font-bold text-muted uppercase tracking-wider">
-            {t("hero.card.main.title")}
-          </span>
-          <span class="text-2xl sm:text-3xl font-black text-app tracking-tight">
-            Fullstack Dev
-          </span>
-          <div class="flex items-center justify-between pt-2 text-[10px] text-muted font-mono">
-            <span>•••• •••• •••• 2026</span>
-            <span class="text-emerald-500 font-bold">100% Delivery</span>
+          <!-- Pestañas Interactivas con estilo dinámico -->
+          <div class="flex items-center gap-1 text-[11px]">
+            <button
+              id="tab-btn-react"
+              class="code-tab-btn px-2.5 py-1 rounded-lg font-bold transition-all active bg-[var(--primary)]/10 text-[var(--primary)] border border-[var(--primary)]/30 cursor-pointer"
+              data-tab="react"
+            >
+              App.tsx
+            </button>
+            <button
+              id="tab-btn-angular"
+              class="code-tab-btn px-2.5 py-1 rounded-lg text-muted hover:text-app cursor-pointer transition-all border border-transparent"
+              data-tab="angular"
+            >
+              hero.ts
+            </button>
+            <button
+              id="tab-btn-php"
+              class="code-tab-btn px-2.5 py-1 rounded-lg text-muted hover:text-app cursor-pointer transition-all border border-transparent"
+              data-tab="php"
+            >
+              wp.php
+            </button>
           </div>
         </div>
 
-        <!-- Mini-Fichas de Servicios Interiores -->
-        <div class="grid grid-cols-2 gap-3">
-          <!-- Ficha Backend -->
-          <div
-            class="p-3 rounded-xl bg-black/5 dark:bg-white/5 border border-white/10 flex flex-col gap-1 hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
-          >
-            <div class="flex items-center justify-between">
-              <span class="text-[11px] font-bold text-app">
-                {t("hero.card.service2.title")}
-              </span>
-              <svg class="size-3.5 text-[var(--primary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </div>
-            <span class="text-[9px] text-muted font-medium">FastAPI · Python</span>
+        <!-- ── Contenido del Editor: Pestaña 1 (React + TS) ── -->
+        <div id="code-content-react" class="code-tab-content space-y-1.5 text-[11px] sm:text-xs text-zinc-300 dark:text-zinc-300 leading-relaxed min-h-[160px]">
+          <div class="text-zinc-500">// TypeScript + React 19 Frontend</div>
+          <div>
+            <span class="text-[var(--primary)] font-semibold">interface</span> <span class="text-app font-bold">Developer</span> &#123;
           </div>
+          <div class="pl-4">
+            <span class="text-muted">name</span>: <span class="text-[var(--primary)]">"Paúl Sigua"</span>;
+          </div>
+          <div class="pl-4">
+            <span class="text-muted">role</span>: <span class="text-[var(--primary)]">"Frontend & Full Stack"</span>;
+          </div>
+          <div class="pl-4">
+            <span class="text-muted">skills</span>: [<span class="text-[var(--primary)]">"Angular"</span>, <span class="text-[var(--primary)]">"React"</span>, <span class="text-[var(--primary)]">"WordPress"</span>];
+          </div>
+          <div class="pl-4">
+            <span class="text-muted">status</span>: <span class="text-[var(--primary)] font-bold">200</span>; <span class="text-zinc-500">// OK</span>
+          </div>
+          <div>&#125;</div>
+        </div>
 
-          <!-- Ficha Cloud & DB -->
-          <div
-            class="p-3 rounded-xl bg-black/5 dark:bg-white/5 border border-white/10 flex flex-col gap-1 hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
-          >
-            <div class="flex items-center justify-between">
-              <span class="text-[11px] font-bold text-app">
-                {t("hero.card.service3.title")}
-              </span>
-              <svg class="size-3.5 text-[var(--primary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </div>
-            <span class="text-[9px] text-muted font-medium">PostgreSQL · SQL</span>
+        <!-- ── Contenido del Editor: Pestaña 2 (Angular + TS) ── -->
+        <div id="code-content-angular" class="code-tab-content space-y-1.5 text-[11px] sm:text-xs text-zinc-300 dark:text-zinc-300 leading-relaxed min-h-[160px] hidden">
+          <div class="text-zinc-500">// Angular Component Architecture</div>
+          <div>
+            <span class="text-[var(--primary)] font-semibold">@Component</span>(&#123;
+          </div>
+          <div class="pl-4">
+            <span class="text-muted">selector</span>: <span class="text-[var(--primary)]">'app-portfolio'</span>,
+          </div>
+          <div class="pl-4">
+            <span class="text-muted">standalone</span>: <span class="text-[var(--primary)]">true</span>,
+          </div>
+          <div class="pl-4">
+            <span class="text-muted">changeDetection</span>: <span class="text-app">ChangeDetectionStrategy.OnPush</span>
+          </div>
+          <div>&#125;)</div>
+          <div>
+            <span class="text-[var(--primary)] font-semibold">export class</span> <span class="text-app font-bold">PortfolioComponent</span> &#123;&#125;
           </div>
         </div>
 
-        <!-- Barra de Acción Inferior -->
-        <div class="flex items-center justify-between pt-1 border-t border-white/10">
-          <div class="flex items-center gap-1.5 text-muted">
+        <!-- ── Contenido del Editor: Pestaña 3 (WordPress + PHP) ── -->
+        <div id="code-content-php" class="code-tab-content space-y-1.5 text-[11px] sm:text-xs text-zinc-300 dark:text-zinc-300 leading-relaxed min-h-[160px] hidden">
+          <div class="text-zinc-500">&lt;?php // WordPress & PHP Hook</div>
+          <div>
+            <span class="text-[var(--primary)] font-semibold">add_action</span>(<span class="text-[var(--primary)]">'init'</span>, <span class="text-[var(--primary)]">function</span>() &#123;
+          </div>
+          <div class="pl-4">
+            <span class="text-muted">$stack</span> = [<span class="text-[var(--primary)]">'PHP'</span>, <span class="text-[var(--primary)]">'WooCommerce'</span>, <span class="text-[var(--primary)]">'REST_API'</span>];
+          </div>
+          <div class="pl-4">
+            <span class="text-[var(--primary)]">return</span> <span class="text-app font-bold">wp_send_json_success</span>(<span class="text-muted">$stack</span>, <span class="text-[var(--primary)] font-bold">201</span>);
+          </div>
+          <div>&#125;);</div>
+        </div>
+
+        <!-- Barra Inferior de Estado HTTP / Terminal Telemetry -->
+        <div class="pt-3 border-t border-white/10 flex items-center justify-between text-[10px] text-muted">
+          <div class="flex items-center gap-2">
             <span class="size-2 rounded-full bg-[var(--primary)]"></span>
-            <span class="text-[11px] font-medium">Cuenca, EC 🇪🇨</span>
+            <span>HTTP/2 • 100% Delivery</span>
           </div>
-          <button
-            onclick="window.toggleDialog('modal-service-contact')"
-            class="px-4 py-2 rounded-full bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-[var(--primary-fg)] font-bold text-xs shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer"
-          >
-            {t("hero.cta.contact")}
-          </button>
-        </div>
-      </div>
-
-      <!-- ── 4. Tarjeta Flotante Inferior Derecha (Cloud & DB) ─────────────── -->
-      <div
-        class="absolute -bottom-6 -right-2 sm:-right-6 z-20 liquid-glass rounded-2xl p-3 shadow-xl flex items-center gap-3 border border-white/30 dark:border-white/10 backdrop-blur-xl animate-float-reverse hover:scale-105 transition-transform duration-300"
-      >
-        <div
-          class="size-8 rounded-xl bg-gradient-to-tr from-purple-500 to-indigo-500 flex items-center justify-center text-white shrink-0 shadow-sm"
-        >
-          <svg
-            class="size-4.5"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
-            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
-          </svg>
-        </div>
-        <div class="flex flex-col pr-1">
-          <span class="text-[11px] font-bold text-app leading-tight">
-            {t("hero.card.service4.title")}
-          </span>
-          <span class="text-[10px] text-muted font-medium">
-            Docker · CI/CD
-          </span>
+          <span class="font-bold text-app">Paúl Sigua · 2026</span>
         </div>
       </div>
     </div>
@@ -334,68 +302,68 @@ const SOCIALS = [
 </section>
 
 <style>
-  @keyframes floatSlow {
-    0%,
-    100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-8px);
-    }
-  }
-
-  @keyframes floatDelay {
-    0%,
-    100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(8px);
-    }
-  }
-
-  @keyframes floatReverse {
-    0%,
-    100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-6px);
-    }
-  }
-
-  .animate-float-slow {
-    animation: floatSlow 6s ease-in-out infinite;
-  }
-
-  .animate-float-delay {
-    animation: floatDelay 7s ease-in-out infinite 1s;
-  }
-
-  .animate-float-reverse {
-    animation: floatReverse 5s ease-in-out infinite 0.5s;
+  .code-tab-btn.active {
+    background: rgba(var(--primary-rgb, 255, 255, 255), 0.12);
+    border-color: var(--primary);
+    color: var(--primary);
   }
 </style>
 
 <script>
   import { gsap } from "gsap";
 
-  const eyebrow = document.getElementById("hero-eyebrow");
-  const title = document.getElementById("hero-title");
-  const desc = document.getElementById("hero-desc");
-  const actions = document.getElementById("hero-actions");
-  const footer = document.getElementById("hero-footer");
-  const cardsStack = document.getElementById("hero-cards-stack");
+  // ── Pestañas Interactivas del Editor de Código ──
+  const tabButtons = document.querySelectorAll<HTMLButtonElement>(".code-tab-btn");
+  const tabContents = document.querySelectorAll<HTMLElement>(".code-tab-content");
 
-  const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+  tabButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const target = btn.getAttribute("data-tab");
+      if (!target) return;
 
-  if (eyebrow && title && desc && actions && footer && cardsStack) {
-    tl.from(eyebrow, { duration: 0.5, y: 20, opacity: 0 })
-      .from(title, { duration: 0.7, y: 40, opacity: 0 }, "-=0.3")
-      .from(desc, { duration: 0.6, y: 25, opacity: 0 }, "-=0.4")
-      .from(actions, { duration: 0.5, y: 20, opacity: 0 }, "-=0.3")
-      .from(footer, { duration: 0.5, y: 20, opacity: 0 }, "-=0.3")
-      .from(cardsStack, { duration: 0.9, scale: 0.92, opacity: 0, ease: "back.out(1.5)" }, "-=0.7");
+      tabButtons.forEach((b) => {
+        b.classList.remove("active", "bg-[var(--primary)]/10", "text-[var(--primary)]", "border-[var(--primary)]/30");
+        b.classList.add("text-muted", "border-transparent");
+      });
+      btn.classList.add("active", "bg-[var(--primary)]/10", "text-[var(--primary)]", "border-[var(--primary)]/30");
+      btn.classList.remove("text-muted", "border-transparent");
+
+      tabContents.forEach((c) => {
+        c.classList.add("hidden");
+      });
+
+      const activeContent = document.getElementById(`code-content-${target}`);
+      if (activeContent) {
+        activeContent.classList.remove("hidden");
+        gsap.fromTo(activeContent, { opacity: 0, y: 6 }, { opacity: 1, y: 0, duration: 0.25 });
+      }
+    });
+  });
+
+  // ── Animación de Entrada del Hero con GSAP ──
+  function playHeroAnimation() {
+    const eyebrow = document.getElementById("hero-eyebrow");
+    const title = document.getElementById("hero-title");
+    const techChips = document.getElementById("hero-tech-chips");
+    const desc = document.getElementById("hero-desc");
+    const httpCodes = document.getElementById("hero-http-codes");
+    const actions = document.getElementById("hero-actions");
+    const footer = document.getElementById("hero-footer");
+    const cardsStack = document.getElementById("hero-cards-stack");
+
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+    if (eyebrow && title && desc && actions && footer && cardsStack) {
+      tl.from(eyebrow, { duration: 0.5, y: 20, opacity: 0 })
+        .from(title, { duration: 0.7, y: 35, opacity: 0 }, "-=0.3")
+        .from(techChips, { duration: 0.5, y: 20, opacity: 0 }, "-=0.4")
+        .from(desc, { duration: 0.5, y: 20, opacity: 0 }, "-=0.3")
+        .from(httpCodes, { duration: 0.5, y: 20, opacity: 0 }, "-=0.3")
+        .from(actions, { duration: 0.5, y: 20, opacity: 0 }, "-=0.3")
+        .from(footer, { duration: 0.5, y: 20, opacity: 0 }, "-=0.3")
+        .from(cardsStack, { duration: 0.9, scale: 0.94, opacity: 0, ease: "back.out(1.4)" }, "-=0.8");
+    }
   }
-</script>
 
+  playHeroAnimation();
+</script>

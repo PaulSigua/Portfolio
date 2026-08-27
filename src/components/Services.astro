@@ -43,12 +43,7 @@ const WORKFLOW_STEPS = [
 <section id="services-section" class="w-full max-w-4xl mx-auto">
   <div class="portfolio-card p-6 sm:p-10 md:p-14">
     <!-- Header de la Sección -->
-    <div class="text-center space-y-3 mb-12 sm:mb-16">
-      <div class="section-tag">
-        <span>03</span>
-        <span>•</span>
-        <span>{lang === "es" ? "PROCESO & SERVICIOS" : "PROCESS & SERVICES"}</span>
-      </div>
+    <div class="text-center space-y-3 mb-4 sm:mb-4">
       <h2 class="section-title">
         {t("services.title")}
       </h2>
@@ -67,7 +62,7 @@ const WORKFLOW_STEPS = [
       </div>
 
       <!-- Lista de Pasos del Proceso -->
-      <div class="flex flex-col gap-10 sm:gap-14 relative z-10">
+      <div class="flex flex-col gap-4 sm:gap-6 relative z-10">
         {
           WORKFLOW_STEPS.map((step, index) => {
             const isEven = index % 2 !== 0;
@@ -204,7 +199,7 @@ const WORKFLOW_STEPS = [
 
     <!-- Pie de Sección (Llamada a la Acción) -->
     <div
-      class="mt-14 pt-8 border-t border-app-soft/40 text-center flex flex-col items-center justify-center gap-4 max-w-xl mx-auto"
+      class="mt-4 pt-4 border-t border-app-soft/40 text-center flex flex-col items-center justify-center gap-4 max-w-xl mx-auto"
     >
       <h3 class="text-lg sm:text-xl font-bold text-app">
         {t("services.cta.title")}
@@ -244,7 +239,7 @@ const WORKFLOW_STEPS = [
     <div class="flex flex-col gap-3">
       <a
         href="mailto:paulmateo0208@gmail.com"
-        class="flex items-center gap-3.5 w-full p-4 rounded-2xl bg-black/5 dark:bg-white/5 border border-app-soft transition-all duration-300 text-app font-semibold hover:border-[var(--primary)] hover:text-[var(--primary)] hover:scale-[1.02] group shadow-xs"
+        class="flex items-center gap-3.5 w-full p-4 rounded-2xl bg-black/5 dark:bg-white/5 border border-app-soft text-app font-semibold hover:border-[var(--primary)] hover:text-[var(--primary)] group shadow-xs"
       >
         <div
           class="p-2 rounded-xl bg-[var(--primary)]/10 text-[var(--primary)] group-hover:bg-[var(--primary)] group-hover:text-[var(--primary-fg)] transition-colors"
@@ -261,7 +256,7 @@ const WORKFLOW_STEPS = [
         href="https://www.linkedin.com/in/paulsigua/"
         target="_blank"
         rel="noopener noreferrer"
-        class="flex items-center gap-3.5 w-full p-4 rounded-2xl bg-black/5 dark:bg-white/5 border border-app-soft transition-all duration-300 text-app font-semibold hover:border-[var(--primary)] hover:text-[var(--primary)] hover:scale-[1.02] group shadow-xs"
+        class="flex items-center gap-3.5 w-full p-4 rounded-2xl bg-black/5 dark:bg-white/5 border border-app-soft text-app font-semibold hover:border-[var(--primary)] hover:text-[var(--primary)] group shadow-xs"
       >
         <div
           class="p-2 rounded-xl bg-[var(--primary)]/10 text-[var(--primary)] group-hover:bg-[var(--primary)] group-hover:text-[var(--primary-fg)] transition-colors"
