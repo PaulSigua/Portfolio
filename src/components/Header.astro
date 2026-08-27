@@ -192,7 +192,7 @@ const languageEntries = Object.entries(languages);
   <!-- Menú Móvil Desplegable -->
   <div
     id="mobile-menu"
-    class="hidden md:hidden absolute top-full left-4 right-4 mt-2.5 p-5 rounded-3xl liquid-glass liquid-glass-scrolled shadow-2xl flex-col gap-4 dropdown-menu-animate z-50"
+    class="hidden md:hidden absolute top-full left-4 right-4 mt-2.5 p-5 rounded-3xl liquid-glass liquid-glass-scrolled shadow-2xl flex-col gap-4 z-50 origin-top opacity-0"
   >
     <div class="flex flex-col gap-1.5">
       <a
@@ -230,7 +230,7 @@ const languageEntries = Object.entries(languages);
     <div class="flex items-center justify-between pt-1">
       <span class="text-xs text-muted font-medium">Paúl Sigua</span>
       <button
-        onclick="window.toggleDialog('modal-service-contact'); toggleMobileMenu(false);"
+        onclick="window.toggleDialog('modal-service-contact'); window.toggleMobileMenu(false);"
         class="mobile-nav-link inline-flex items-center justify-center h-10 px-5 rounded-full font-bold text-sm bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-[var(--primary-fg)] shadow-md cursor-pointer"
       >
         <span>{t("nav.contact")}</span>
@@ -253,6 +253,8 @@ const languageEntries = Object.entries(languages);
 </style>
 
 <script>
+  import { gsap } from "gsap";
+
   // ── Scroll Interaction ───────────────────────────────────────────
   const headerContainer = document.getElementById("header-container");
   const navPill = document.getElementById("nav-pill");
@@ -282,31 +284,54 @@ const languageEntries = Object.entries(languages);
   window.addEventListener("scroll", updateScrollState, { passive: true });
   updateScrollState();
 
-  // ── Mobile Menu Toggle ───────────────────────────────────────────
+  // ── Mobile Menu Toggle con Animación Fade In / Fade Out ────────────
   const mobileMenuButton = document.getElementById("mobile-menu-button");
   const mobileMenu = document.getElementById("mobile-menu");
   const iconOpen = document.getElementById("mobile-menu-icon-open");
   const iconClose = document.getElementById("mobile-menu-icon-close");
 
+  let isMenuOpen = false;
+
   function toggleMobileMenu(open?: boolean) {
     if (!mobileMenu) return;
-    const isHidden = mobileMenu.classList.contains("hidden");
-    const show = open !== undefined ? open : isHidden;
+    const shouldOpen = open !== undefined ? open : !isMenuOpen;
+    if (shouldOpen === isMenuOpen) return;
+    isMenuOpen = shouldOpen;
 
-    if (show) {
+    if (shouldOpen) {
       mobileMenu.classList.remove("hidden");
       mobileMenu.classList.add("flex");
       mobileMenuButton?.setAttribute("aria-expanded", "true");
       iconOpen?.classList.add("hidden");
       iconClose?.classList.remove("hidden");
+
+      gsap.killTweensOf(mobileMenu);
+      gsap.fromTo(
+        mobileMenu,
+        { opacity: 0, y: -10, scale: 0.96 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.28, ease: "power2.out" }
+      );
     } else {
-      mobileMenu.classList.add("hidden");
-      mobileMenu.classList.remove("flex");
       mobileMenuButton?.setAttribute("aria-expanded", "false");
       iconOpen?.classList.remove("hidden");
       iconClose?.classList.add("hidden");
+
+      gsap.killTweensOf(mobileMenu);
+      gsap.to(mobileMenu, {
+        opacity: 0,
+        y: -8,
+        scale: 0.97,
+        duration: 0.2,
+        ease: "power2.in",
+        onComplete: () => {
+          mobileMenu.classList.add("hidden");
+          mobileMenu.classList.remove("flex");
+        },
+      });
     }
   }
+
+  (window as any).toggleMobileMenu = toggleMobileMenu;
 
   mobileMenuButton?.addEventListener("click", (e) => {
     e.stopPropagation();
